@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw067mrjph7ca"]
+
+[ext_resource type="Script" path="res://src/breakable_word/segment.gd" id="1_sw1sq"]
+
+[node name="segment" type="RigidBody2D"]
+script = ExtResource("1_sw1sq")
+text = "Everything"
+
+[node name="Label" type="Label" parent="."]
+offset_left = -41.5
+offset_top = -11.5
+offset_right = 243.5
+offset_bottom = 14.5
+text = "Everything"

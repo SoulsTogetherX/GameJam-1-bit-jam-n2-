@@ -12,9 +12,6 @@ radius = 13.0
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_6dsfu")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-
 [node name="state_machine" type="Node" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -24,6 +21,16 @@ texture = ExtResource("1_lnbo8")
 shape = SubResource("RectangleShape2D_k7qd1")
 
 [node name="interactable_detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_detector"]
 shape = SubResource("CircleShape2D_dal5o")
+
+[node name="coyote_timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="jump_buffer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

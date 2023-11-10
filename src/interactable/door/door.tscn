@@ -10,14 +10,15 @@ size = Vector2(22, 32)
 [node name="door" type="Node2D"]
 script = ExtResource("1_xep17")
 
+[node name="interactable_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
+shape = SubResource("RectangleShape2D_vqe1c")
+
 [node name="regular" type="Sprite2D" parent="."]
 texture = ExtResource("1_fmygn")
 
 [node name="lock" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_7rot8")
-
-[node name="interactable_area" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_area"]
-shape = SubResource("RectangleShape2D_vqe1c")

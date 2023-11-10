@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://chliid478symn"]
+
+[ext_resource type="Script" path="res://rooms/puzzel_rooms/2/room_2.gd" id="1_uvxs1"]
+[ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_hs5dp"]
+[ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/regular_door.gd" id="3_7pdr4"]
+[ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="4_vbw4d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
+size = Vector2(552, 20)
+
+[node name="room_1" type="Node2D"]
+script = ExtResource("1_uvxs1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_dires")
+
+[node name="door" parent="." instance=ExtResource("2_hs5dp")]
+position = Vector2(178, -16)
+state = 1
+
+[node name="action" type="Node" parent="door"]
+script = ExtResource("3_7pdr4")
+
+[node name="player" parent="." instance=ExtResource("4_vbw4d")]
+position = Vector2(-25, -10)
