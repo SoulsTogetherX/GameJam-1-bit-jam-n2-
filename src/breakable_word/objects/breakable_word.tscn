@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkdborsyb20vp"]
+
+[ext_resource type="Script" path="res://src/breakable_word/scripts/breakable_word.gd" id="1_5hfk6"]
+[ext_resource type="Script" path="res://src/breakable_word/scripts/breakable_spawner.gd" id="2_ktsep"]
+
+[node name="breakable_word" type="Node2D"]
+script = ExtResource("1_5hfk6")
+text = "Every/thing No/thing"
+
+[node name="breakable_spawner" type="Node" parent="."]
+script = ExtResource("2_ktsep")

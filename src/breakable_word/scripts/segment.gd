@@ -3,11 +3,11 @@ class_name Segment extends Node2D
 
 static var _font             : Font      = ThemeDB.fallback_font;
 static var _font_size        : float     = 16;
-var _collide : CollisionShape2D;
-@onready var _label   : Label            = $Label;
+var _collide                 : CollisionShape2D;
+@onready var _label          : Label     = $Label;
 
-var _text             : String           = "";
-@export var text      : String           = "":
+var _text                    : String    = "";
+@export var text             : String    = "":
 	get:
 		return _text;
 	set(val):
@@ -25,7 +25,7 @@ func _ready() -> void:
 	set_text(_text);
 	isReady = true;
 
-static var instance = preload("res://src/breakable_word/segment.tscn");
+static var instance = preload("res://src/breakable_word/objects/segment.tscn");
 static func create(text : String, font : Font = ThemeDB.fallback_font, font_size : int = 16) -> Segment:
 	var seg        = instance.instantiate();
 	seg.text       = text;
@@ -42,3 +42,12 @@ func set_text(txt : String) -> Segment:
 	_label.position = -size;
 	
 	return self;
+
+func get_rect() -> Rect2:
+	return _collide.shape.get_rect();
+
+func get_width() -> float:
+	return get_rect().size.x;
+
+func get_height() -> float:
+	return get_rect().size.y;

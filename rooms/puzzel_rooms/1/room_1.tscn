@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2k33pnyrprvs"]
+[gd_scene load_steps=8 format=3 uid="uid://b2k33pnyrprvs"]
 
 [ext_resource type="Script" path="res://rooms/puzzel_rooms/1/room_1.gd" id="1_6crq5"]
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="1_rcl02"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_j5kej"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/regular_door.gd" id="3_r6iq6"]
 [ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="5_vre0u"]
+[ext_resource type="PackedScene" uid="uid://dkdborsyb20vp" path="res://src/breakable_word/objects/breakable_word.tscn" id="6_gn36v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
 size = Vector2(552, 20)
@@ -26,10 +27,13 @@ state = 2
 script = ExtResource("3_r6iq6")
 _nextRoom = "res://rooms/puzzel_rooms/1/room_1.tscn"
 
-[node name="player" parent="." node_paths=PackedStringArray("cam") instance=ExtResource("1_rcl02")]
+[node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("1_rcl02")]
 position = Vector2(-176, -11)
-cam = NodePath("../cam")
+_cam = NodePath("../cam")
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_vre0u")]
 position = Vector2(-176, 0)
 _follow = NodePath("../player")
+
+[node name="breakable_word" parent="." instance=ExtResource("6_gn36v")]
+position = Vector2(-37, -71)
