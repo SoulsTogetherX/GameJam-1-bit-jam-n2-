@@ -64,5 +64,17 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():
 		self.on_click();
 
+static var click_particle = preload("res://assets/particles/click_text_particle.tscn");
 func on_click():
-	print("hello?")
+	var particle = click_particle.instantiate();
+	add_sibling(particle);
+	particle.position = get_local_mouse_position() + position;
+	
+	var tw = create_tween();
+	tw.tween_property(self, "rotation_degrees",  5, 0.05);
+	tw.tween_property(self, "rotation_degrees", -5, 0.05);
+	tw.tween_property(self, "rotation_degrees",  0, 0.05);
+	tw.play();
+	
+	await tw.finished;
+	tw.kill();

@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://src/breakable_word/scripts/segment.gd" id="1_0at7n"]
 
 [node name="segment" type="RigidBody2D"]
+process_mode = 4
 script = ExtResource("1_0at7n")
 text = "Everything"
 
