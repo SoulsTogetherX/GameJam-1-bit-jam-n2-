@@ -5,6 +5,10 @@ var _area            : Rect2            = Rect2(global_position, Vector2.ZERO);
 var _detect          : CollisionShape2D;
 var _segments        : Array[Segment];
 
+static var instance = preload("res://src/breakable_word/objects/word_placer.tscn");
+static func create() -> WordPlacer:
+	return instance.instantiate();
+
 func get_area() -> Rect2:
 	return _area;
 
@@ -14,21 +18,12 @@ func get_width() -> float:
 func get_height() -> float:
 	return _area.size.y;
 
-func _set(property: StringName, value : Variant) -> bool:
-	if property == "position":
-		_area.position = value;
+func drop(segment: int) -> void:
+	_segments[segment].drop();
 
-	return false;
-
-func _ready() -> void:
-	_detect = CollisionShape2D.new()
-	_detect.set_shape(RectangleShape2D.new());
-	_detect.modulate = Color.GREEN;
-	$Area2D.add_child(_detect);
-
-static var instance = preload("res://src/breakable_word/objects/word_placer.tscn");
-static func create() -> WordPlacer:
-	return instance.instantiate();
+func drops(segments: Array[int]) -> void:
+	for idx in segments:
+		_segments[idx].drop();
 
 func add_segment(seg : Segment):
 	add_child(seg);
@@ -52,13 +47,24 @@ func update_segments():
 	
 	_detect.shape.extents   = _area.size;
 	_detect.position = _area.position;
+
+func _set(property: StringName, value : Variant) -> bool:
+	if property == "position":
+		_area.position = value;
+
+	return false;
+
+func _ready() -> void:
+	_detect = CollisionShape2D.new()
+	_detect.set_shape(RectangleShape2D.new());
+	_detect.modulate = Color.GREEN;
+	$Area2D.add_child(_detect);
 	
 func _segment_width() -> float:
 	var width = 0;
 	for seg in _segments:
 		width += seg.get_width();
 	return width;
-
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():
@@ -70,6 +76,9 @@ func on_click():
 	add_sibling(particle);
 	particle.position = get_local_mouse_position() + position;
 	
+	waggle();
+
+func waggle():
 	var tw = create_tween();
 	tw.tween_property(self, "rotation_degrees",  5, 0.05);
 	tw.tween_property(self, "rotation_degrees", -5, 0.05);

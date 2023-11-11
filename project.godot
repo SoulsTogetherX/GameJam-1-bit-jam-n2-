@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalValues="*res://global/global_values.gd"
+GlobalStuff="*res://global/global_stuff.gd"
 
 [input]
 

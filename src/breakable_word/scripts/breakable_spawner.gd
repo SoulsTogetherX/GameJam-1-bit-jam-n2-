@@ -1,23 +1,35 @@
 @tool
 class_name Spawner extends Node
 
-var _font                  : Font   = ThemeDB.fallback_font;
-var _font_size             : float  = 16;
+static var globalStuff = load("res://global/global_stuff.gd");
+@onready var _font      : Font   = globalStuff.segment_font;
+@onready var _font_size : float  = globalStuff.segment_font_size;
 
 var text : String = "":
 	set(val):
 		text = val;
 		_from_text();
-var _letters : Array[Segment] = [];
 var _placers : Array[WordPlacer] = [];
+var _isReady : bool = false;
 
 func update_placers():
 	for placer in _placers:
 		placer.update_segments();
 
+func drop(placer: int, segment: int) -> void:
+	_placers[placer].drop(segment);
+
+func drops(placers: Array[int], segments: Array[Array]) -> void:
+	for placer in placers:
+		_placers[placer].drops(segments[placer]);
+
+func _ready() -> void:
+	await owner.ready;
+	_from_text();
+	_isReady = true;
+
 func _from_text() -> void:
 	_destroy_placers();
-	_letters   = [];
 	var txt    := text.strip_edges();
 	var strs   := txt.split("/", false);
 	var offset : Vector2 = Vector2(-_font.get_string_size(txt, HORIZONTAL_ALIGNMENT_CENTER, -1, _font_size).x, 0);
@@ -39,7 +51,7 @@ func _from_text() -> void:
 				offset.x += space_length;
 				continue;
 			
-			var newSeg : Segment = await Segment.create(seg, _font, _font_size);
+			var newSeg : Segment = Segment.create(seg, _font, _font_size);
 			curr_placer.add_segment(newSeg);
 			curr_placer.position = offset;
 			

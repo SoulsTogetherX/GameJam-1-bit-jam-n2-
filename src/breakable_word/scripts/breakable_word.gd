@@ -1,8 +1,7 @@
 @tool
 class_name Breakable extends Node2D
 
-var isReady : bool = false;
-var placers : Array[WordPlacer] = [];
+var _isReady : bool = false;
 
 @onready var spawner : Spawner = $breakable_spawner;
 
@@ -10,9 +9,15 @@ var placers : Array[WordPlacer] = [];
 	get:
 		return spawner.text;
 	set(val):
-		if not isReady:
+		if not _isReady:
 			await ready;
 		spawner.text = val;
 
 func _ready():
-	isReady = true;
+	_isReady = true;
+
+func drop(segment: int, placer: int) -> void:
+	spawner.drop(placer, segment);
+
+func drops(segments: Array[Array], placers: Array[int]) -> void:
+	spawner.drops(placers, segments);

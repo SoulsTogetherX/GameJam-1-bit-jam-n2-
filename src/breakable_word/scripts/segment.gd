@@ -1,8 +1,9 @@
 @tool
-class_name Segment extends Node2D
+class_name Segment extends RigidBody2D
 
-static var _font             : Font      = ThemeDB.fallback_font;
-static var _font_size        : float     = 16;
+static var globalStuff = load("res://global/global_stuff.gd");
+static var _font             : Font   = globalStuff.segment_font;
+static var _font_size        : float  = globalStuff.segment_font_size;
 var _collide                 : CollisionShape2D;
 @onready var _label          : Label     = $Label;
 
@@ -18,9 +19,17 @@ var _text                    : String    = "";
 
 var isReady : bool = false;
 func _ready() -> void:
-	_collide = CollisionShape2D.new()
-	_collide.set_shape(RectangleShape2D.new());
+	hold();
+	
+	_collide = CollisionShape2D.new();
+	var detect = CollisionShape2D.new();
+	
+	var shape = RectangleShape2D.new();
+	_collide.set_shape(shape);
+	detect.set_shape(shape);
+	
 	add_child(_collide);
+	$Area2D.add_child(detect);
 	
 	set_text(_text);
 	isReady = true;
@@ -51,3 +60,10 @@ func get_width() -> float:
 
 func get_height() -> float:
 	return get_rect().size.y;
+
+func hold():
+	freeze = true;
+
+func drop():
+	globalStuff.swap_parent(self, get_tree().current_scene);
+	freeze = false;

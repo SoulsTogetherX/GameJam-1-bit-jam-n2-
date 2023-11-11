@@ -5,7 +5,7 @@
 
 [node name="breakable_word" type="Node2D"]
 script = ExtResource("1_5hfk6")
-text = "Every/thing No/thing"
+text = "Every/thing"
 
 [node name="breakable_spawner" type="Node" parent="."]
 script = ExtResource("2_ktsep")
