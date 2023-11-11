@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rg81f8qkjyw7"]
+[gd_scene load_steps=11 format=3 uid="uid://rg81f8qkjyw7"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_6dsfu"]
 [ext_resource type="Texture2D" uid="uid://boclotpe0aikx" path="res://assets/sprites/player/player.png" id="1_lnbo8"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="4_p13es"]
 [ext_resource type="Script" path="res://src/state_machine/states/falling.gd" id="5_hmlsj"]
 [ext_resource type="Script" path="res://src/state_machine/states/idle.gd" id="6_mank6"]
-[ext_resource type="Script" path="res://src/state_machine/states/selecting.gd" id="7_qop4l"]
 [ext_resource type="Script" path="res://src/state_machine/states/slow_down.gd" id="8_t3dbk"]
 [ext_resource type="Script" path="res://src/state_machine/states/walk.gd" id="9_l0qdd"]
 
@@ -59,10 +58,6 @@ idle = NodePath("../idle")
 script = ExtResource("6_mank6")
 walk = NodePath("../walk")
 falling = NodePath("../falling")
-
-[node name="selecting" type="Node" parent="StateObj/StateMachine" node_paths=PackedStringArray("idle")]
-script = ExtResource("7_qop4l")
-idle = NodePath("../idle")
 
 [node name="slow_down" type="Node" parent="StateObj/StateMachine" node_paths=PackedStringArray("idle", "falling")]
 script = ExtResource("8_t3dbk")

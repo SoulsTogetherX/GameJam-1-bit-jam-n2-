@@ -8,7 +8,25 @@ static func swap_parent(node : Node, parent : Node) -> void:
 	var pos : Vector2;
 	if node is Node2D:
 		pos = node.global_position;
-	node.get_parent().remove_child(node);
+	if node.get_parent():
+		node.get_parent().remove_child(node);
 	parent.add_child(node);
 	if node is Node2D:
 		node.global_position = pos;
+
+static func swap_parent_simple(node : Node, parent : Node) -> void:
+	if node.get_parent():
+		node.get_parent().remove_child(node);
+	parent.add_child(node);
+
+
+static func waggle(obj : Node2D, length : float = 1.5, max : float = 5):
+	var tw = obj.create_tween();
+	var div = length / 3;
+	tw.tween_property(obj, "rotation_degrees",  max, div);
+	tw.tween_property(obj, "rotation_degrees", -max, div);
+	tw.tween_property(obj, "rotation_degrees",  0,   div);
+	tw.play();
+	
+	await tw.finished;
+	tw.kill();

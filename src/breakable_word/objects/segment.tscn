@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://src/breakable_word/scripts/segment.gd" id="1_0at7n"]
 
-[node name="segment" type="RigidBody2D"]
-collision_layer = 0
+[node name="segment" type="RigidBody2D" groups=["segment"]]
+collision_layer = 4
 freeze = true
 script = ExtResource("1_0at7n")
 text = "Everything"
@@ -17,5 +17,7 @@ text = "Everything"
 
 [node name="Area2D" type="Area2D" parent="."]
 process_mode = 3
-collision_layer = 2
-collision_mask = 0
+collision_layer = 8
+collision_mask = 4
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

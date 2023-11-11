@@ -13,6 +13,8 @@ func init(actor : Node, stateObj : StateObj, machineIdx : int) -> void:
 		child.stateObj = stateObj;
 		child.machineIdx = machineIdx;
 		states.append(child);
+		
+		child.state_ready();
 
 	# Initialize to the default state
 	await actor.ready;

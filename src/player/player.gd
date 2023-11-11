@@ -21,8 +21,9 @@ func _input(event: InputEvent) -> void:
 		var detecteds = detector.get_overlapping_areas();
 		for detected in detecteds:
 			var subject = detected.owner;
-			if subject is Segment && is_on_floor() && !subject.freeze:
-				_selecting.append(subject);
+			if subject is Segment:
+				if is_on_floor() && !subject.freeze:
+					_selecting.append(subject);
 			else:
 				subject.action();
 		if !_selecting.is_empty():

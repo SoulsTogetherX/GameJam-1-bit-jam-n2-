@@ -7,6 +7,9 @@ var machineIdx : int;
 func state_name():
 	return "empty";
 
+func state_ready() -> void:
+	pass;
+
 func enter() -> void:
 	pass;
 
