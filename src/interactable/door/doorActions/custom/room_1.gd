@@ -10,5 +10,5 @@ func on_locked():
 		return;
 	onTime = true;
 	
-	everything.drop(0, 1);
+	everything.drop(0);
 	print(no)

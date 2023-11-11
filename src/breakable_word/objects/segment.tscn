@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/breakable_word/scripts/segment.gd" id="1_0at7n"]
 
-[node name="segment" type="RigidBody2D" groups=["segment"]]
+[node name="segment" type="RigidBody2D"]
 collision_layer = 4
 freeze = true
 script = ExtResource("1_0at7n")

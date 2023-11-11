@@ -2,6 +2,7 @@
 class_name Segment extends RigidBody2D
 
 const MAX_SPEED  : int = 20;
+static var noPickup : bool = false;
 
 static var globalStuff = load("res://global/global_stuff.gd");
 static var _font             : Font   = globalStuff.segment_font;
@@ -55,6 +56,16 @@ static func create(text : String, font : Font = ThemeDB.fallback_font, font_size
 	
 	return seg;
 
+func destroy():
+	set_process_input(false)
+	await globalStuff.wait(self, 0.05);
+	if attached:
+		noPickup = false;
+	queue_free();
+
+func get_text() -> String:
+	return _text;
+
 func set_text(txt : String) -> Segment:
 	_text = txt;
 	var size = _font.get_string_size(txt, HORIZONTAL_ALIGNMENT_CENTER, -1, _font_size) * 0.5;
@@ -67,26 +78,27 @@ func set_text(txt : String) -> Segment:
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():
 		if attached:
-			attached = false;
 			for area in $Area2D.get_overlapping_areas():
 				var placer = area.get_parent();
-				if placer is WordPlacer && !placer.has_segment(self):
-					placer.add_segment(self, placer.find_area(area));
+				if placer is WordPlacer:
+					placer.add_segment(self, area);
 					return;
+
 			drop();
-			return;
-		if can_move:
-			var segments = get_tree().get_nodes_in_group("segment");
-			for s in segments:
-				if s.attached == true:
-					return;
 			
+			await globalStuff.wait(self, 0.05);
+			noPickup = false;
+			attached = false;
+			return;
+		if can_move && !noPickup:
+			
+			noPickup = true;
 			attached = true;
 			var max_offset = get_rect().size * 0.5 - Vector2(1, 1);
 			attached_offset = (global_position - get_global_mouse_position()).clamp(-max_offset, max_offset);
 			
 			if get_parent() is WordPlacer:
-				get_parent().drop_this(self);
+				get_parent().drop();
 			hold()
 
 func get_rect() -> Rect2:

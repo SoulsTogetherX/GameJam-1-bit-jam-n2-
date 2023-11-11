@@ -16,8 +16,24 @@ var _isReady : bool = false;
 func _ready():
 	_isReady = true;
 
-func drop(segment: int, placer: int) -> void:
-	spawner.drop(placer, segment);
+func drop(placer: int) -> void:
+	spawner.drop(placer);
 
-func drops(segments: Array[Array], placers: Array[int]) -> void:
-	spawner.drops(placers, segments);
+func drops(placers: Array[int]) -> void:
+	spawner.drops(placers);
+
+func added_front(placer : WordPlacer, segment : Segment) -> void:
+	#print("1")
+	spawner.added_front(placer, segment);
+
+func added_behind(placer : WordPlacer, segment : Segment) -> void:
+	#print("2")
+	spawner.added_behind(placer, segment);
+
+func added_mid(placer : WordPlacer, segment : Segment) -> void:
+	#print("3")
+	spawner.added_mid(placer, segment);
+
+func empty(placer : WordPlacer) -> void:
+	#print("4")
+	spawner.remove_this(placer);

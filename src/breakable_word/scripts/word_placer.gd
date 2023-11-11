@@ -1,15 +1,18 @@
 @tool
 class_name WordPlacer extends Node2D
 
+@onready var _marker_back     : Area2D  = $front;
+@onready var _marker_front    : Area2D  = $back;
+
 static var globalStuff = load("res://global/global_stuff.gd");
 var _area            : Rect2            = Rect2(global_position, Vector2.ZERO);
-var _markers         : Array[Area2D]    = [];
 var _detect          : CollisionShape2D;
-var _segments        : Array[Segment];
+var _segment         : Segment;
 
 static var instance = preload("res://src/breakable_word/objects/word_placer.tscn");
 static func create() -> WordPlacer:
-	return instance.instantiate();
+	var placer : WordPlacer = instance.instantiate();
+	return placer;
 
 func get_area() -> Rect2:
 	return _area;
@@ -20,94 +23,59 @@ func get_width() -> float:
 func get_height() -> float:
 	return _area.size.y;
 
-func drop(idx: int) -> void:
-	if _markers.size() > 1:
-		_markers[idx].queue_free()
-		_markers.pop_at(idx);
-	else:
-		_markers[idx].position.x = _segment_width() * 2;
-	_segments.pop_at(idx);
-	_segments[idx].drop();
+func drop() -> void:
+	if !_segment:
+		return;
+	_segment.drop();
+	_segment = null;
 	
 	update_segments();
+	get_parent().empty(self);
 
-func drops(segments: Array[int]) -> void:
-	for idx in segments:
-		if _markers.size() > 1:
-			_markers[idx].queue_free()
-			_markers.pop_at(idx);
+func add_segment(seg : Segment, area : Area2D = null) -> void:
+	if _segment:
+		if area == null || area == _marker_front:
+			print(seg.get_text())
+			get_parent().added_front(self, seg);
 		else:
-			_markers[idx].position.x = _segment_width() * 0.5;
-		_segments.pop_at(idx);
-		_segments[idx].drop();
+			print(seg.get_text())
+			get_parent().added_behind(self, seg);
+		return;
 	
-	update_segments();
-
-func drop_this(segment : Segment) -> void:
-	for s in _segments:
-		if segment == s:
-			var idx = _segments.find(segment)
-			if _markers.size() > 1:
-				_markers[idx].queue_free()
-				_markers.pop_at(idx);
-			else:
-				_markers[idx].position.x = _segment_width() * 0.5;
-			_segments.pop_at(idx);
-			segment.drop();
-	
-	update_segments();
-
-func add_marker(height : int, idx : int) -> void:
-	var marker = Area2D.new();
-	var colide = CollisionShape2D.new();
-	var shape  = RectangleShape2D.new();
-	marker.collision_layer = 4;
-	marker.collision_mask = 0;
-	marker.position = Vector2(0, 0)
-	colide.set_shape(shape);
-	shape.extents = Vector2(1, height * 0.5);
-	
-	marker.add_child(colide);
-	add_child(marker);
-	_markers.append(marker);
-
-func add_segment(seg : Segment, idx : int = -1) -> void:
-	if idx == -1:
-		idx = _segments.size() - 1;
-		_segments.append(seg);
-	else:
-		_segments.insert(idx, seg);
+	_segment = seg;
 	globalStuff.swap_parent(seg, self);
-	if _segments.size() > _markers.size():
-		add_marker(seg.get_height(), idx);
 	update_segments();
+	return;
 
-func has_segment(seg : Segment) -> bool:
-	return _segments.has(seg);
+func get_text() -> String:
+	if _segment:
+		return _segment.get_text();
+	return "";
 
-func find_area(area : Area2D) -> int:
-	return _markers.find(area);
+func has_segment() -> bool:
+	return _segment != null;
 
 func update_segments() -> void:
-	if _segments.is_empty():
+	if !has_segment():
 		_area = Rect2();
 		return;
 	
-	var width = _segment_width();
-	_area.size = Vector2(width, _segments[0].get_height()) * 0.5;
-	_area.position = Vector2.ZERO;
+	var width                   = _segment.get_width();
+	var height                  = _segment.get_height();
 	
-	var offset = Vector2(-width * 0.5, 0);
-	for idx in _segments.size():
-		var seg = _segments[idx];
-		seg.position = offset;
-		var w = seg.get_width();
-		seg.position.x += w * 0.5;
-		_markers[idx].position.x = w * 0.5;
-		offset.x += w;
+	_segment.position = Vector2(-width * 0.5, 0);
+	_segment.position.x += width * 0.5;
+	
+	_area.size                  = Vector2(width, height) * 0.5;
+	_area.position              = Vector2.ZERO;
 	
 	_detect.shape.extents   = _area.size;
 	_detect.position = _area.position;
+	
+	_marker_back.get_child(0).shape.extents  =  Vector2(width * 0.25, height * 0.5);
+	_marker_front.get_child(0).shape.extents =  Vector2(width * 0.25, height * 0.5);
+	_marker_back.position.x       = -width * 0.25;
+	_marker_front.position.x      =  width * 0.25;
 
 func _set(property: StringName, value : Variant) -> bool:
 	if property == "position":
@@ -120,12 +88,19 @@ func _ready() -> void:
 	_detect.set_shape(RectangleShape2D.new());
 	_detect.modulate = Color.GREEN;
 	$Area2D.add_child(_detect);
-
-func _segment_width() -> float:
-	var width = 0;
-	for seg in _segments:
-		width += seg.get_width();
-	return width;
+	
+	var colide_front = CollisionShape2D.new();
+	_marker_front.add_child(colide_front);
+	
+	var colide_back = CollisionShape2D.new();
+	_marker_back.add_child(colide_back);
+	
+	var shape = RectangleShape2D.new()
+	_marker_front.get_child(0).set_shape(shape);
+	_marker_back.get_child(0).set_shape(shape);
+	
+	_marker_front.modulate = Color.PURPLE;
+	_marker_back.modulate = Color.PURPLE;
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():

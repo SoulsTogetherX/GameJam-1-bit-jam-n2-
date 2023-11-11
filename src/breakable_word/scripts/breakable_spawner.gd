@@ -16,12 +16,63 @@ func update_placers():
 	for placer in _placers:
 		placer.update_segments();
 
-func drop(placer: int, segment: int) -> void:
-	_placers[placer].drop(segment);
+func update_text() -> String:
+	var txt : String = "";
+	for placer in _placers:
+		txt += placer.get_text();
+	text = txt;
+	_from_text();
+	return txt;
 
-func drops(placers: Array[int], segments: Array[Array]) -> void:
+func insert(idx : int, segment : Segment) -> String:
+	var txt : String = "";
+	for i in idx:
+		txt += _placers[i].get_text() + "/";
+	txt += segment.get_text() + "/";
+	segment.destroy();
+	for i in range(idx, _placers.size(), 1):
+		txt += _placers[i].get_text() + "/";
+	
+	text = txt;
+	return text;
+
+func remove_this(placer: WordPlacer) -> String:
+	if _placers.size() > 1:
+		var idx = _placers.find(placer);
+		_placers[idx].queue_free();
+		_placers.remove_at(idx);
+		return update_text();
+	return _placers[0].get_text();
+
+func remove(placer: int) -> void:
+	if _placers.size() > 1:
+		_placers[placer].queue_free();
+		_placers.remove_at(placer);
+
+func added_front(placer : WordPlacer, segment : Segment) -> String:
+	var idx = _placers.find(placer);
+	if idx != -1 && segment && !_placers.has(segment):
+		return insert(idx + 1, segment);
+
+	return text;
+
+func added_behind(placer : WordPlacer, segment : Segment) -> String:
+	var idx = _placers.find(placer);
+	if idx != -1 && segment && !_placers.has(segment):
+		return insert(idx, segment);
+
+	return text;
+
+func has(segment : Segment) -> bool:
+	return _placers.has(segment);
+
+func drop(placer: int) -> void:
+	_placers[placer].drop();
+	remove(placer);
+
+func drops(placers: Array[int]) -> void:
 	for placer in placers:
-		_placers[placer].drops(segments[placer]);
+		drop(placer)
 
 func _ready() -> void:
 	await owner.ready;
