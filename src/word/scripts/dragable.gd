@@ -4,8 +4,8 @@ const GRAVITY   : int  =  980;
 const MAX_SPEED : int  = 20;
 var attached_offset : Vector2 = Vector2.ZERO;
 var attached    : bool = false;
-@onready var hold        : bool = true
-@onready var pause       : bool = false;
+@export var hold        : bool = true
+@export var pause       : bool = true;
 
 @onready var actor = $segment_;
 

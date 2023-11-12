@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2k33pnyrprvs"]
+[gd_scene load_steps=13 format=3 uid="uid://b2k33pnyrprvs"]
 
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="1_rcl02"]
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_vfp3k"]
@@ -10,8 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="7_at3sy"]
 [ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="8_y8u2e"]
 [ext_resource type="Texture2D" uid="uid://lstaju6nllv" path="res://assets/sprites/player/arrow.png" id="9_0on42"]
-[ext_resource type="PackedScene" uid="uid://bg72ekn3hnpaj" path="res://src/ground/closing_wall/moving_wall.tscn" id="10_rwsc8"]
-[ext_resource type="PackedScene" uid="uid://chkwk04dawibt" path="res://src/interactable/switch/switch.tscn" id="11_r4wvx"]
+[ext_resource type="PackedScene" uid="uid://dj6o2ceygtcr3" path="res://src/ground/kill_barrior/kill_barrior.tscn" id="11_laq63"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
 size = Vector2(552, 20)
@@ -20,7 +19,6 @@ size = Vector2(552, 20)
 script = ExtResource("1_vfp3k")
 
 [node name="stars" parent="." instance=ExtResource("2_ld6h2")]
-z_index = -1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -71,13 +69,5 @@ self_modulate = Color(1, 1, 1, 0)
 position = Vector2(179, -86)
 texture = ExtResource("9_0on42")
 
-[node name="moving_wall" parent="." instance=ExtResource("10_rwsc8")]
-position = Vector2(107, -60)
-move_to = Vector2(0, 120)
-move_to_spd = 2000
-move_back_spd = 4000
-
-[node name="switch" parent="." node_paths=PackedStringArray("connected") instance=ExtResource("11_r4wvx")]
-z_index = -1
-position = Vector2(35, -8)
-connected = NodePath("../moving_wall")
+[node name="kill_barrior" parent="." instance=ExtResource("11_laq63")]
+position = Vector2(0, 400)

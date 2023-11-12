@@ -17,7 +17,6 @@ size = Vector2(552, 20)
 script = ExtResource("1_vi4um")
 
 [node name="stars" parent="." instance=ExtResource("2_fbs7r")]
-z_index = -1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

@@ -18,6 +18,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_5xb8y")
 
 [node name="off_sprite" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_48gj0")
 

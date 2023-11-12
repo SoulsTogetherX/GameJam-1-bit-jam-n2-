@@ -22,13 +22,10 @@ func _ready() -> void:
 		c.modulate.a = 0.;
 		if c is Every:
 			_every = c
-			_every.hold = true;
 		elif c is Thing:
 			_thing = c
-			_thing.hold = true;
 		elif c is No:
 			_no = c
-			_no.hold = true;
 		elif c is Player:
 			_player = c
 			_player.process_mode = Node.PROCESS_MODE_DISABLED;

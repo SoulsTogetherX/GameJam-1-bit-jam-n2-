@@ -15,3 +15,5 @@ text = "thing"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="segment_/Area2D"]
 shape = SubResource("RectangleShape2D_lsi51")
+
+[connection signal="input_event" from="segment_/Area2D" to="." method="_on_area_2d_input_event"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://buk74olpr8q02"]
+[gd_scene load_steps=13 format=3 uid="uid://buk74olpr8q02"]
 
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_37o0p"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_3qgre"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="7_rs11i"]
 [ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="8_vmoqf"]
 [ext_resource type="PackedScene" uid="uid://bg72ekn3hnpaj" path="res://src/ground/closing_wall/moving_wall.tscn" id="9_mj5s5"]
+[ext_resource type="PackedScene" uid="uid://dj6o2ceygtcr3" path="res://src/ground/kill_barrior/kill_barrior.tscn" id="11_0lxrr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
 size = Vector2(552, 20)
@@ -18,7 +19,6 @@ size = Vector2(552, 20)
 script = ExtResource("1_37o0p")
 
 [node name="stars" parent="." instance=ExtResource("2_ypqkk")]
-z_index = -1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -31,13 +31,14 @@ position = Vector2(210, -122)
 
 [node name="action" type="Node" parent="door"]
 script = ExtResource("3_ffk07")
+_nextRoom = "res://rooms/puzzel_rooms/3/room_3.tscn"
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("4_ya7ee")]
 position = Vector2(-239, -12)
 _cam = NodePath("../cam")
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_mqqp1")]
-position = Vector2(-232.796, 0)
+position = Vector2(-235.702, 0)
 _follow = NodePath("../player")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("6_lhtnu")]
@@ -60,3 +61,6 @@ move_to_spd = 300
 move_back_spd = 300
 disabled = true
 up = true
+
+[node name="kill_barrior" parent="." instance=ExtResource("11_0lxrr")]
+position = Vector2(0, 400)

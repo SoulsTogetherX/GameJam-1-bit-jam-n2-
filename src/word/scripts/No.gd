@@ -12,7 +12,6 @@ var state       : bool = true;
 func _ready() -> void:
 	if connected:
 		connected.disabled = state;
-	pause = true;
 
 func _draw() -> void:
 	if connected is Node2D:
@@ -34,6 +33,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	super(viewport, event, shape_idx);
+	
 	if !attached && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_RIGHT && event.is_pressed():
 		match actor.text:
 			"Yes":
@@ -46,29 +46,28 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				state = false;
 				actor.text = "Yes";
 				thing.visible = true;
-				thing.global_position = actor.global_position;
-				thing.global_position.x += 50;
-				thing.hold = true;
+				thing.actor.global_position = actor.global_position;
+				thing.actor.global_position.y -= 25;
+				thing.hold = false;
 				thing.actor.velocity = Vector2.ZERO;
-				hold = true;
+				hold = false;
 				thing.pause = false;
 			"Nothing":
 				state = true;
 				actor.text = "No";
 				thing.visible = true;
-				thing.global_position = actor.global_position;
-				thing.global_position.x += 50;
-				thing.hold = true;
+				thing.actor.global_position = actor.global_position;
+				thing.actor.global_position.y -= 25;
+				thing.hold = false;
 				thing.actor.velocity = Vector2.ZERO;
-				hold = true;
+				hold = false;
 				thing.pause = false;
 				door.objective_undo.emit();
 		actor.get_node("Area2D/CollisionShape2D").shape.extents = actor.get_rect().size * 0.5;
-		connected.disabled = state;
+		if connected:
+			connected.disabled = state;
 
 func _input(event: InputEvent) -> void:
-	if pause:
-		return;
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():
 		for c in actor.get_node("Area2D").get_overlapping_bodies():
 			if c.owner is Thing && c.owner.visible:

@@ -13,7 +13,6 @@ var onTime : bool = false;
 
 func _ready() -> void:
 	super();
-	
 	var tw = arrow1.create_tween().set_loops();
 	tw.tween_property(arrow1, "position:y", -92.5, 1.);
 	tw.tween_property(arrow1, "position:y", -87.5, 1.);

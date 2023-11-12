@@ -5,8 +5,8 @@ func _ready() -> void:
 
 func on_locked():
 	_door.lockAnimation();
-	_no.pause = false;
-	_no.hold = false;
+	_every.pause = false;
+	_every.hold = false;
 
 func _on_objective() -> void:
 	_door.close();

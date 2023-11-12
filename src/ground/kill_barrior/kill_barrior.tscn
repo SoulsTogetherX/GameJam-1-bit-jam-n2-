@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj6o2ceygtcr3"]
+
+[ext_resource type="Script" path="res://src/ground/kill_barrior/kill_barrior.gd" id="1_nwhis"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqlb7"]
+size = Vector2(3897, 45)
+
+[node name="kill_barrior" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_nwhis")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lqlb7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

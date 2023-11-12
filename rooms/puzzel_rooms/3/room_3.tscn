@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://dbty6y3r4d534"]
+
+[ext_resource type="Script" path="res://rooms/room.gd" id="1_gtdkr"]
+[ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_hk2bq"]
+[ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="3_fdoqp"]
+[ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/room_3.gd" id="4_ie3c7"]
+[ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="5_sy6a8"]
+[ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="6_e0b13"]
+[ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="7_a1h6o"]
+[ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="8_mrqrj"]
+[ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="9_850i7"]
+[ext_resource type="PackedScene" uid="uid://bg72ekn3hnpaj" path="res://src/ground/closing_wall/moving_wall.tscn" id="10_i0alu"]
+[ext_resource type="PackedScene" uid="uid://chkwk04dawibt" path="res://src/interactable/switch/switch.tscn" id="11_td2tl"]
+[ext_resource type="PackedScene" uid="uid://dj6o2ceygtcr3" path="res://src/ground/kill_barrior/kill_barrior.tscn" id="12_0hpl5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
+size = Vector2(1652, 20)
+
+[node name="room_3" type="Node2D"]
+script = ExtResource("1_gtdkr")
+
+[node name="stars" parent="." instance=ExtResource("2_hk2bq")]
+
+[node name="stars2" parent="." instance=ExtResource("2_hk2bq")]
+position = Vector2(2944, 6)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(550, 10)
+shape = SubResource("RectangleShape2D_dires")
+
+[node name="door" parent="." instance=ExtResource("3_fdoqp")]
+position = Vector2(-97, -17)
+
+[node name="action" type="Node" parent="door"]
+script = ExtResource("4_ie3c7")
+
+[node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("5_sy6a8")]
+position = Vector2(-239, -12)
+collision_mask = 32775
+_cam = NodePath("../cam")
+
+[node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("6_e0b13")]
+position = Vector2(-237.248, 0)
+_follow = NodePath("../player")
+
+[node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("8_mrqrj")]
+position = Vector2(424, -53)
+door = NodePath("../door/action")
+hold = false
+pause = false
+
+[node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("7_a1h6o")]
+position = Vector2(-213, -62)
+thing = NodePath("../Thing")
+
+[node name="Thing" parent="." instance=ExtResource("9_850i7")]
+position = Vector2(-160, -62)
+
+[node name="moving_wall" parent="." instance=ExtResource("10_i0alu")]
+position = Vector2(127, -274)
+scale = Vector2(3, 10)
+move_to = Vector2(0, 115)
+move_to_spd = 3000
+move_back_spd = 3000
+
+[node name="moving_wall2" parent="." instance=ExtResource("10_i0alu")]
+position = Vector2(300, -160)
+scale = Vector2(3, 10)
+move_to = Vector2(0, -115)
+move_to_spd = 3000
+move_back_spd = 3000
+up = true
+
+[node name="switch" parent="." node_paths=PackedStringArray("connected") instance=ExtResource("11_td2tl")]
+position = Vector2(22, -7)
+connected = [NodePath("../moving_wall"), NodePath("../moving_wall2")]
+
+[node name="kill_barrior" parent="." instance=ExtResource("12_0hpl5")]
+position = Vector2(485, 382)
