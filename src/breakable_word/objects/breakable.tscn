@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://banafjqh7glac"]
+
+[ext_resource type="Script" path="res://src/breakable_word/scripts/breakable.gd" id="1_4b1et"]
+[ext_resource type="Script" path="res://src/breakable_word/scripts/spawner.gd" id="2_qk8qg"]
+
+[node name="breakable" type="Node2D"]
+script = ExtResource("1_4b1et")
+text = "a/aaaa/aa\\a/bbb/"
+
+[node name="spawner" type="Node2D" parent="."]
+script = ExtResource("2_qk8qg")
+text = "a/aaaa/aa\\a/bbb/"

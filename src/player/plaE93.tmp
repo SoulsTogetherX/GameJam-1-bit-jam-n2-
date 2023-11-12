@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://rg81f8qkjyw7"]
+
+[ext_resource type="Script" path="res://src/player/player.gd" id="1_6dsfu"]
+[ext_resource type="Texture2D" uid="uid://boclotpe0aikx" path="res://assets/sprites/player/player.png" id="1_lnbo8"]
+[ext_resource type="Script" path="res://src/state_machine/state_obj.gd" id="3_0gwbg"]
+[ext_resource type="Script" path="res://src/state_machine/state_machine.gd" id="4_p13es"]
+[ext_resource type="Script" path="res://src/state_machine/states/falling.gd" id="5_hmlsj"]
+[ext_resource type="Script" path="res://src/state_machine/states/idle.gd" id="6_mank6"]
+[ext_resource type="Script" path="res://src/state_machine/states/slow_down.gd" id="8_t3dbk"]
+[ext_resource type="Script" path="res://src/state_machine/states/walk.gd" id="9_l0qdd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7qd1"]
+size = Vector2(16, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dal5o"]
+radius = 13.0
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_6dsfu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lnbo8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k7qd1")
+
+[node name="interactable_detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_detector"]
+shape = SubResource("CircleShape2D_dal5o")
+
+[node name="coyote_timer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="jump_buffer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="StateObj" type="Node" parent="." node_paths=PackedStringArray("actor", "state_machines")]
+script = ExtResource("3_0gwbg")
+actor = NodePath("..")
+state_machines = [NodePath("StateMachine")]
+
+[node name="StateMachine" type="Node" parent="StateObj" node_paths=PackedStringArray("starting_state")]
+script = ExtResource("4_p13es")
+starting_state = NodePath("falling")
+
+[node name="falling" type="Node" parent="StateObj/StateMachine" node_paths=PackedStringArray("walking", "idle")]
+script = ExtResource("5_hmlsj")
+walking = NodePath("../walk")
+idle = NodePath("../idle")
+
+[node name="idle" type="Node" parent="StateObj/StateMachine" node_paths=PackedStringArray("walk", "falling")]
+script = ExtResource("6_mank6")
+walk = NodePath("../walk")
+falling = NodePath("../falling")
+
+[node name="slow_down" type="Node" parent="StateObj/StateMachine" node_paths=PackedStringArray("idle", "falling")]
+script = ExtResource("8_t3dbk")
+idle = NodePath("../idle")
+falling = NodePath("../falling")
+
+[node name="walk" type="Node" parent="StateObj/StateMachine" node_paths=PackedStringArray("slowDown", "falling")]
+script = ExtResource("9_l0qdd")
+slowDown = NodePath("../slow_down")
+falling = NodePath("../falling")

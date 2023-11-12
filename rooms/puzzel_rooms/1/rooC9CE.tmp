@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2k33pnyrprvs"]
+
+[ext_resource type="Script" path="res://rooms/puzzel_rooms/1/room_1.gd" id="1_6crq5"]
+[ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="1_rcl02"]
+[ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_j5kej"]
+[ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/room_1.gd" id="3_xrcmn"]
+[ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="5_vre0u"]
+[ext_resource type="PackedScene" uid="uid://dkdborsyb20vp" path="res://src/breakable_word/objects/breakable_word.tscn" id="6_gn36v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
+size = Vector2(552, 20)
+
+[node name="room_1" type="Node2D"]
+script = ExtResource("1_6crq5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_dires")
+
+[node name="door" parent="." instance=ExtResource("2_j5kej")]
+position = Vector2(178, -16)
+
+[node name="action" type="Node" parent="door" node_paths=PackedStringArray("everything", "no")]
+script = ExtResource("3_xrcmn")
+everything = NodePath("../../Everything")
+no = NodePath("../../No")
+_nextRoom = "res://rooms/puzzel_rooms/1/room_1.tscn"
+
+[node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("1_rcl02")]
+position = Vector2(-176, -11)
+_cam = NodePath("../cam")
+
+[node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_vre0u")]
+position = Vector2(-176, 0)
+_follow = NodePath("../player")
+
+[node name="Everything" parent="." instance=ExtResource("6_gn36v")]
+position = Vector2(-56, -56)
+
+[node name="No" parent="." instance=ExtResource("6_gn36v")]
+position = Vector2(151, -52)
+text = "No"

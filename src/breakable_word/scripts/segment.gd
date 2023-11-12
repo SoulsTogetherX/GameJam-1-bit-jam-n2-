@@ -1,12 +1,17 @@
 @tool
 class_name Segment extends RigidBody2D
 
+static var globalStuff;
+static var _font             : Font;
+static var _font_size        : float;
+func _enter_tree() -> void:
+	globalStuff = load("res://global/global_stuff.gd");
+	_font = globalStuff.segment_font;
+	_font_size = globalStuff.segment_font_size;
+
 const MAX_SPEED  : int = 20;
 static var noPickup : bool = false;
 
-static var globalStuff = load("res://global/global_stuff.gd");
-static var _font             : Font   = globalStuff.segment_font;
-static var _font_size        : float  = globalStuff.segment_font_size;
 var _collide                 : CollisionShape2D;
 var attached_offset          : Vector2;
 var attached                 : bool = false;
@@ -18,27 +23,30 @@ var _text                    : String    = "";
 	get:
 		return _text;
 	set(val):
-		if isReady:
-			set_text(val);
-		else:
-			_text = val;
+		if !isReady:
+			await ready;
+		set_text(val);
 
 var isReady : bool = false;
 func _ready() -> void:
 	hold();
-	
-	_collide = CollisionShape2D.new();
-	var detect = CollisionShape2D.new();
-	
-	var shape = RectangleShape2D.new();
-	_collide.set_shape(shape);
-	detect.set_shape(shape);
-	
-	add_child(_collide);
-	$Area2D.add_child(detect);
-	
+	_set_up();
 	set_text(_text);
 	isReady = true;
+
+func _set_up() -> void:
+	var shape = RectangleShape2D.new();
+	_collide = CollisionShape2D.new();
+	_collide.set_shape(shape);
+	add_child(_collide);
+	_collide.owner = self;
+	
+	var detect = CollisionShape2D.new();
+	detect.set_shape(shape);
+	$Area2D.add_child(detect);
+	detect.owner = self;
+	
+	_label = $Label;
 
 func _process(delta: float) -> void:
 	if attached:
@@ -47,9 +55,9 @@ func _process(delta: float) -> void:
 			move_vec = move_vec.normalized() * MAX_SPEED;
 		move_and_collide(move_vec);
 
-static var instance = preload("res://src/breakable_word/objects/segment.tscn");
+static var _instance = preload("res://src/breakable_word/objects/segment_.tscn");
 static func create(text : String, font : Font = ThemeDB.fallback_font, font_size : int = 16) -> Segment:
-	var seg        = instance.instantiate();
+	var seg        = _instance.instantiate();
 	seg.text       = text;
 	seg._font      = font;
 	seg._font_size = font_size;
@@ -57,8 +65,6 @@ static func create(text : String, font : Font = ThemeDB.fallback_font, font_size
 	return seg;
 
 func destroy():
-	set_process_input(false)
-	await globalStuff.wait(self, 0.05);
 	if attached:
 		noPickup = false;
 	queue_free();
@@ -77,29 +83,7 @@ func set_text(txt : String) -> Segment:
 
 func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():
-		if attached:
-			for area in $Area2D.get_overlapping_areas():
-				var placer = area.get_parent();
-				if placer is WordPlacer:
-					placer.add_segment(self, area);
-					return;
-
-			drop();
-			
-			await globalStuff.wait(self, 0.05);
-			noPickup = false;
-			attached = false;
-			return;
-		if can_move && !noPickup:
-			
-			noPickup = true;
-			attached = true;
-			var max_offset = get_rect().size * 0.5 - Vector2(1, 1);
-			attached_offset = (global_position - get_global_mouse_position()).clamp(-max_offset, max_offset);
-			
-			if get_parent() is WordPlacer:
-				get_parent().drop();
-			hold()
+		pass;
 
 func get_rect() -> Rect2:
 	return _collide.shape.get_rect();

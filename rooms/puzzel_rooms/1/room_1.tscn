@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2k33pnyrprvs"]
+[gd_scene load_steps=7 format=3 uid="uid://b2k33pnyrprvs"]
 
 [ext_resource type="Script" path="res://rooms/puzzel_rooms/1/room_1.gd" id="1_6crq5"]
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="1_rcl02"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_j5kej"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/room_1.gd" id="3_xrcmn"]
 [ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="5_vre0u"]
-[ext_resource type="PackedScene" uid="uid://dkdborsyb20vp" path="res://src/breakable_word/objects/breakable_word.tscn" id="6_gn36v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
 size = Vector2(552, 20)
@@ -22,11 +21,13 @@ shape = SubResource("RectangleShape2D_dires")
 [node name="door" parent="." instance=ExtResource("2_j5kej")]
 position = Vector2(178, -16)
 
-[node name="action" type="Node" parent="door" node_paths=PackedStringArray("everything", "no")]
+[node name="action" type="Node" parent="door"]
 script = ExtResource("3_xrcmn")
-everything = NodePath("../../Everything")
-no = NodePath("../../No")
 _nextRoom = "res://rooms/puzzel_rooms/1/room_1.tscn"
+everything = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(-56, -56),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://src/breakable_word/scripts/breakable.gd"))
+
+no = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(151, -52),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://src/breakable_word/scripts/breakable.gd"),"text":"No")
+
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("1_rcl02")]
 position = Vector2(-176, -11)
@@ -35,10 +36,3 @@ _cam = NodePath("../cam")
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_vre0u")]
 position = Vector2(-176, 0)
 _follow = NodePath("../player")
-
-[node name="Everything" parent="." instance=ExtResource("6_gn36v")]
-position = Vector2(-56, -56)
-
-[node name="No" parent="." instance=ExtResource("6_gn36v")]
-position = Vector2(151, -52)
-text = "No"

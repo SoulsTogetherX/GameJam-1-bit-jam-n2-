@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvys66d438o0m"]
+
+[ext_resource type="Script" path="res://src/camera/cam.gd" id="1_k6hu1"]
+
+[node name="cam" type="Camera2D"]
+ignore_rotation = false
+zoom = Vector2(2, 2)
+script = ExtResource("1_k6hu1")
+
+[node name="decay_time" type="Timer" parent="."]
+one_shot = true
