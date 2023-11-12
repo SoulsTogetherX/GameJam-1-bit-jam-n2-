@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdh0pigcaachu"]
+
+[ext_resource type="Script" path="res://src/word/scripts/segment.gd" id="1_naqut"]
+
+[node name="segment_" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_naqut")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 164.0
+offset_bottom = 26.0
+
+[node name="CollisionShape2D" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2k33pnyrprvs"]
+[gd_scene load_steps=10 format=3 uid="uid://b2k33pnyrprvs"]
 
 [ext_resource type="Script" path="res://rooms/puzzel_rooms/1/room_1.gd" id="1_6crq5"]
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="1_rcl02"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="6_t2yl1"]
 [ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="7_at3sy"]
 [ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="8_y8u2e"]
-[ext_resource type="Texture2D" uid="uid://lstaju6nllv" path="res://assets/sprites/player/arrow.png" id="9_0on42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
 size = Vector2(552, 20)
@@ -25,11 +24,8 @@ shape = SubResource("RectangleShape2D_dires")
 [node name="door" parent="." instance=ExtResource("2_j5kej")]
 position = Vector2(178, -16)
 
-[node name="action" type="Node" parent="door" node_paths=PackedStringArray("thing", "arrow1", "arrow2")]
+[node name="action" type="Node" parent="door"]
 script = ExtResource("3_xrcmn")
-thing = NodePath("../../hinge/Thing")
-arrow1 = NodePath("../../1")
-arrow2 = NodePath("../../2")
 _nextRoom = "res://rooms/puzzel_rooms/1/room_1.tscn"
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("1_rcl02")]
@@ -40,28 +36,11 @@ _cam = NodePath("../cam")
 position = Vector2(-176, 0)
 _follow = NodePath("../player")
 
-[node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("6_t2yl1")]
-position = Vector2(-86, -68)
-thing = NodePath("../hinge/Thing")
-hold = true
+[node name="Every" parent="." instance=ExtResource("6_t2yl1")]
+position = Vector2(-170, -48)
 
-[node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("7_at3sy")]
-position = Vector2(179, -57)
-door = NodePath("../door/action")
+[node name="No" parent="." instance=ExtResource("7_at3sy")]
+position = Vector2(133, -59)
 
-[node name="hinge" type="Node2D" parent="."]
-position = Vector2(-62, -58)
-
-[node name="Thing" parent="hinge" node_paths=PackedStringArray("door_action") instance=ExtResource("8_y8u2e")]
-position = Vector2(19, -10)
-door_action = NodePath("../../door/action")
-
-[node name="1" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(-45, -90)
-texture = ExtResource("9_0on42")
-
-[node name="2" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(179, -86)
-texture = ExtResource("9_0on42")
+[node name="Thing" parent="." instance=ExtResource("8_y8u2e")]
+position = Vector2(-128, -48)

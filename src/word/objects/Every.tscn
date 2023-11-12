@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvljcpiq6wpkh"]
+
+[ext_resource type="Script" path="res://src/word/scripts/Every.gd" id="1_c1uum"]
+[ext_resource type="PackedScene" uid="uid://cdh0pigcaachu" path="res://src/word/segment_.tscn" id="1_mv13y"]
+
+[node name="Every" type="Node2D"]
+script = ExtResource("1_c1uum")
+
+[node name="segment_" parent="." instance=ExtResource("1_mv13y")]
+text = "Every"

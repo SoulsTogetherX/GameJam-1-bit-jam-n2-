@@ -8,3 +8,4 @@ func action(state : Door.STATE):
 			get_tree().change_scene_to_file(_nextRoom);
 		Door.STATE.CLOSED:
 			_door.open();
+

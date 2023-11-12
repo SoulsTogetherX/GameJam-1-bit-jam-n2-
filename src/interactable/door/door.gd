@@ -18,6 +18,8 @@ var _state = STATE.LOCKED;
 		else:
 			_state = val;
 
+signal openDoor;
+
 @onready var _lock_spr   : Sprite2D = $lock;
 @onready var _door_spr   : Sprite2D = $regular;
 @onready var _get_action : Node     = $action;

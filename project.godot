@@ -50,11 +50,10 @@ restart={
 [layer_names]
 
 2d_physics/layer_1="Ground"
-2d_physics/layer_2="Detected"
+2d_physics/layer_2="Player"
 2d_physics/layer_3="Segment"
 2d_physics/layer_4="Clickable"
-2d_physics/layer_5="Player"
-2d_physics/layer_6="Word"
+2d_physics/layer_5="Detectable"
 
 [rendering]
 
