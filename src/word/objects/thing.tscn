@@ -3,20 +3,15 @@
 [ext_resource type="Script" path="res://src/word/scripts/thing.gd" id="1_nnn1y"]
 [ext_resource type="PackedScene" uid="uid://cdh0pigcaachu" path="res://src/word/segment_.tscn" id="1_sepy7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8woei"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsi51"]
 
 [node name="Thing" type="Node2D"]
 script = ExtResource("1_nnn1y")
 
 [node name="segment_" parent="." instance=ExtResource("1_sepy7")]
-collision_layer = 8
 text = "thing"
 
 [node name="Area2D" type="Area2D" parent="segment_"]
-collision_layer = 8
-collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="segment_/Area2D"]
-shape = SubResource("RectangleShape2D_8woei")
-
-[connection signal="input_event" from="segment_/Area2D" to="." method="_on_area_2d_input_event"]
+shape = SubResource("RectangleShape2D_lsi51")

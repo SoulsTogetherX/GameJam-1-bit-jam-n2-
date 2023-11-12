@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://um226myj6f8f"]
+
+[ext_resource type="Script" path="res://src/ground/moving/follow.gd" id="1_cjn4r"]
+
+[node name="follow" type="PathFollow2D"]
+script = ExtResource("1_cjn4r")
+disabled = null
+
+[connection signal="toggle" from="." to="." method="_on_toggle"]

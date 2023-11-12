@@ -9,6 +9,7 @@ const GRAVITY             : int    =  980;
 @onready var jump_buffer  : Timer    = $jump_buffer;
 @onready var detector     : Area2D   = $interactable_detector;
 @onready var state_contr  : StateObj = $StateObj;
+@onready var wall_steps   : CPUParticles2D = $walk_particles;
 
 @export var _cam           : CameraFollow = null;
 var _tween                 : Tween;
@@ -18,7 +19,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		var detecteds = detector.get_overlapping_areas();
 		for detected in detecteds:
-			detected.owner.action();
+			if !(detected.owner is Door) || is_on_floor():
+				detected.owner.action();
 
 func _physics_process(delta) -> void:	
 	pass;

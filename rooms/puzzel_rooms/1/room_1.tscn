@@ -1,20 +1,26 @@
-[gd_scene load_steps=11 format=3 uid="uid://b2k33pnyrprvs"]
+[gd_scene load_steps=14 format=3 uid="uid://b2k33pnyrprvs"]
 
-[ext_resource type="Script" path="res://rooms/puzzel_rooms/1/room_1.gd" id="1_6crq5"]
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="1_rcl02"]
+[ext_resource type="Script" path="res://rooms/room.gd" id="1_vfp3k"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_j5kej"]
+[ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_ld6h2"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/room_1.gd" id="3_xrcmn"]
 [ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="5_vre0u"]
 [ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="6_t2yl1"]
 [ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="7_at3sy"]
 [ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="8_y8u2e"]
 [ext_resource type="Texture2D" uid="uid://lstaju6nllv" path="res://assets/sprites/player/arrow.png" id="9_0on42"]
+[ext_resource type="PackedScene" uid="uid://bg72ekn3hnpaj" path="res://src/ground/closing_wall/moving_wall.tscn" id="10_rwsc8"]
+[ext_resource type="PackedScene" uid="uid://chkwk04dawibt" path="res://src/interactable/switch/switch.tscn" id="11_r4wvx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
 size = Vector2(552, 20)
 
 [node name="room_1" type="Node2D"]
-script = ExtResource("1_6crq5")
+script = ExtResource("1_vfp3k")
+
+[node name="stars" parent="." instance=ExtResource("2_ld6h2")]
+z_index = -1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -27,10 +33,10 @@ position = Vector2(178, -16)
 
 [node name="action" type="Node" parent="door" node_paths=PackedStringArray("thing", "arrow1", "arrow2")]
 script = ExtResource("3_xrcmn")
-thing = NodePath("../../hinge/Thing")
+thing = NodePath("../../rotation_point/Thing")
 arrow1 = NodePath("../../1")
 arrow2 = NodePath("../../2")
-_nextRoom = "res://rooms/puzzel_rooms/1/room_1.tscn"
+_nextRoom = "res://rooms/puzzel_rooms/2/room_2.tscn"
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("1_rcl02")]
 position = Vector2(-176, -11)
@@ -42,19 +48,18 @@ _follow = NodePath("../player")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("6_t2yl1")]
 position = Vector2(-86, -68)
-thing = NodePath("../hinge/Thing")
-hold = true
+thing = NodePath("../rotation_point/Thing")
 
 [node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("7_at3sy")]
-position = Vector2(179, -57)
+modulate = Color(1, 1, 1, 0)
+position = Vector2(177, -56)
 door = NodePath("../door/action")
 
-[node name="hinge" type="Node2D" parent="."]
+[node name="rotation_point" type="Node2D" parent="."]
 position = Vector2(-62, -58)
 
-[node name="Thing" parent="hinge" node_paths=PackedStringArray("door_action") instance=ExtResource("8_y8u2e")]
+[node name="Thing" parent="rotation_point" instance=ExtResource("8_y8u2e")]
 position = Vector2(19, -10)
-door_action = NodePath("../../door/action")
 
 [node name="1" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -65,3 +70,14 @@ texture = ExtResource("9_0on42")
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(179, -86)
 texture = ExtResource("9_0on42")
+
+[node name="moving_wall" parent="." instance=ExtResource("10_rwsc8")]
+position = Vector2(107, -60)
+move_to = Vector2(0, 120)
+move_to_spd = 2000
+move_back_spd = 4000
+
+[node name="switch" parent="." node_paths=PackedStringArray("connected") instance=ExtResource("11_r4wvx")]
+z_index = -1
+position = Vector2(35, -8)
+connected = NodePath("../moving_wall")

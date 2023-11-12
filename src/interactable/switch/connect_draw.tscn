@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://blh1pp186v5l7"]
+
+[sub_resource type="GDScript" id="GDScript_itw8j"]
+script/source = "@tool
+class_name ConnectionDrawing extends Node2D
+
+var from : Node2D;
+var to   : Node2D;
+
+var width_inner : float;
+var width_middle : float;
+var width_outer : float;
+
+func _draw() -> void:
+	if from == null || to == null:
+		return;
+	
+	var me = from.global_position - from.position;
+	var you = to.global_position - from.global_position;
+		
+	var to_from = Vector2(me.x, you.y);
+	draw_line(me, to_from, Color.WHITE, width_outer);
+	draw_line(me, to_from, Color.BLACK, width_middle);
+	draw_line(me, to_from, Color.WHITE, width_inner);
+		
+	draw_line(to_from, you, Color.WHITE, width_outer);
+	draw_line(to_from, you, Color.BLACK, width_middle);
+	draw_line(to_from, you, Color.WHITE, width_inner);
+
+func draw_connection(from : Node2D, to : Node2D, width_inner : float, width_middle : float, width_outer : float):
+	queue_redraw();
+"
+
+[node name="connect_draw" type="Node2D"]
+script = SubResource("GDScript_itw8j")

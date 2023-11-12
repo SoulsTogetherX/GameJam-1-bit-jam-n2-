@@ -9,10 +9,12 @@ var _no    : No;
 var _player: Player;
 
 signal objective;
+signal objective_undo;
 signal attached;
 
 func _ready() -> void:
 	connect("objective", _on_objective);
+	connect("objective_undo", _on_objective_undo);
 	connect("attached", _on_thing_attached);
 	var tw = create_tween().set_parallel();
 	for c in owner.get_children():
@@ -20,10 +22,13 @@ func _ready() -> void:
 		c.modulate.a = 0.;
 		if c is Every:
 			_every = c
+			_every.hold = true;
 		elif c is Thing:
 			_thing = c
+			_thing.hold = true;
 		elif c is No:
 			_no = c
+			_no.hold = true;
 		elif c is Player:
 			_player = c
 			_player.process_mode = Node.PROCESS_MODE_DISABLED;
@@ -32,6 +37,9 @@ func _ready() -> void:
 		)
 
 func _on_thing_attached() -> void:
+	pass;
+
+func _on_objective_undo() -> void:
 	pass;
 
 func _on_objective() -> void:

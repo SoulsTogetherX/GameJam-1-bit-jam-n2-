@@ -3,14 +3,18 @@ extends State
 @export var idle : State;
 @export var falling : State;
 
+var tw : Tween;
+
 func state_name():
 	return "slow_down";
 
 func enter() -> void:
-	pass;
+	tw = create_tween();
+	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
+	tw.tween_property(actor, "scale", Vector2(1.1, 1.), 0.2);
 
 func exit() -> void:
-	pass;
+	tw.kill();
 
 func process_input(_event: InputEvent) -> State:
 	return null;

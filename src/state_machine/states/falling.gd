@@ -3,15 +3,20 @@ extends State
 @export var walking : State;
 @export var idle : State;
 
+var tw : Tween;
+
 func state_name():
 	return "falling";
 
 func enter() -> void:
 	actor.coyote_timer.start();
+	tw = create_tween();
+	tw.tween_property(actor, "scale", Vector2(1, 1.2), 0.1);
 
 func exit() -> void:
 	actor.velocity.y = 0;
 	actor._jumping = false;
+	tw.kill();
 
 func process_input(_event: InputEvent) -> State:
 	return null;

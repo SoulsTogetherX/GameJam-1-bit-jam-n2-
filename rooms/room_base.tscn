@@ -1,0 +1,51 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvmkmyamg2irn"]
+
+[ext_resource type="Script" path="res://rooms/room.gd" id="1_vi4um"]
+[ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_fbs7r"]
+[ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_hen5b"]
+[ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/regular_door.gd" id="3_06rar"]
+[ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="4_aj7xl"]
+[ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="5_jhxls"]
+[ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="6_lain0"]
+[ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="7_abr3u"]
+[ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="8_juif1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
+size = Vector2(552, 20)
+
+[node name="room_1" type="Node2D"]
+script = ExtResource("1_vi4um")
+
+[node name="stars" parent="." instance=ExtResource("2_fbs7r")]
+z_index = -1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_dires")
+
+[node name="door" parent="." instance=ExtResource("2_hen5b")]
+position = Vector2(178, -16)
+
+[node name="action" type="Node" parent="door"]
+script = ExtResource("3_06rar")
+
+[node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("4_aj7xl")]
+position = Vector2(-176, -11)
+_cam = NodePath("../cam")
+
+[node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_jhxls")]
+position = Vector2(-176, 0)
+_follow = NodePath("../player")
+
+[node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("6_lain0")]
+position = Vector2(-86, -68)
+thing = NodePath("../Thing")
+
+[node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("7_abr3u")]
+position = Vector2(179, -57)
+door = NodePath("../door/action")
+
+[node name="Thing" parent="." instance=ExtResource("8_juif1")]
+position = Vector2(-43, -68)

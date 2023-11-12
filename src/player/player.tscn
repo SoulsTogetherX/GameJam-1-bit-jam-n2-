@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://rg81f8qkjyw7"]
+[gd_scene load_steps=12 format=3 uid="uid://rg81f8qkjyw7"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_6dsfu"]
 [ext_resource type="Texture2D" uid="uid://boclotpe0aikx" path="res://assets/sprites/player/player.png" id="1_lnbo8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://src/state_machine/states/idle.gd" id="6_mank6"]
 [ext_resource type="Script" path="res://src/state_machine/states/slow_down.gd" id="8_t3dbk"]
 [ext_resource type="Script" path="res://src/state_machine/states/walk.gd" id="9_l0qdd"]
+[ext_resource type="PackedScene" uid="uid://bweodpc0puqle" path="res://assets/particles/walk_particles.tscn" id="9_yut0d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7qd1"]
 size = Vector2(16, 18)
@@ -40,6 +41,10 @@ one_shot = true
 [node name="jump_buffer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="walk_particles" parent="." instance=ExtResource("9_yut0d")]
+position = Vector2(0, 9)
+emitting = false
 
 [node name="StateObj" type="Node" parent="." node_paths=PackedStringArray("actor", "state_machines")]
 script = ExtResource("3_0gwbg")

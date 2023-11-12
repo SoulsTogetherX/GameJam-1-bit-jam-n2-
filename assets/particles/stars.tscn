@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cmhxt86fj05ix"]
+
+[node name="stars" type="CPUParticles2D"]
+z_index = -1
+amount = 300
+lifetime = 15.0
+explosiveness = 0.5
+lifetime_randomness = 0.76
+emission_shape = 3
+emission_rect_extents = Vector2(1000, 1000)
+gravity = Vector2(0, 0)
+initial_velocity_max = 10.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+orbit_velocity_min = -0.01
+orbit_velocity_max = 0.01
+linear_accel_min = -10.0
+linear_accel_max = 10.0
+scale_amount_max = 2.0

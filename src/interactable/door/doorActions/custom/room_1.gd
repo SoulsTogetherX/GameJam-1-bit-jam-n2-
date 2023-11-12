@@ -13,8 +13,6 @@ var onTime : bool = false;
 
 func _ready() -> void:
 	super();
-	_thing.process_mode = Node.PROCESS_MODE_DISABLED;
-	_no.modulate.a = 0;
 	
 	var tw = arrow1.create_tween().set_loops();
 	tw.tween_property(arrow1, "position:y", -92.5, 1.);
@@ -38,7 +36,7 @@ func on_locked():
 	tw.tween_property(_thing.get_parent(), "rotation_degrees", 80, 1.);
 	tw.tween_interval(0.2);
 	tw.tween_callback(func(): 
-		_thing.process_mode = Node.PROCESS_MODE_INHERIT;
+		_thing.pause = false;
 		_thing.hold = false;
 		arrow1.modulate.a = 1;
 		);
@@ -47,11 +45,14 @@ func on_locked():
 	tw.kill();
 
 func _on_thing_attached() -> void:
-	arrow1.queue_free();
+	arrow1.modulate.a = 0;
 	arrow2.modulate.a = 1;
 
 func _on_objective() -> void:
-	_door.close()
+	_door.close();
+
+func _on_objective_undo() -> void:
+	_door.lock();
 
 func on_closed():
 	_door.open()

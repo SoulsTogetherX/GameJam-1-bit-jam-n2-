@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bweodpc0puqle"]
+
+[sub_resource type="Gradient" id="Gradient_43o6e"]
+offsets = PackedFloat32Array(0, 0.801324, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.396078, 1, 1, 1, 0)
+
+[node name="walk_particles" type="CPUParticles2D"]
+amount = 3
+lifetime = 0.2
+explosiveness = 0.5
+direction = Vector2(-1, -1)
+spread = 15.0
+initial_velocity_min = 70.0
+initial_velocity_max = 100.0
+scale_amount_max = 3.0
+color_ramp = SubResource("Gradient_43o6e")
