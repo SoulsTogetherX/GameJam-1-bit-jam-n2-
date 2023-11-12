@@ -10,13 +10,15 @@ func _enter_tree() -> void:
 	_font_size = globalStuff.segment_font_size;
 
 const MAX_SPEED  : int = 20;
-static var noPickup : bool = false;
 
 var _collide                 : CollisionShape2D;
 var attached_offset          : Vector2;
-var attached                 : bool = false;
-var can_move                 : bool = true;
+var can_move                 : bool      = true;
 @onready var _label          : Label     = $Label;
+
+static var mouse_full        : bool      = false;
+var attached                 : bool      = false;
+var hanging                  : bool      = true;
 
 var _text                    : String    = "";
 @export var text             : String    = "":
@@ -29,7 +31,7 @@ var _text                    : String    = "";
 
 var isReady : bool = false;
 func _ready() -> void:
-	hold();
+	freeze = true;
 	_set_up();
 	set_text(_text);
 	isReady = true;
@@ -45,6 +47,9 @@ func _set_up() -> void:
 	detect.set_shape(shape);
 	$Area2D.add_child(detect);
 	detect.owner = self;
+	
+	shape.extents.x = max(1, shape.extents.x);
+	shape.extents.y = max(10, shape.extents.y);
 	
 	_label = $Label;
 
@@ -64,11 +69,6 @@ static func create(text : String, font : Font = ThemeDB.fallback_font, font_size
 	
 	return seg;
 
-func destroy():
-	if attached:
-		noPickup = false;
-	queue_free();
-
 func get_text() -> String:
 	return _text;
 
@@ -81,9 +81,35 @@ func set_text(txt : String) -> Segment:
 	
 	return self;
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_area_2d_input_event(viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if get_text() == "":
+		return;
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():
-		pass;
+		if attached:
+			if $Area2D.get_overlapping_areas().size() > 0:
+				for c in $Area2D.get_overlapping_areas():
+					var own = c.owner;
+					if own is WordPlacer:
+						own._attach_segment_mouse(self);
+						mouse_full = false;
+						queue_free();
+				return
+			if $Area2D.get_overlapping_bodies().size() > 0:
+				return;
+			
+			freeze = false;
+			attached = false;
+			mouse_full = false;
+		else:
+			if get_parent() is WordPlacer:
+				prints(["hello!!!!!!!", get_text()])
+				get_parent().drop(self);
+			
+			if !mouse_full:
+				mouse_full = true;
+				freeze = true;
+				collision_layer = 0;
+				attached = true;
 
 func get_rect() -> Rect2:
 	return _collide.shape.get_rect();
@@ -93,10 +119,3 @@ func get_width() -> float:
 
 func get_height() -> float:
 	return get_rect().size.y;
-
-func hold():
-	freeze = true;
-
-func drop():
-	globalStuff.swap_parent(self, get_tree().current_scene);
-	freeze = false;

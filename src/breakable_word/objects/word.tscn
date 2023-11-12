@@ -4,6 +4,9 @@
 
 [node name="word" type="Node2D"]
 script = ExtResource("1_est27")
-text = "a\\a\\a\\a\\a\\a\\a\\a\\aaaaaa\\a\\a"
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 40
+collision_mask = 4
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

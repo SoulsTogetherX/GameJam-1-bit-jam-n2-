@@ -23,6 +23,8 @@ func process_physics(_delta: float) -> State:
 		actor.jump();
 		actor.update_position();
 		return falling;
+	if !actor.is_on_floor():
+		return falling;
 	
 	if Input.get_axis("left", "right"):
 		return walk;

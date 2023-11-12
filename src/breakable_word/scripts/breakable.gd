@@ -8,16 +8,21 @@ class_name Breakable extends Node2D
 		text = val;
 		if !isReady:
 			await ready;
-		update_spawner(val);
+		update_spawner(spacing, val);
 
-@export var spacing : float = 2.;
+@export var spacing : float = 2.:
+	set(val):
+		spacing = val;
+		if !isReady:
+			await ready;
+		update_spawner(val, text);
 
 var spawner : Spawner;
 var isReady : bool = false
 func _ready() -> void:
 	spawner = $spawner;
-	spawner.spacing = spacing;
 	isReady = true;
 
-func update_spawner(txt : String) -> void:
+func update_spawner(spacing : float, txt : String) -> void:
+	spawner.spacing = spacing;
 	spawner.text = txt;

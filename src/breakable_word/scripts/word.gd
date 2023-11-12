@@ -24,9 +24,12 @@ static var _instance = preload("res://src/breakable_word/objects/word.tscn");
 static func create(own : Node, txt : String) -> WordPlacer:
 	var placer : WordPlacer = _instance.instantiate();
 	own.add_child(placer);
-
+	
 	placer._parse_text(txt);
 	return placer;
+
+func drop(segment : Segment):
+	get_parent().drop(self, segment);
 
 func get_area() -> Rect2:
 	return _area;
@@ -39,18 +42,24 @@ func get_height() -> float:
 
 func insert(str : String, idx : int = -1) -> void:
 	if idx == -1:
-		idx = _segments.size() - 1;
+		idx = _segments.size();
 	
 	str = str.replace("/", "");
 	var txt : String = "";
+	txt = str + "\\" + get_text_raw();
 	
-	for i in range(0, idx, 1):
-		txt += _segments[i].get_text() + "\\";
-	txt += str + "\\";
-	for i in range(idx, _segments.size(), 1):
-		txt += _segments[i].get_text() + "\\";
+	print("4-: ", [txt]);
 	
-	_parse_text(txt);
+	get_parent()._insert_update(txt, self);
+	
+
+func _attach_segment_mouse(segment : Segment) -> void:
+	insert(segment.get_text(), _find_insert_point());
+
+func _find_insert_point() -> int:
+	
+	
+	return 0;
 
 func get_text() -> String:
 	var txt : String = "";
@@ -119,7 +128,10 @@ func _ready() -> void:
 		_detect = CollisionShape2D.new()
 		_detect.set_shape(RectangleShape2D.new());
 		_detect.modulate = Color.GREEN;
-	
+		
+		_detect.shape.extents = _font.get_char_size(32, _font_size) * 0.5;
+		_detect.shape.extents.x = 0.5;
+		
 		$Area2D.add_child(_detect);
 		_detect.owner = self;
 	else:

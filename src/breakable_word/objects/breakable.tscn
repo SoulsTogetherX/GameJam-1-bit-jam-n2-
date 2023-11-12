@@ -5,8 +5,7 @@
 
 [node name="breakable" type="Node2D"]
 script = ExtResource("1_4b1et")
-text = "a/aaaa/aa\\a/bbb/"
+text = ""
 
 [node name="spawner" type="Node2D" parent="."]
 script = ExtResource("2_qk8qg")
-text = "a/aaaa/aa\\a/bbb/"
