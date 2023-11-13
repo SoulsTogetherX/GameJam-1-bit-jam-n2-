@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvmkmyamg2irn"]
+[gd_scene load_steps=12 format=3 uid="uid://bvmkmyamg2irn"]
 
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_vi4um"]
 [ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_fbs7r"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="6_lain0"]
 [ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="7_abr3u"]
 [ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="8_juif1"]
+[ext_resource type="PackedScene" uid="uid://dj6o2ceygtcr3" path="res://src/ground/kill_barrior/kill_barrior.tscn" id="10_15oe0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
 size = Vector2(552, 20)
@@ -48,3 +49,6 @@ door = NodePath("../door/action")
 
 [node name="Thing" parent="." instance=ExtResource("8_juif1")]
 position = Vector2(-43, -68)
+
+[node name="kill_barrior" parent="." instance=ExtResource("10_15oe0")]
+position = Vector2(0, 400)

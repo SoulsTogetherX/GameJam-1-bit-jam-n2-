@@ -50,8 +50,10 @@ func set_text(txt : String) -> Segment:
 	_text = txt;
 	var size = _font.get_string_size(txt, HORIZONTAL_ALIGNMENT_CENTER, -1, _font_size) * 0.5;
 	_collide.shape.extents = size;
+	_collide.shape.extents.y *= 0.5;
 	_label.text = txt;
 	_label.position = -size;
+	_label.position.y -= 1;
 	
 	return self;
 

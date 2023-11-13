@@ -29,6 +29,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 			hold     = true;
 			actor.global_rotation = 0;
 			actor.modulate.a = 1.;
+			actor.collision_layer = 9;
 			actor.collision_mask = 1;
 			actor.get_node("CollisionShape2D").collision_layer = 7;
 			return;
@@ -40,6 +41,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 		var max_offset = actor.get_rect().size * 0.5 - Vector2(1, 1);
 		attached_offset = (actor.global_position - actor.get_global_mouse_position()).clamp(-max_offset, max_offset);
 		actor.get_node("CollisionShape2D").collision_layer = 0;
+		actor.collision_layer = 0;
 		actor.collision_mask = 0;
 
 func _physics_process(delta: float) -> void:

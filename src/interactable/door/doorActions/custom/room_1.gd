@@ -32,8 +32,8 @@ func on_locked():
 	tw.tween_interval(1.); 
 	tw.set_trans(Tween.TRANS_SPRING);
 	tw.set_ease(Tween.EASE_IN_OUT);
-	tw.tween_property(_thing.get_parent(), "rotation_degrees", 80, 1.);
-	tw.tween_interval(0.2);
+	tw.tween_property(_thing.get_parent(), "rotation_degrees", 80, 1.2);
+	tw.tween_interval(0.01);
 	tw.tween_callback(func(): 
 		_thing.pause = false;
 		_thing.hold = false;

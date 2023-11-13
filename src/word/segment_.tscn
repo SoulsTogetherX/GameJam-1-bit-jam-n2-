@@ -5,10 +5,14 @@
 [node name="segment_" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_naqut")
+text = "aaaaaa"
 
 [node name="Label" type="Label" parent="."]
-offset_right = 164.0
-offset_bottom = 26.0
+offset_left = -28.0
+offset_top = -12.5
+offset_right = 136.0
+offset_bottom = 13.5
+text = "aaaaaa"
 
 [node name="CollisionShape2D" type="CharacterBody2D" parent="."]
 collision_layer = 4

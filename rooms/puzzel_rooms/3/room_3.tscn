@@ -36,6 +36,7 @@ position = Vector2(-97, -17)
 
 [node name="action" type="Node" parent="door"]
 script = ExtResource("4_ie3c7")
+_nextRoom = "res://rooms/puzzel_rooms/4/room_4.tscn"
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("5_sy6a8")]
 position = Vector2(-239, -12)
@@ -43,7 +44,7 @@ collision_mask = 32775
 _cam = NodePath("../cam")
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("6_e0b13")]
-position = Vector2(-237.248, 0)
+position = Vector2(-237.423, 0)
 _follow = NodePath("../player")
 
 [node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("8_mrqrj")]

@@ -48,9 +48,9 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				thing.visible = true;
 				thing.actor.global_position = actor.global_position;
 				thing.actor.global_position.y -= 25;
-				thing.hold = false;
+				thing.hold = true;
 				thing.actor.velocity = Vector2.ZERO;
-				hold = false;
+				hold = true;
 				thing.pause = false;
 			"Nothing":
 				state = true;
@@ -58,29 +58,31 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				thing.visible = true;
 				thing.actor.global_position = actor.global_position;
 				thing.actor.global_position.y -= 25;
-				thing.hold = false;
+				thing.hold = true;
 				thing.actor.velocity = Vector2.ZERO;
-				hold = false;
+				hold = true;
 				thing.pause = false;
 				door.objective_undo.emit();
 		actor.get_node("Area2D/CollisionShape2D").shape.extents = actor.get_rect().size * 0.5;
 		if connected:
 			connected.disabled = state;
-
-func _input(event: InputEvent) -> void:
+	
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():
-		for c in actor.get_node("Area2D").get_overlapping_bodies():
+		for c in actor.get_node("Area2D").get_overlapping_areas():
 			if c.owner is Thing && c.owner.visible:
-				actor.text += "thing";
-				actor.get_node("Area2D/CollisionShape2D").shape.extents = actor.get_rect().size * 0.5;
-				thing = c.owner;
-				thing.visible = false;
-				thing.pause = true;
-				thing.attached = false;
-				if actor.text == "Nothing":
-					door.objective.emit();
-				else:
-					actor.text = "Yesthing?";
-				hold = true;
-				state = false;
+				attach_thing(c.owner);
 				return;	
+
+func attach_thing(thing_ : Thing):
+	actor.text += "thing";
+	actor.get_node("Area2D/CollisionShape2D").shape.extents = actor.get_rect().size * 0.5;
+	thing = thing_;
+	thing.visible = false;
+	thing.pause = true;
+	thing.attached = false;
+	if actor.text == "Nothing":
+		door.objective.emit();
+	else:
+		actor.text = "Yesthing?";
+	hold = true;
+	state = false;

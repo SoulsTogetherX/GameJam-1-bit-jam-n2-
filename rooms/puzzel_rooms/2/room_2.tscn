@@ -38,7 +38,7 @@ position = Vector2(-239, -12)
 _cam = NodePath("../cam")
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_mqqp1")]
-position = Vector2(-235.702, 0)
+position = Vector2(-236.329, 0)
 _follow = NodePath("../player")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("6_lhtnu")]
