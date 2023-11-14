@@ -23,6 +23,7 @@ signal openDoor;
 @onready var _lock_spr   : Sprite2D = $lock;
 @onready var _door_spr   : Sprite2D = $regular;
 @onready var _get_action : Node     = $action;
+@onready var _sound      : Node2D   = $emiter;
 var isReady : bool = false;
 
 func _ready() -> void:
@@ -44,6 +45,7 @@ func lock() -> void:
 	_door_spr.texture = _SPRITES[2];
 
 func open() -> void:
+	_sound.play(0);
 	_state = STATE.OPEN;
 	_lock_spr.visible = false;
 	_door_spr.texture = _SPRITES[1];

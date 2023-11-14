@@ -1,19 +1,37 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2k33pnyrprvs"]
+[gd_scene load_steps=29 format=3 uid="uid://b2k33pnyrprvs"]
 
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="1_rcl02"]
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_vfp3k"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_j5kej"]
 [ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_ld6h2"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/room_1.gd" id="3_xrcmn"]
+[ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="5_pf6t1"]
 [ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="5_vre0u"]
+[ext_resource type="AudioStream" uid="uid://bht2jfyw0asw3" path="res://assets/sound/door/open/door_1.wav" id="6_6abhu"]
 [ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="6_t2yl1"]
 [ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="7_at3sy"]
+[ext_resource type="AudioStream" uid="uid://tkd4apt2jpv2" path="res://assets/sound/door/open/door_2.wav" id="7_b1364"]
+[ext_resource type="AudioStream" uid="uid://c5h74kje7fa2s" path="res://assets/sound/door/open/door_3.wav" id="8_tyktd"]
 [ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="8_y8u2e"]
 [ext_resource type="Texture2D" uid="uid://lstaju6nllv" path="res://assets/sprites/player/arrow.png" id="9_0on42"]
+[ext_resource type="AudioStream" uid="uid://ctd30vtb1vjl4" path="res://assets/sound/door/open/door_4.wav" id="9_3nj3x"]
+[ext_resource type="AudioStream" uid="uid://dbjbfo1oljvl5" path="res://assets/sound/door/open/door_5.wav" id="10_33gno"]
 [ext_resource type="PackedScene" uid="uid://dj6o2ceygtcr3" path="res://src/ground/kill_barrior/kill_barrior.tscn" id="11_laq63"]
+[ext_resource type="AudioStream" uid="uid://dhouiys15gb4w" path="res://assets/sound/door/open/door_6.wav" id="11_y48wa"]
+[ext_resource type="Texture2D" uid="uid://cr86c840jy5sh" path="res://assets/sprites/controls/T_E_Key_Dark.png" id="12_k8ee2"]
+[ext_resource type="AudioStream" uid="uid://p7vq7d033xdy" path="res://assets/sound/door/open/door_7.wav" id="12_xeklx"]
+[ext_resource type="Texture2D" uid="uid://dn2ucy4oyiwx" path="res://assets/sprites/controls/T_Mouse_Left_Key_Dark.png" id="13_lntp6"]
+[ext_resource type="AudioStream" uid="uid://c3f6kvmjaica8" path="res://assets/sound/door/open/door_8.wav" id="13_ok7yp"]
+[ext_resource type="AudioStream" uid="uid://ccsiq7m6b2tbq" path="res://assets/sound/door/open/door_9.wav" id="14_yrcue"]
+[ext_resource type="AudioStream" uid="uid://2as3ljf27u2m" path="res://assets/sound/door/open/door_10.wav" id="15_j2t6v"]
+[ext_resource type="AudioStream" uid="uid://bie4ad4ptp3v5" path="res://assets/sound/door/open/door_11.wav" id="16_sc1ue"]
+[ext_resource type="AudioStream" uid="uid://dfjdqoefy0ctc" path="res://assets/sound/door/open/door_12.wav" id="17_7nhc2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
-size = Vector2(552, 20)
+size = Vector2(1006, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_378bx"]
+size = Vector2(26, 407)
 
 [node name="room_1" type="Node2D"]
 script = ExtResource("1_vfp3k")
@@ -23,18 +41,32 @@ script = ExtResource("1_vfp3k")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 10)
+position = Vector2(39, 10)
 shape = SubResource("RectangleShape2D_dires")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-456, -178)
+shape = SubResource("RectangleShape2D_378bx")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(534, -184)
+shape = SubResource("RectangleShape2D_378bx")
 
 [node name="door" parent="." instance=ExtResource("2_j5kej")]
 position = Vector2(178, -16)
 
-[node name="action" type="Node" parent="door" node_paths=PackedStringArray("thing", "arrow1", "arrow2")]
+[node name="action" type="Node" parent="door" node_paths=PackedStringArray("thing", "arrow1", "arrow2", "E_sprite", "ML_sprite")]
 script = ExtResource("3_xrcmn")
 thing = NodePath("../../rotation_point/Thing")
 arrow1 = NodePath("../../1")
 arrow2 = NodePath("../../2")
+E_sprite = NodePath("../../TEKeyDark")
+ML_sprite = NodePath("../../TMouseLeftKeyDark")
 _nextRoom = "res://rooms/puzzel_rooms/2/room_2.tscn"
+
+[node name="emiter" parent="door" instance=ExtResource("5_pf6t1")]
+volume = 0.0
+audios = Array[AudioStream]([ExtResource("6_6abhu"), ExtResource("7_b1364"), ExtResource("8_tyktd"), ExtResource("9_3nj3x"), ExtResource("10_33gno"), ExtResource("11_y48wa"), ExtResource("12_xeklx"), ExtResource("13_ok7yp"), ExtResource("14_yrcue"), ExtResource("15_j2t6v"), ExtResource("16_sc1ue"), ExtResource("17_7nhc2")])
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("1_rcl02")]
 position = Vector2(-176, -11)
@@ -71,3 +103,14 @@ texture = ExtResource("9_0on42")
 
 [node name="kill_barrior" parent="." instance=ExtResource("11_laq63")]
 position = Vector2(0, 400)
+
+[node name="TEKeyDark" type="Sprite2D" parent="."]
+position = Vector2(218, -24)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_k8ee2")
+
+[node name="TMouseLeftKeyDark" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(7, -50)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_lntp6")

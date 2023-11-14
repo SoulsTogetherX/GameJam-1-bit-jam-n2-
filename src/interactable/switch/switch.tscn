@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://chkwk04dawibt"]
+[gd_scene load_steps=11 format=3 uid="uid://chkwk04dawibt"]
 
 [ext_resource type="Script" path="res://src/interactable/switch/switch.gd" id="1_7oxj5"]
 [ext_resource type="Texture2D" uid="uid://dvi7fbd7do2sl" path="res://assets/sprites/ground/box.png" id="2_5xb8y"]
 [ext_resource type="Texture2D" uid="uid://b884r8fbcnrjr" path="res://assets/sprites/door/cross.png" id="3_48gj0"]
 [ext_resource type="PackedScene" uid="uid://blh1pp186v5l7" path="res://src/interactable/switch/connect_draw.tscn" id="4_uxju0"]
+[ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="5_ioj8o"]
+[ext_resource type="AudioStream" uid="uid://dg01h6m18phn6" path="res://assets/sound/switch/switch_1.wav" id="6_rn5dg"]
+[ext_resource type="AudioStream" uid="uid://bw5kxbo8j2wqs" path="res://assets/sound/switch/switch_2.wav" id="7_olnig"]
+[ext_resource type="AudioStream" uid="uid://d0c4ruvvruh8n" path="res://assets/sound/switch/switch_3.wav" id="8_6ge6f"]
+[ext_resource type="AudioStream" uid="uid://vpa5cpe7re3s" path="res://assets/sound/switch/switch_4.wav" id="9_tph43"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jom84"]
 radius = 46.0109
@@ -30,3 +35,8 @@ collision_mask = 0
 shape = SubResource("CircleShape2D_jom84")
 
 [node name="connect_draw" parent="." instance=ExtResource("4_uxju0")]
+
+[node name="sound_emiter" parent="." instance=ExtResource("5_ioj8o")]
+position = Vector2(0, 9)
+volume = -20.0
+audios = Array[AudioStream]([ExtResource("6_rn5dg"), ExtResource("7_olnig"), ExtResource("8_6ge6f"), ExtResource("9_tph43")])

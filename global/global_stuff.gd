@@ -19,11 +19,11 @@ static func swap_parent_simple(node : Node, parent : Node) -> void:
 		node.get_parent().remove_child(node);
 	parent.add_child(node);
 
-static func waggle(obj : Node2D, length : float = 1.5, max : float = 5):
+static func waggle(obj : Node2D, length : float = 1.5, max_ : float = 5):
 	var tw = obj.create_tween();
 	var div = length / 3;
-	tw.tween_property(obj, "rotation_degrees",  max, div);
-	tw.tween_property(obj, "rotation_degrees", -max, div);
+	tw.tween_property(obj, "rotation_degrees",  max_, div);
+	tw.tween_property(obj, "rotation_degrees", -max_, div);
 	tw.tween_property(obj, "rotation_degrees",  0,   div);
 	tw.play();
 	

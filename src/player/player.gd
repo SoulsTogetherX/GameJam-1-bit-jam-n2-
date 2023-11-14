@@ -9,20 +9,21 @@ const GRAVITY             : int    =  980;
 @onready var jump_buffer  : Timer    = $jump_buffer;
 @onready var detector     : Area2D   = $interactable_detector;
 @onready var state_contr  : StateObj = $StateObj;
-@onready var wall_steps   : CPUParticles2D = $walk_particles;
+
+@onready var wall_steps   : Node2D   = $footstep_emiter;
+@onready var land_steps   : Node2D   = $land_emiter;
+@onready var jump_steps   : Node2D   = $jump_emiter;
 
 @export var _cam           : CameraFollow = null;
-var _tween                 : Tween;
 var _jumping               : bool = false;
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed("interact") && is_on_floor():
 		var detecteds = detector.get_overlapping_areas();
 		for detected in detecteds:
-			if !(detected.owner is Door) || is_on_floor():
-				detected.owner.action();
+			detected.owner.action();
 
-func _physics_process(delta) -> void:	
+func _physics_process(_delta) -> void:	
 	pass;
 
 func update_position() -> void:
@@ -30,6 +31,7 @@ func update_position() -> void:
 	_cam.update_position();
 
 func jump() -> void:
+	jump_steps.play(0);
 	velocity.y = JUMP_VELOCITY;
 	_jumping = true;
 	

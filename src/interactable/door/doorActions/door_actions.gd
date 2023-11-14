@@ -1,5 +1,6 @@
 class_name DoorActions extends Node
 
+@warning_ignore("unused_parameter")
 @onready var _door     : Door = get_parent();
 
 @export_file("*.tscn") var _nextRoom;
@@ -55,7 +56,8 @@ func on_locked():
 	pass;
 
 func on_open():
-	_player.queue_free();
+	_player.visible = false;
+	_player.process_mode = Node.PROCESS_MODE_DISABLED;
 	var tw = create_tween().set_parallel();
 	
 	for c in get_tree().current_scene.get_children():
@@ -64,6 +66,7 @@ func on_open():
 	tw.chain().tween_interval(0.5);
 	await tw.finished;
 	
+	_player.queue_free();
 	get_tree().change_scene_to_file(_nextRoom);
 
 func on_closed():

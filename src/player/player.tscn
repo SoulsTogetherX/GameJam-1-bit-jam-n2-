@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://rg81f8qkjyw7"]
+[gd_scene load_steps=35 format=3 uid="uid://rg81f8qkjyw7"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_6dsfu"]
 [ext_resource type="Texture2D" uid="uid://boclotpe0aikx" path="res://assets/sprites/player/player.png" id="1_lnbo8"]
@@ -9,6 +9,28 @@
 [ext_resource type="Script" path="res://src/state_machine/states/slow_down.gd" id="8_t3dbk"]
 [ext_resource type="Script" path="res://src/state_machine/states/walk.gd" id="9_l0qdd"]
 [ext_resource type="PackedScene" uid="uid://bweodpc0puqle" path="res://assets/particles/walk_particles.tscn" id="9_yut0d"]
+[ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="10_rl67e"]
+[ext_resource type="AudioStream" uid="uid://dkhvt4c12wt2o" path="res://assets/sound/player_walking/Footsteps_Tile_Walk_01.wav" id="11_v8a1v"]
+[ext_resource type="AudioStream" uid="uid://pvvtxhotc7h8" path="res://assets/sound/player_walking/Footsteps_Tile_Walk_02.wav" id="12_mw8so"]
+[ext_resource type="AudioStream" uid="uid://u0oxcrn247v1" path="res://assets/sound/player_walking/Footsteps_Tile_Walk_03.wav" id="13_u4slj"]
+[ext_resource type="AudioStream" uid="uid://bg8wkacx6xudm" path="res://assets/sound/player_walking/Footsteps_Tile_Walk_04.wav" id="14_il3s2"]
+[ext_resource type="AudioStream" uid="uid://bifin3kono322" path="res://assets/sound/player_walking/Footsteps_Tile_Walk_05.wav" id="15_bl8rn"]
+[ext_resource type="AudioStream" uid="uid://xgqm55beuywg" path="res://assets/sound/player_walking/Footsteps_Tile_Walk_06.wav" id="16_g2nq4"]
+[ext_resource type="AudioStream" uid="uid://kulfe1t23gi3" path="res://assets/sound/player_walking/Footsteps_Tile_Walk_07.wav" id="17_fqupp"]
+[ext_resource type="AudioStream" uid="uid://dir6uo8xko0xh" path="res://assets/sound/player_walking/Footsteps_Tile_Walk_08.wav" id="18_83voe"]
+[ext_resource type="AudioStream" uid="uid://bg2lx2wyk71y5" path="res://assets/sound/player_jump/Footsteps_Tile_Jump_Land_01.wav" id="19_kjiid"]
+[ext_resource type="PackedScene" uid="uid://dclfhlw5b6516" path="res://assets/particles/jump_particles.tscn" id="19_mff4s"]
+[ext_resource type="AudioStream" uid="uid://cunbisifclkbi" path="res://assets/sound/player_jump/Footsteps_Tile_Jump_Land_02.wav" id="20_xwx7k"]
+[ext_resource type="AudioStream" uid="uid://bs4po7ou32waw" path="res://assets/sound/player_jump/Footsteps_Tile_Jump_Land_03.wav" id="21_77jo6"]
+[ext_resource type="AudioStream" uid="uid://dpi8nvqnukjlr" path="res://assets/sound/player_jump/Footsteps_Tile_Jump_Start_01.wav" id="22_hasxx"]
+[ext_resource type="AudioStream" uid="uid://d2r873wrwl2xv" path="res://assets/sound/player_jump/Footsteps_Tile_Jump_Start_02.wav" id="23_ikx4i"]
+[ext_resource type="AudioStream" uid="uid://cem3lu1ga61tf" path="res://assets/sound/player_jump/Footsteps_Tile_Jump_Start_03.wav" id="24_lvmd3"]
+[ext_resource type="AudioStream" uid="uid://bw7nalxr1fgfu" path="res://assets/sound/player_landing/Footsteps_Tile_Run_01.wav" id="26_vfdx7"]
+[ext_resource type="AudioStream" uid="uid://pjaddv4wjwmt" path="res://assets/sound/player_landing/Footsteps_Tile_Run_02.wav" id="27_dcf1x"]
+[ext_resource type="AudioStream" uid="uid://c417qi4qvmlju" path="res://assets/sound/player_landing/Footsteps_Tile_Run_03.wav" id="28_e3f5u"]
+[ext_resource type="AudioStream" uid="uid://c74wfl7e8a0pf" path="res://assets/sound/player_landing/Footsteps_Tile_Run_04.wav" id="29_hhw7b"]
+[ext_resource type="AudioStream" uid="uid://qxjli571ivft" path="res://assets/sound/player_landing/Footsteps_Tile_Run_05.wav" id="30_drac4"]
+[ext_resource type="AudioStream" uid="uid://og4fnbkxmkn7" path="res://assets/sound/player_landing/Footsteps_Tile_Run_06.wav" id="31_8ankw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7qd1"]
 size = Vector2(16, 18)
@@ -16,9 +38,12 @@ size = Vector2(16, 18)
 [sub_resource type="CircleShape2D" id="CircleShape2D_dal5o"]
 radius = 13.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k1qm2"]
+size = Vector2(18, 18)
+
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 37
 script = ExtResource("1_6dsfu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -41,10 +66,6 @@ one_shot = true
 [node name="jump_buffer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
-
-[node name="walk_particles" parent="." instance=ExtResource("9_yut0d")]
-position = Vector2(0, 9)
-emitting = false
 
 [node name="StateObj" type="Node" parent="." node_paths=PackedStringArray("actor", "state_machines")]
 script = ExtResource("3_0gwbg")
@@ -74,3 +95,36 @@ falling = NodePath("../falling")
 script = ExtResource("9_l0qdd")
 slowDown = NodePath("../slow_down")
 falling = NodePath("../falling")
+
+[node name="Timer" type="Timer" parent="StateObj/StateMachine/walk"]
+wait_time = 0.2
+
+[node name="footstep_emiter" parent="." node_paths=PackedStringArray("_particles") instance=ExtResource("10_rl67e")]
+position = Vector2(0, 9)
+_particles = NodePath("walk_particles")
+audios = Array[AudioStream]([ExtResource("11_v8a1v"), ExtResource("12_mw8so"), ExtResource("13_u4slj"), ExtResource("14_il3s2"), ExtResource("15_bl8rn"), ExtResource("16_g2nq4"), ExtResource("17_fqupp"), ExtResource("18_83voe")])
+
+[node name="walk_particles" parent="footstep_emiter" instance=ExtResource("9_yut0d")]
+
+[node name="jump_emiter" parent="." node_paths=PackedStringArray("_particles") instance=ExtResource("10_rl67e")]
+position = Vector2(0, 9)
+volume = -20.0
+_particles = NodePath("jump_particles")
+audios = Array[AudioStream]([ExtResource("19_kjiid"), ExtResource("20_xwx7k"), ExtResource("21_77jo6"), ExtResource("22_hasxx"), ExtResource("23_ikx4i"), ExtResource("24_lvmd3")])
+
+[node name="jump_particles" parent="jump_emiter" instance=ExtResource("19_mff4s")]
+
+[node name="land_emiter" parent="." node_paths=PackedStringArray("_particles") instance=ExtResource("10_rl67e")]
+position = Vector2(0, 9)
+volume = -20.0
+_particles = NodePath("../jump_emiter/jump_particles")
+audios = Array[AudioStream]([ExtResource("26_vfdx7"), ExtResource("27_dcf1x"), ExtResource("28_e3f5u"), ExtResource("29_hhw7b"), ExtResource("30_drac4"), ExtResource("31_8ankw")])
+
+[node name="jump_particles" parent="land_emiter" instance=ExtResource("19_mff4s")]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="pushable_check" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_k1qm2")
+
+[connection signal="timeout" from="StateObj/StateMachine/walk/Timer" to="StateObj/StateMachine/walk" method="_on_timer_timeout"]

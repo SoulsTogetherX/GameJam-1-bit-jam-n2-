@@ -56,7 +56,7 @@ func shake(time : float, stength : Vector3, decay_spd : Vector3):
 	if _decay_spd.z > 1:
 		_decay_spd.z = 1;
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !_stength.is_zero_approx():
 		var off = _random_offset();
 		offset.x = off.x;

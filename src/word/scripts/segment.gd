@@ -3,7 +3,7 @@ class_name Segment extends CharacterBody2D
 
 static var globalStuff;
 static var _font             : Font;
-static var _font_size        : float;
+static var _font_size        : int;
 func _enter_tree() -> void:
 	globalStuff = load("res://global/global_stuff.gd");
 	_font = globalStuff.segment_font;
@@ -13,18 +13,10 @@ var _collide                 : CollisionShape2D;
 @onready var _label          : Label     = $Label;
 
 var _text                    : String    = "";
-@export var text             : String    = "":
-	get:
-		return _text;
-	set(val):
-		if !isReady:
-			await ready;
-		set_text(val);
 
 var isReady : bool = false;
 func _ready() -> void:
 	_set_up();
-	set_text(_text);
 	isReady = true;
 
 func _set_up() -> void:
@@ -42,13 +34,14 @@ func _set_up() -> void:
 	shape.extents.y = max(10, shape.extents.y);
 	
 	_label = $Label;
+	set_text(_label.text);
 
 func get_text() -> String:
 	return _text;
 
 func set_text(txt : String) -> Segment:
 	_text = txt;
-	var size = _font.get_string_size(txt, HORIZONTAL_ALIGNMENT_CENTER, -1, _font_size) * 0.5;
+	var size : Vector2 = _font.get_string_size(txt, HORIZONTAL_ALIGNMENT_CENTER, -1, _font_size) * 0.5;
 	_collide.shape.extents = size;
 	_collide.shape.extents.y *= 0.5;
 	_label.text = txt;

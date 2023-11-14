@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var off_sprite : Sprite2D = $on_sprite;
 @onready var on_sprite : Sprite2D = $off_sprite;
+@onready var sound : Node2D = $sound_emiter;
 
 var state : bool = false;
 @export var connected : Array[Node];
@@ -35,6 +36,7 @@ func _ready() -> void:
 
 func action():
 	state = !state;
+	sound.play();
 	for con in connected:
 		con.disabled = !con.disabled;
 	if state:

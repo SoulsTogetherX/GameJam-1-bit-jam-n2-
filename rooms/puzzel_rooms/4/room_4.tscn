@@ -1,113 +1,111 @@
-[gd_scene load_steps=17 format=3 uid="uid://dw655416pmsvy"]
+[gd_scene load_steps=28 format=3 uid="uid://d30jyqwfxuyk"]
 
-[ext_resource type="Script" path="res://rooms/room.gd" id="1_ixg7w"]
-[ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_moq5i"]
-[ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="3_37hta"]
+[ext_resource type="Script" path="res://rooms/room.gd" id="1_is3qo"]
+[ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_mf7fk"]
+[ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="3_5h8xn"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/regular_door.gd" id="4_5lq6i"]
-[ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="5_e2mlm"]
-[ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="6_raapo"]
-[ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="7_ounjq"]
-[ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="8_s7an7"]
-[ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="9_eic18"]
-[ext_resource type="PackedScene" uid="uid://dj6o2ceygtcr3" path="res://src/ground/kill_barrior/kill_barrior.tscn" id="10_exk1j"]
-[ext_resource type="Texture2D" uid="uid://lstaju6nllv" path="res://assets/sprites/player/arrow.png" id="11_r4odp"]
-[ext_resource type="PackedScene" uid="uid://chkwk04dawibt" path="res://src/interactable/switch/switch.tscn" id="12_m0vrw"]
-[ext_resource type="PackedScene" uid="uid://bg72ekn3hnpaj" path="res://src/ground/closing_wall/moving_wall.tscn" id="13_x2yci"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8m0to"]
-size = Vector2(584, 20)
+[ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="5_b76pe"]
+[ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="5_wntwx"]
+[ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="6_1kf8q"]
+[ext_resource type="AudioStream" uid="uid://bht2jfyw0asw3" path="res://assets/sound/door/open/door_1.wav" id="6_renq5"]
+[ext_resource type="AudioStream" uid="uid://tkd4apt2jpv2" path="res://assets/sound/door/open/door_2.wav" id="7_ld5fa"]
+[ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="7_lwob1"]
+[ext_resource type="AudioStream" uid="uid://c5h74kje7fa2s" path="res://assets/sound/door/open/door_3.wav" id="8_4jqse"]
+[ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="8_avi6t"]
+[ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="9_5l3ix"]
+[ext_resource type="AudioStream" uid="uid://ctd30vtb1vjl4" path="res://assets/sound/door/open/door_4.wav" id="9_fqdt4"]
+[ext_resource type="AudioStream" uid="uid://dbjbfo1oljvl5" path="res://assets/sound/door/open/door_5.wav" id="10_gmypo"]
+[ext_resource type="PackedScene" uid="uid://bg72ekn3hnpaj" path="res://src/ground/closing_wall/moving_wall.tscn" id="10_nqt57"]
+[ext_resource type="PackedScene" uid="uid://chkwk04dawibt" path="res://src/interactable/switch/switch.tscn" id="11_i2no7"]
+[ext_resource type="AudioStream" uid="uid://dhouiys15gb4w" path="res://assets/sound/door/open/door_6.wav" id="11_yobwa"]
+[ext_resource type="AudioStream" uid="uid://p7vq7d033xdy" path="res://assets/sound/door/open/door_7.wav" id="12_3l43t"]
+[ext_resource type="PackedScene" uid="uid://dj6o2ceygtcr3" path="res://src/ground/kill_barrior/kill_barrior.tscn" id="12_l30ph"]
+[ext_resource type="AudioStream" uid="uid://c3f6kvmjaica8" path="res://assets/sound/door/open/door_8.wav" id="13_0i4lf"]
+[ext_resource type="AudioStream" uid="uid://ccsiq7m6b2tbq" path="res://assets/sound/door/open/door_9.wav" id="14_35y4w"]
+[ext_resource type="AudioStream" uid="uid://2as3ljf27u2m" path="res://assets/sound/door/open/door_10.wav" id="15_pir7n"]
+[ext_resource type="AudioStream" uid="uid://bie4ad4ptp3v5" path="res://assets/sound/door/open/door_11.wav" id="16_q6qus"]
+[ext_resource type="AudioStream" uid="uid://dfjdqoefy0ctc" path="res://assets/sound/door/open/door_12.wav" id="17_or35v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
-size = Vector2(197, 20)
+size = Vector2(1898, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jmr4"]
-size = Vector2(102.5, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1hh2"]
+size = Vector2(21, 694)
 
-[node name="room_1" type="Node2D"]
-script = ExtResource("1_ixg7w")
+[node name="room_4" type="Node2D"]
+script = ExtResource("1_is3qo")
 
-[node name="stars" parent="." instance=ExtResource("2_moq5i")]
+[node name="stars" parent="." instance=ExtResource("2_mf7fk")]
 
-[node name="stars2" parent="." instance=ExtResource("2_moq5i")]
-position = Vector2(2174, -77)
+[node name="stars2" parent="." instance=ExtResource("2_mf7fk")]
+position = Vector2(2944, 6)
 
-[node name="stars3" parent="." instance=ExtResource("2_moq5i")]
-position = Vector2(4273, -102)
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+collision_mask = 0
 
-[node name="stars4" parent="." instance=ExtResource("2_moq5i")]
-position = Vector2(6593, -118)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-16, 10)
-shape = SubResource("RectangleShape2D_8m0to")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(4271.5, 3)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(427, 10)
 shape = SubResource("RectangleShape2D_dires")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(4022, 2)
-shape = SubResource("RectangleShape2D_3jmr4")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-507, -329)
+shape = SubResource("RectangleShape2D_b1hh2")
 
-[node name="door" parent="." instance=ExtResource("3_37hta")]
-position = Vector2(4243, -27)
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(546, -322)
+shape = SubResource("RectangleShape2D_b1hh2")
+
+[node name="door" parent="." instance=ExtResource("3_5h8xn")]
+position = Vector2(-97, -17)
 
 [node name="action" type="Node" parent="door"]
 script = ExtResource("4_5lq6i")
+_nextRoom = "res://rooms/puzzel_rooms/5/room_5.tscn"
 
-[node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("5_e2mlm")]
-position = Vector2(-176, -11)
+[node name="emiter" parent="door" instance=ExtResource("5_b76pe")]
+volume = 0.0
+audios = Array[AudioStream]([ExtResource("6_renq5"), ExtResource("7_ld5fa"), ExtResource("8_4jqse"), ExtResource("9_fqdt4"), ExtResource("10_gmypo"), ExtResource("11_yobwa"), ExtResource("12_3l43t"), ExtResource("13_0i4lf"), ExtResource("14_35y4w"), ExtResource("15_pir7n"), ExtResource("16_q6qus"), ExtResource("17_or35v")])
+
+[node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("5_wntwx")]
+position = Vector2(-239, -12)
+collision_mask = 32775
 _cam = NodePath("../cam")
 
-[node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("6_raapo")]
-position = Vector2(-176, 0)
+[node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("6_1kf8q")]
+position = Vector2(-238.639, 0)
 _follow = NodePath("../player")
 
-[node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("7_ounjq")]
-position = Vector2(-86, -68)
-thing = NodePath("../Thing")
-
-[node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("8_s7an7")]
-position = Vector2(4244, -68)
+[node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("7_lwob1")]
+position = Vector2(-274, -49)
 door = NodePath("../door/action")
+
+[node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("8_avi6t")]
+position = Vector2(383, -59)
+thing = NodePath("../Thing")
 pause = false
 
-[node name="Thing" parent="." instance=ExtResource("9_eic18")]
-position = Vector2(-43, -68)
-hold = false
+[node name="Thing" parent="." instance=ExtResource("9_5l3ix")]
+position = Vector2(440, -60)
 pause = false
 
-[node name="kill_barrior" parent="." instance=ExtResource("10_exk1j")]
-position = Vector2(3129, 368)
-scale = Vector2(3, 1)
+[node name="moving_wall" parent="." instance=ExtResource("10_nqt57")]
+position = Vector2(127, -274)
+scale = Vector2(3, 10)
+move_to = Vector2(0, 115)
+move_to_spd = 3000
+move_back_spd = 3000
 
-[node name="Arrow" type="Sprite2D" parent="."]
-position = Vector2(4241, -299)
-scale = Vector2(3, 3)
-texture = ExtResource("11_r4odp")
-
-[node name="Arrow2" type="Sprite2D" parent="."]
-position = Vector2(232, -172)
-rotation = -1.5708
-scale = Vector2(3, 3)
-texture = ExtResource("11_r4odp")
-
-[node name="switch" parent="." node_paths=PackedStringArray("connected") instance=ExtResource("12_m0vrw")]
-position = Vector2(268, -8)
-connected = [NodePath("../moving_wall")]
-
-[node name="switch2" parent="." node_paths=PackedStringArray("connected") instance=ExtResource("12_m0vrw")]
-position = Vector2(3988, -16)
-connected = [NodePath("../moving_wall")]
-
-[node name="moving_wall" parent="." instance=ExtResource("13_x2yci")]
-position = Vector2(327, 0)
-scale = Vector2(3, 0.2)
-collision_mask = 0
-move_to = Vector2(3593, 0)
-move_to_spd = 400
-move_back_spd = 800
-disabled = true
+[node name="moving_wall2" parent="." instance=ExtResource("10_nqt57")]
+position = Vector2(300, -160)
+scale = Vector2(3, 10)
+move_to = Vector2(0, -115)
+move_to_spd = 3000
+move_back_spd = 3000
 up = true
+
+[node name="switch" parent="." node_paths=PackedStringArray("connected") instance=ExtResource("11_i2no7")]
+position = Vector2(-10, -9)
+connected = [NodePath("../moving_wall"), NodePath("../moving_wall2")]
+
+[node name="kill_barrior" parent="." instance=ExtResource("12_l30ph")]
+position = Vector2(485, 382)

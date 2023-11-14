@@ -16,6 +16,7 @@ func enter() -> void:
 func exit() -> void:
 	actor.velocity.y = 0;
 	actor._jumping = false;
+	actor.land_steps.play(0);
 	tw.kill();
 
 func process_input(_event: InputEvent) -> State:

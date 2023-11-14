@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameJam-1-bit-jam-n2-"
-run/main_scene="res://rooms/puzzel_rooms/1/room_1.tscn"
+run/main_scene="res://rooms/puzzel_rooms/6/room_6.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
@@ -54,9 +54,10 @@ restart={
 2d_physics/layer_3="Segment"
 2d_physics/layer_4="Clickable"
 2d_physics/layer_5="Detectable"
+2d_physics/layer_6="Box"
 
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)

@@ -10,6 +10,8 @@ var onTime : bool = false;
 
 @export var arrow1 : Sprite2D;
 @export var arrow2 : Sprite2D;
+@export var E_sprite : Sprite2D;
+@export var ML_sprite : Sprite2D;
 
 func _ready() -> void:
 	super();
@@ -39,6 +41,8 @@ func on_locked():
 		_thing.hold = false;
 		arrow1.modulate.a = 1;
 		);
+	tw.parallel().tween_property(E_sprite , "modulate:a", 0., 2.);
+	tw.parallel().tween_property(ML_sprite, "modulate:a", 1., 2.);
 	
 	await tw.finished;
 	tw.kill();

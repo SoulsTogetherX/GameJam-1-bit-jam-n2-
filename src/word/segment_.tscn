@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdh0pigcaachu"]
+[gd_scene load_steps=3 format=3 uid="uid://cdh0pigcaachu"]
 
 [ext_resource type="Script" path="res://src/word/scripts/segment.gd" id="1_naqut"]
+[ext_resource type="Script" path="res://src/word/Label.gd" id="2_1xkbp"]
 
 [node name="segment_" type="CharacterBody2D"]
 collision_layer = 8
 script = ExtResource("1_naqut")
-text = "aaaaaa"
 
 [node name="Label" type="Label" parent="."]
 offset_left = -28.0
@@ -13,7 +13,10 @@ offset_top = -12.5
 offset_right = 136.0
 offset_bottom = 13.5
 text = "aaaaaa"
+script = ExtResource("2_1xkbp")
 
 [node name="CollisionShape2D" type="CharacterBody2D" parent="."]
 collision_layer = 4
 collision_mask = 0
+
+[connection signal="changeTxt" from="Label" to="Label" method="_on_change_txt"]
