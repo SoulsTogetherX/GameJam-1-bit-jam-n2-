@@ -1,0 +1,84 @@
+[gd_scene load_steps=26 format=3 uid="uid://b2c5qxcq2t5as"]
+
+[ext_resource type="Script" path="res://rooms/room.gd" id="1_3m4ax"]
+[ext_resource type="TileSet" uid="uid://b6y50qs5gvwa8" path="res://rooms/puzzel_rooms/ground.tres" id="2_6kn3j"]
+[ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_in6rm"]
+[ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="3_e85i1"]
+[ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/regular_door.gd" id="4_8xngn"]
+[ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="5_66yvj"]
+[ext_resource type="AudioStream" uid="uid://bht2jfyw0asw3" path="res://assets/sound/door/open/door_1.wav" id="6_jvd0x"]
+[ext_resource type="AudioStream" uid="uid://tkd4apt2jpv2" path="res://assets/sound/door/open/door_2.wav" id="7_r4jxw"]
+[ext_resource type="AudioStream" uid="uid://c5h74kje7fa2s" path="res://assets/sound/door/open/door_3.wav" id="8_a33x5"]
+[ext_resource type="AudioStream" uid="uid://ctd30vtb1vjl4" path="res://assets/sound/door/open/door_4.wav" id="9_8ieqo"]
+[ext_resource type="AudioStream" uid="uid://dbjbfo1oljvl5" path="res://assets/sound/door/open/door_5.wav" id="10_0o5d5"]
+[ext_resource type="AudioStream" uid="uid://dhouiys15gb4w" path="res://assets/sound/door/open/door_6.wav" id="11_u63jj"]
+[ext_resource type="AudioStream" uid="uid://p7vq7d033xdy" path="res://assets/sound/door/open/door_7.wav" id="12_lm2ir"]
+[ext_resource type="AudioStream" uid="uid://c3f6kvmjaica8" path="res://assets/sound/door/open/door_8.wav" id="13_vw6t4"]
+[ext_resource type="AudioStream" uid="uid://ccsiq7m6b2tbq" path="res://assets/sound/door/open/door_9.wav" id="14_ep065"]
+[ext_resource type="AudioStream" uid="uid://2as3ljf27u2m" path="res://assets/sound/door/open/door_10.wav" id="15_bcge1"]
+[ext_resource type="AudioStream" uid="uid://bie4ad4ptp3v5" path="res://assets/sound/door/open/door_11.wav" id="16_a7h2v"]
+[ext_resource type="AudioStream" uid="uid://dfjdqoefy0ctc" path="res://assets/sound/door/open/door_12.wav" id="17_p387b"]
+[ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="18_r2vv5"]
+[ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="19_tn26d"]
+[ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="20_k4dqj"]
+[ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="21_lknli"]
+[ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="22_2ebjf"]
+[ext_resource type="PackedScene" uid="uid://dj6o2ceygtcr3" path="res://src/ground/kill_barrior/kill_barrior.tscn" id="23_g3sol"]
+[ext_resource type="PackedScene" uid="uid://bmqgfi4aiy8j5" path="res://src/interactable/area/area_word.tscn" id="27_htvb0"]
+
+[node name="room_1" type="Node2D"]
+script = ExtResource("1_3m4ax")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_6kn3j")
+format = 2
+layer_0/tile_data = PackedInt32Array(65521, 0, 0, 65522, 0, 0, 65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0)
+
+[node name="door" parent="." instance=ExtResource("3_e85i1")]
+position = Vector2(178, -16)
+
+[node name="action" type="Node" parent="door"]
+script = ExtResource("4_8xngn")
+
+[node name="emiter" parent="door" instance=ExtResource("5_66yvj")]
+audios = Array[AudioStream]([ExtResource("6_jvd0x"), ExtResource("7_r4jxw"), ExtResource("8_a33x5"), ExtResource("9_8ieqo"), ExtResource("10_0o5d5"), ExtResource("11_u63jj"), ExtResource("12_lm2ir"), ExtResource("13_vw6t4"), ExtResource("14_ep065"), ExtResource("15_bcge1"), ExtResource("16_a7h2v"), ExtResource("17_p387b")])
+
+[node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("18_r2vv5")]
+position = Vector2(-176, -11)
+_cam = NodePath("../cam")
+
+[node name="stars" parent="player" instance=ExtResource("2_in6rm")]
+
+[node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("19_tn26d")]
+position = Vector2(-176, 0)
+_follow = NodePath("../player")
+
+[node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("20_k4dqj")]
+position = Vector2(-86, -68)
+thing = NodePath("../Thing")
+
+[node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("21_lknli")]
+position = Vector2(179, -57)
+door = NodePath("../door/action")
+pause = false
+
+[node name="Thing" parent="." instance=ExtResource("22_2ebjf")]
+position = Vector2(-43, -68)
+pause = false
+
+[node name="kill_barrior" parent="." instance=ExtResource("23_g3sol")]
+position = Vector2(0, 400)
+
+[node name="area_word" parent="." instance=ExtResource("27_htvb0")]
+position = Vector2(80, -50)
+check_yesthing = true
+
+[node name="Label" type="Label" parent="area_word"]
+self_modulate = Color(1, 1, 1, 0.603922)
+offset_left = -3.0
+offset_top = -24.0
+offset_right = 85.0
+offset_bottom = 2.0
+rotation = 0.575959
+scale = Vector2(0.5, 0.5)
+text = "Yesthing?"

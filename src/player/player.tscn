@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://rg81f8qkjyw7"]
+[gd_scene load_steps=36 format=3 uid="uid://rg81f8qkjyw7"]
 
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_6dsfu"]
 [ext_resource type="Texture2D" uid="uid://boclotpe0aikx" path="res://assets/sprites/player/player.png" id="1_lnbo8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://src/state_machine/states/falling.gd" id="5_hmlsj"]
 [ext_resource type="Script" path="res://src/state_machine/states/idle.gd" id="6_mank6"]
 [ext_resource type="Script" path="res://src/state_machine/states/slow_down.gd" id="8_t3dbk"]
+[ext_resource type="Script" path="res://src/state_machine/states/push.gd" id="9_il4l0"]
 [ext_resource type="Script" path="res://src/state_machine/states/walk.gd" id="9_l0qdd"]
 [ext_resource type="PackedScene" uid="uid://bweodpc0puqle" path="res://assets/particles/walk_particles.tscn" id="9_yut0d"]
 [ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="10_rl67e"]
@@ -43,7 +44,7 @@ size = Vector2(18, 18)
 
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
-collision_mask = 37
+collision_mask = 165
 script = ExtResource("1_6dsfu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -91,13 +92,22 @@ script = ExtResource("8_t3dbk")
 idle = NodePath("../idle")
 falling = NodePath("../falling")
 
-[node name="walk" type="Node" parent="StateObj/StateMachine" node_paths=PackedStringArray("slowDown", "falling")]
+[node name="walk" type="Node" parent="StateObj/StateMachine" node_paths=PackedStringArray("slowDown", "falling", "push")]
 script = ExtResource("9_l0qdd")
 slowDown = NodePath("../slow_down")
 falling = NodePath("../falling")
+push = NodePath("../push")
 
 [node name="Timer" type="Timer" parent="StateObj/StateMachine/walk"]
 wait_time = 0.2
+
+[node name="push" type="Node" parent="StateObj/StateMachine" node_paths=PackedStringArray("idle", "falling")]
+script = ExtResource("9_il4l0")
+idle = NodePath("../idle")
+falling = NodePath("../falling")
+
+[node name="Timer" type="Timer" parent="StateObj/StateMachine/push"]
+wait_time = 0.4
 
 [node name="footstep_emiter" parent="." node_paths=PackedStringArray("_particles") instance=ExtResource("10_rl67e")]
 position = Vector2(0, 9)
@@ -123,8 +133,11 @@ audios = Array[AudioStream]([ExtResource("26_vfdx7"), ExtResource("27_dcf1x"), E
 [node name="jump_particles" parent="land_emiter" instance=ExtResource("19_mff4s")]
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
 
 [node name="pushable_check" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_k1qm2")
 
 [connection signal="timeout" from="StateObj/StateMachine/walk/Timer" to="StateObj/StateMachine/walk" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateObj/StateMachine/push/Timer" to="StateObj/StateMachine/push" method="_on_timer_timeout"]

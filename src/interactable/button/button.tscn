@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cotgni1k7dlka"]
+
+[ext_resource type="Script" path="res://src/interactable/button/button.gd" id="1_167f4"]
+[ext_resource type="Texture2D" uid="uid://dvi7fbd7do2sl" path="res://assets/sprites/ground/box.png" id="2_g7xvj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k10c6"]
+radius = 1.0
+height = 22.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqs47"]
+size = Vector2(23, 3.5)
+
+[node name="button" type="Node2D"]
+script = ExtResource("1_167f4")
+
+[node name="unpushed" type="Sprite2D" parent="."]
+scale = Vector2(0.71875, 0.21875)
+texture = ExtResource("2_g7xvj")
+
+[node name="pushed" type="Sprite2D" parent="."]
+position = Vector2(0, 1.75)
+scale = Vector2(0.71875, 0.109375)
+texture = ExtResource("2_g7xvj")
+
+[node name="push_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 34
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="push_area"]
+position = Vector2(0, -2)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_k10c6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 39
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 1.75)
+shape = SubResource("RectangleShape2D_lqs47")
+
+[connection signal="body_entered" from="push_area" to="." method="_on_push_area_body_entered"]
+[connection signal="body_exited" from="push_area" to="." method="_on_push_area_body_exited"]

@@ -22,8 +22,8 @@ static var click_particle = preload("res://assets/particles/click_text_particle.
 
 func _ready() -> void:
 	actor.get_node("Area2D/CollisionShape2D").shape.extents = actor.get_rect().size * 0.5;
-	actor.collision_layer = 10;
-	actor.collision_mask = 1;
+	actor.collision_layer = 10 + 64;
+	actor.collision_mask = 1 + 128;
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if pause:
@@ -42,7 +42,6 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		audioPlayer.volume_db = -20;
 		if attached:
 			var a = actor.get_node("Area2D");
-			prints(a.collision_mask, a.collision_layer);
 			if a.get_overlapping_areas().size() > 1 or a.get_overlapping_bodies().size() > 1:
 				audioPlayer.stream = cannotPlace;
 				audioPlayer.play();
@@ -56,10 +55,10 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 			actor.global_rotation = 0;
 			actor.modulate.a = 1.;
 			if self is Every:
-				actor.collision_layer = 42;
+				actor.collision_layer = 2 + 8 + 32 + 64;
 			else:
-				actor.collision_layer = 10;
-			actor.collision_mask = 1;
+				actor.collision_layer = 2 + 8 + 64 + 128;
+				actor.collision_mask = 1;
 			actor.get_node("CollisionShape2D").collision_layer = 7;
 			return;
 		
@@ -74,9 +73,9 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		actor.get_node("CollisionShape2D").collision_layer = 0;
 		if self is Every:
 			actor.collision_mask = 32;
-			actor.collision_layer = 40;
+			actor.collision_layer = 8 + 32 + 64;
 		else:
-			actor.collision_layer = 8;
+			actor.collision_layer = 8 + 64 + 128;
 
 func _physics_process(delta: float) -> void:
 	if pause:
@@ -86,15 +85,24 @@ func _physics_process(delta: float) -> void:
 		var vec = attached_offset + get_global_mouse_position() - actor.global_position;
 		if vec.length() > MAX_SPEED:
 			vec = vec.normalized() * MAX_SPEED;
+		
+		if not self is Every:
+			for bod in actor.get_node("push").get_overlapping_bodies():
+				if bod.owner is RigidBody2D:
+					bod.owner.apply_central_impulse(vec.normalized() * 20);
+		
 		actor.move_and_collide(vec);
 		
 		actor.velocity = Vector2.ZERO;
 		if self is Every:
-			actor.collision_layer = 32;
-			actor.collision_mask = 32;
+			actor.collision_layer = 0b1001000;
+			actor.collision_mask = 0;
+		else:
+			actor.collision_layer = 8;
+			actor.collision_mask = 1 + 128 + 256;
 	else:
-		actor.collision_layer = 10;
-		actor.collision_mask = 1;
+		actor.collision_layer = 2 + 8 + 64;
+		actor.collision_mask = 1 + 128;
 	if !hold:
 		actor.velocity.y += GRAVITY * delta;
 		actor.move_and_slide();

@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://b2k33pnyrprvs"]
+[gd_scene load_steps=28 format=3 uid="uid://b2k33pnyrprvs"]
 
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="1_rcl02"]
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_vfp3k"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_j5kej"]
 [ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_ld6h2"]
+[ext_resource type="TileSet" uid="uid://b6y50qs5gvwa8" path="res://rooms/puzzel_rooms/ground.tres" id="2_pk0uv"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/room_1.gd" id="3_xrcmn"]
 [ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="5_pf6t1"]
 [ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="5_vre0u"]
@@ -27,33 +28,16 @@
 [ext_resource type="AudioStream" uid="uid://bie4ad4ptp3v5" path="res://assets/sound/door/open/door_11.wav" id="16_sc1ue"]
 [ext_resource type="AudioStream" uid="uid://dfjdqoefy0ctc" path="res://assets/sound/door/open/door_12.wav" id="17_7nhc2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
-size = Vector2(1006, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_378bx"]
-size = Vector2(26, 407)
-
 [node name="room_1" type="Node2D"]
 script = ExtResource("1_vfp3k")
 
-[node name="stars" parent="." instance=ExtResource("2_ld6h2")]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(39, 10)
-shape = SubResource("RectangleShape2D_dires")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-456, -178)
-shape = SubResource("RectangleShape2D_378bx")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(534, -184)
-shape = SubResource("RectangleShape2D_378bx")
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_pk0uv")
+format = 2
+layer_0/tile_data = PackedInt32Array(65518, 0, 0, 65519, 0, 0, 65520, 0, 0, 65521, 0, 0, 65522, 0, 0, 65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, -65521, 0, 0, -131057, 0, 0, -196593, 0, 0, -262129, 0, 0, -327665, 0, 0, -393201, 0, 0, -458737, 0, 0, -524273, 0, 0, -589809, 0, 0, -655345, 0, 0, -720881, 0, 0, -786417, 0, 0, -851953, 0, 0, -917489, 0, 0, 65517, 0, 0, 65516, 0, 0, -20, 0, 0, -65556, 0, 0, -131092, 0, 0, -196628, 0, 0, -262164, 0, 0, -327700, 0, 0, -393236, 0, 0, -458772, 0, 0, -524308, 0, 0, -589844, 0, 0, -655380, 0, 0, -720916, 0, 0, -786452, 0, 0, -851988, 0, 0, -917524, 0, 0, -917523, 0, 0, -917522, 0, 0, -917521, 0, 0, -917520, 0, 0, -917519, 0, 0, -917518, 0, 0, -917517, 0, 0, -917516, 0, 0, -917515, 0, 0, -917514, 0, 0, -917513, 0, 0, -917512, 0, 0, -917511, 0, 0, -917510, 0, 0, -917509, 0, 0, -917508, 0, 0, -917507, 0, 0, -917506, 0, 0, -917505, 0, 0, -983040, 0, 0, -983039, 0, 0, -983038, 0, 0, -983037, 0, 0, -983036, 0, 0, -983035, 0, 0, -983034, 0, 0, -983033, 0, 0, -983032, 0, 0, -983031, 0, 0, -983030, 0, 0, -983029, 0, 0, -983028, 0, 0, -983027, 0, 0, -983026, 0, 0, -983025, 0, 0)
 
 [node name="door" parent="." instance=ExtResource("2_j5kej")]
-position = Vector2(178, -16)
+position = Vector2(176, -16)
 
 [node name="action" type="Node" parent="door" node_paths=PackedStringArray("thing", "arrow1", "arrow2", "E_sprite", "ML_sprite")]
 script = ExtResource("3_xrcmn")
@@ -69,27 +53,29 @@ volume = 0.0
 audios = Array[AudioStream]([ExtResource("6_6abhu"), ExtResource("7_b1364"), ExtResource("8_tyktd"), ExtResource("9_3nj3x"), ExtResource("10_33gno"), ExtResource("11_y48wa"), ExtResource("12_xeklx"), ExtResource("13_ok7yp"), ExtResource("14_yrcue"), ExtResource("15_j2t6v"), ExtResource("16_sc1ue"), ExtResource("17_7nhc2")])
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("1_rcl02")]
-position = Vector2(-176, -11)
+position = Vector2(-176, -10)
 _cam = NodePath("../cam")
 
+[node name="stars" parent="player" instance=ExtResource("2_ld6h2")]
+
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_vre0u")]
-position = Vector2(-176, 0)
+position = Vector2(-176, 1)
 _follow = NodePath("../player")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("6_t2yl1")]
-position = Vector2(-86, -68)
+position = Vector2(-89, -59)
 thing = NodePath("../rotation_point/Thing")
 
 [node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("7_at3sy")]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(177, -56)
+position = Vector2(176, -56)
 door = NodePath("../door/action")
 
 [node name="rotation_point" type="Node2D" parent="."]
 position = Vector2(-62, -58)
 
 [node name="Thing" parent="rotation_point" instance=ExtResource("8_y8u2e")]
-position = Vector2(19, -10)
+position = Vector2(18, -2)
 
 [node name="1" type="Sprite2D" parent="."]
 self_modulate = Color(1, 1, 1, 0)

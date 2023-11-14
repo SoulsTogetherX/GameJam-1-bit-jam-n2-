@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameJam-1-bit-jam-n2-"
-run/main_scene="res://rooms/puzzel_rooms/6/room_6.tscn"
+run/main_scene="res://rooms/puzzel_rooms/7/room_7.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
@@ -55,6 +55,7 @@ restart={
 2d_physics/layer_4="Clickable"
 2d_physics/layer_5="Detectable"
 2d_physics/layer_6="Box"
+2d_physics/layer_7="Area"
 
 [rendering]
 

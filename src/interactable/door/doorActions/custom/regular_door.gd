@@ -9,12 +9,15 @@ func on_locked():
 	if change_thing:
 		_thing.pause = false;
 		_thing.hold = false;
+		_thing.modulate.a = 1.;
 	if change_no:
 		_no.pause = false;
 		_no.hold = false;
+		_no.modulate.a = 1.;
 	if change_every:
 		_every.pause = false;
 		_every.hold = false;
+		_every.modulate.a = 1.;
 
 func _on_objective() -> void:
 	_door.close();

@@ -7,12 +7,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1g2y"]
 
 [node name="area_word" type="Area2D"]
-modulate = Color(1, 1, 1, 0.215686)
-collision_layer = 0
-collision_mask = 32
+collision_layer = 64
+collision_mask = 64
 script = ExtResource("1_vtell")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.313726)
 position = Vector2(2.38419e-07, 2.38419e-07)
 scale = Vector2(0.625, 0.625)
 texture = ExtResource("1_n0p2a")

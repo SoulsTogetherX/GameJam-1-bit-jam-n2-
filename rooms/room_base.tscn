@@ -30,8 +30,6 @@ size = Vector2(552, 20)
 [node name="room_1" type="Node2D"]
 script = ExtResource("1_vi4um")
 
-[node name="stars" parent="." instance=ExtResource("2_fbs7r")]
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -50,6 +48,8 @@ audios = Array[AudioStream]([ExtResource("6_s253o"), ExtResource("7_fuxtt"), Ext
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("4_aj7xl")]
 position = Vector2(-176, -11)
 _cam = NodePath("../cam")
+
+[node name="stars" parent="player" instance=ExtResource("2_fbs7r")]
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_jhxls")]
 position = Vector2(-176, 0)

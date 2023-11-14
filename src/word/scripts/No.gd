@@ -1,7 +1,9 @@
 class_name No extends Dragable
 
+@export var other_way : bool = false;
+
 @export var door : DoorActions;
-@export var connected : Node;
+@export var connected : Array[Node] = [];
 @export var me_offset : Vector2;
 @export var connected_offset : Vector2;
 
@@ -10,22 +12,32 @@ var thing : Thing;
 var state       : bool = true;
 
 func _ready() -> void:
-	if connected:
-		connected.disabled = state;
+	for con in connected:
+		con.disabled = state;
 
 func _draw() -> void:
-	if connected is Node2D:
-		var me = actor.position + me_offset;
-		var you = connected.global_position - position + connected_offset;
-		
-		var to_from = Vector2(me.x, you.y);
-		draw_line(me, to_from, Color.WHITE, 1.5);
-		draw_line(me, to_from, Color.BLACK, 1.0);
-		draw_line(me, to_from, Color.WHITE, 0.5);
-		
-		draw_line(to_from, you, Color.WHITE, 1.5);
-		draw_line(to_from, you, Color.BLACK, 1.0);
-		draw_line(to_from, you, Color.WHITE, 0.5);
+	for con in connected:
+		if con is Node2D:
+			var you = to_local(con.global_position);
+			
+			if other_way:
+				var to_from = Vector2(you.x, 0);
+				draw_line(Vector2.ZERO, to_from, Color.WHITE, 1.5);
+				draw_line(Vector2.ZERO, to_from, Color.BLACK, 1.0);
+				draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.5);
+				
+				draw_line(to_from, you, Color.WHITE, 1.5);
+				draw_line(to_from, you, Color.BLACK, 1.0);
+				draw_line(to_from, you, Color.WHITE, 0.5);
+			else:
+				var to_from = Vector2(0, you.y);
+				draw_line(Vector2.ZERO, to_from, Color.WHITE, 1.5);
+				draw_line(Vector2.ZERO, to_from, Color.BLACK, 1.0);
+				draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.5);
+				
+				draw_line(to_from, you, Color.WHITE, 1.5);
+				draw_line(to_from, you, Color.BLACK, 1.0);
+				draw_line(to_from, you, Color.WHITE, 0.5);
 
 func _physics_process(delta: float) -> void:
 	super(delta);
@@ -73,18 +85,17 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				thing.pause = false;
 				door.objective_undo.emit();
 		actor.get_node("Area2D/CollisionShape2D").shape.extents = actor.get_rect().size * 0.5;
-		if connected:
-			connected.disabled = state;
+		for con in connected:
+			con.disabled = state;
 
 func attach_thing(thing_ : Thing):
-	
-	
 	actor.set_text(actor._text + "thing");
 	actor.get_node("Area2D/CollisionShape2D").shape.extents = actor.get_rect().size * 0.5;
 	thing = thing_;
 	thing.visible = false;
 	thing.pause = true;
 	thing.attached = false;
+	thing.actor.collision_layer = 0;
 	if actor._text == "Nothing":
 		door.objective.emit();
 	else:

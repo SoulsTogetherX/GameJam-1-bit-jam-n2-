@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://d30jyqwfxuyk"]
+[gd_scene load_steps=27 format=3 uid="uid://d30jyqwfxuyk"]
 
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_is3qo"]
 [ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_mf7fk"]
+[ext_resource type="TileSet" uid="uid://b6y50qs5gvwa8" path="res://rooms/puzzel_rooms/ground.tres" id="2_uy3qt"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="3_5h8xn"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/regular_door.gd" id="4_5lq6i"]
 [ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="5_b76pe"]
@@ -26,37 +27,16 @@
 [ext_resource type="AudioStream" uid="uid://bie4ad4ptp3v5" path="res://assets/sound/door/open/door_11.wav" id="16_q6qus"]
 [ext_resource type="AudioStream" uid="uid://dfjdqoefy0ctc" path="res://assets/sound/door/open/door_12.wav" id="17_or35v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
-size = Vector2(1898, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1hh2"]
-size = Vector2(21, 694)
-
 [node name="room_4" type="Node2D"]
 script = ExtResource("1_is3qo")
 
-[node name="stars" parent="." instance=ExtResource("2_mf7fk")]
-
-[node name="stars2" parent="." instance=ExtResource("2_mf7fk")]
-position = Vector2(2944, 6)
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(427, 10)
-shape = SubResource("RectangleShape2D_dires")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-507, -329)
-shape = SubResource("RectangleShape2D_b1hh2")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(546, -322)
-shape = SubResource("RectangleShape2D_b1hh2")
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_uy3qt")
+format = 2
+layer_0/tile_data = PackedInt32Array(65517, 0, 0, 65518, 0, 0, 65519, 0, 0, 65520, 0, 0, 65521, 0, 0, 65522, 0, 0, 65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 20, 0, 0, 21, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, 26, 0, 0, 27, 0, 0, 28, 0, 0, 29, 0, 0, 30, 0, 0, -65506, 0, 0, -131042, 0, 0, -196578, 0, 0, -262114, 0, 0, -327650, 0, 0, -393186, 0, 0, -458722, 0, 0, -524258, 0, 0, -589794, 0, 0, -655330, 0, 0, -720866, 0, 0, -786402, 0, 0, -851938, 0, 0, -917474, 0, 0, -983010, 0, 0, -1048546, 0, 0, -1114082, 0, 0, -1179618, 0, 0, -1245154, 0, 0, -1310690, 0, 0, -1376226, 0, 0, -1376227, 0, 0, -1376228, 0, 0, -1376229, 0, 0, -1376230, 0, 0, -1376231, 0, 0, -1376232, 0, 0, -1376233, 0, 0, -1376234, 0, 0, -1376242, 0, 0, -1376243, 0, 0, -1376244, 0, 0, -1376245, 0, 0, -1376253, 0, 0, -1376254, 0, 0, -1376255, 0, 0, -1376256, 0, 0, -1310721, 0, 0, -1310722, 0, 0, -1310723, 0, 0, -1310724, 0, 0, -1310725, 0, 0, -1310726, 0, 0, -1310727, 0, 0, -1310728, 0, 0, -1310729, 0, 0, -1310730, 0, 0, -1310731, 0, 0, -1310732, 0, 0, -1310733, 0, 0, -1310734, 0, 0, -19, 0, 0, -65555, 0, 0, -131091, 0, 0, -196627, 0, 0, -262163, 0, 0, -327699, 0, 0, -393235, 0, 0, -458771, 0, 0, -524307, 0, 0, -589843, 0, 0, -655379, 0, 0, -720915, 0, 0, -786451, 0, 0, -851987, 0, 0, -917523, 0, 0, -983059, 0, 0, -1048595, 0, 0, -1114131, 0, 0, -1179667, 0, 0, -1245203, 0, 0, -1310739, 0, 0, -1310738, 0, 0, -1310737, 0, 0, -1310736, 0, 0, -1310735, 0, 0)
 
 [node name="door" parent="." instance=ExtResource("3_5h8xn")]
-position = Vector2(-97, -17)
+position = Vector2(-96, -16)
 
 [node name="action" type="Node" parent="door"]
 script = ExtResource("4_5lq6i")
@@ -67,36 +47,38 @@ volume = 0.0
 audios = Array[AudioStream]([ExtResource("6_renq5"), ExtResource("7_ld5fa"), ExtResource("8_4jqse"), ExtResource("9_fqdt4"), ExtResource("10_gmypo"), ExtResource("11_yobwa"), ExtResource("12_3l43t"), ExtResource("13_0i4lf"), ExtResource("14_35y4w"), ExtResource("15_pir7n"), ExtResource("16_q6qus"), ExtResource("17_or35v")])
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("5_wntwx")]
-position = Vector2(-239, -12)
+position = Vector2(-239, -9)
 collision_mask = 32775
 _cam = NodePath("../cam")
 
+[node name="stars" parent="player" instance=ExtResource("2_mf7fk")]
+
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("6_1kf8q")]
-position = Vector2(-238.639, 0)
+position = Vector2(-238.737, 3)
 _follow = NodePath("../player")
 
 [node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("7_lwob1")]
-position = Vector2(-274, -49)
+position = Vector2(-240, -48)
 door = NodePath("../door/action")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("8_avi6t")]
-position = Vector2(383, -59)
+position = Vector2(384, -56)
 thing = NodePath("../Thing")
 pause = false
 
 [node name="Thing" parent="." instance=ExtResource("9_5l3ix")]
-position = Vector2(440, -60)
+position = Vector2(440, -56)
 pause = false
 
 [node name="moving_wall" parent="." instance=ExtResource("10_nqt57")]
-position = Vector2(127, -274)
+position = Vector2(120, -280)
 scale = Vector2(3, 10)
 move_to = Vector2(0, 115)
 move_to_spd = 3000
 move_back_spd = 3000
 
 [node name="moving_wall2" parent="." instance=ExtResource("10_nqt57")]
-position = Vector2(300, -160)
+position = Vector2(296, -160)
 scale = Vector2(3, 10)
 move_to = Vector2(0, -115)
 move_to_spd = 3000
@@ -104,7 +86,7 @@ move_back_spd = 3000
 up = true
 
 [node name="switch" parent="." node_paths=PackedStringArray("connected") instance=ExtResource("11_i2no7")]
-position = Vector2(-10, -9)
+position = Vector2(-8, -8)
 connected = [NodePath("../moving_wall"), NodePath("../moving_wall2")]
 
 [node name="kill_barrior" parent="." instance=ExtResource("12_l30ph")]

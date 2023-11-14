@@ -4,6 +4,7 @@ const SPEED               : int    =  300;
 const JUMP_VELOCITY       : int    = -400;
 const JUMP_CUTOFF         : float  = -5.;
 const GRAVITY             : int    =  980;
+const PUSH_FORCE          : int    =  20;
 
 @onready var coyote_timer : Timer    = $coyote_timer;
 @onready var jump_buffer  : Timer    = $jump_buffer;

@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://buk74olpr8q02"]
+[gd_scene load_steps=27 format=3 uid="uid://buk74olpr8q02"]
 
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_37o0p"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_3qgre"]
+[ext_resource type="TileSet" uid="uid://b6y50qs5gvwa8" path="res://rooms/puzzel_rooms/ground.tres" id="2_jv2ho"]
 [ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_ypqkk"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/regular_door.gd" id="4_5tpon"]
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="4_ya7ee"]
@@ -26,33 +27,16 @@
 [ext_resource type="AudioStream" uid="uid://bie4ad4ptp3v5" path="res://assets/sound/door/open/door_11.wav" id="16_vv7vq"]
 [ext_resource type="AudioStream" uid="uid://dfjdqoefy0ctc" path="res://assets/sound/door/open/door_12.wav" id="17_mntla"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
-size = Vector2(1053, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jffeu"]
-size = Vector2(16.5, 334)
-
 [node name="room_2" type="Node2D"]
 script = ExtResource("1_37o0p")
 
-[node name="stars" parent="." instance=ExtResource("2_ypqkk")]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-13.5, 10)
-shape = SubResource("RectangleShape2D_dires")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-531, -156)
-shape = SubResource("RectangleShape2D_jffeu")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(501, -142)
-shape = SubResource("RectangleShape2D_jffeu")
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_jv2ho")
+format = 2
+layer_0/tile_data = PackedInt32Array(65515, 0, 0, 65516, 0, 0, 65517, 0, 0, 65518, 0, 0, 65519, 0, 0, 65520, 0, 0, 65521, 0, 0, 65522, 0, 0, 65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, -65518, 0, 0, -131054, 0, 0, -196590, 0, 0, -262126, 0, 0, -327662, 0, 0, -393198, 0, 0, -458734, 0, 0, -524270, 0, 0, -589806, 0, 0, -655342, 0, 0, -720878, 0, 0, -786414, 0, 0, -851950, 0, 0, -917486, 0, 0, -983022, 0, 0, -983023, 0, 0, -983024, 0, 0, -983025, 0, 0, -983026, 0, 0, -983027, 0, 0, -983028, 0, 0, -983029, 0, 0, -983030, 0, 0, -983031, 0, 0, -983032, 0, 0, -983033, 0, 0, -983034, 0, 0, -983035, 0, 0, -983036, 0, 0, -983037, 0, 0, -983038, 0, 0, -983039, 0, 0, -983040, 0, 0, -917505, 0, 0, -917506, 0, 0, -917507, 0, 0, -917508, 0, 0, -917509, 0, 0, -917510, 0, 0, -917511, 0, 0, -917512, 0, 0, -917513, 0, 0, -917514, 0, 0, -917515, 0, 0, -917516, 0, 0, -917517, 0, 0, -917518, 0, 0, -917519, 0, 0, -917520, 0, 0, -917521, 0, 0, -917522, 0, 0, -917523, 0, 0, -917524, 0, 0, -917525, 0, 0, -851989, 0, 0, -786453, 0, 0, -720917, 0, 0, -655381, 0, 0, -589845, 0, 0, -524309, 0, 0, -458773, 0, 0, -393237, 0, 0, -327701, 0, 0, -262165, 0, 0, -196629, 0, 0, -131093, 0, 0, -65557, 0, 0, -21, 0, 0)
 
 [node name="door" parent="." instance=ExtResource("2_3qgre")]
-position = Vector2(210, -122)
+position = Vector2(208, -120)
 
 [node name="action" type="Node" parent="door"]
 script = ExtResource("4_5tpon")
@@ -63,30 +47,32 @@ volume = 0.0
 audios = Array[AudioStream]([ExtResource("6_w47ii"), ExtResource("7_43a6j"), ExtResource("8_3qckc"), ExtResource("9_xc27c"), ExtResource("10_3d0vs"), ExtResource("11_d545v"), ExtResource("12_f3f85"), ExtResource("13_bp0qg"), ExtResource("14_6xtdh"), ExtResource("15_c0gv6"), ExtResource("16_vv7vq"), ExtResource("17_mntla")])
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("4_ya7ee")]
-position = Vector2(-239, -12)
+position = Vector2(-240, -9)
 _cam = NodePath("../cam")
 
+[node name="stars" parent="player" instance=ExtResource("2_ypqkk")]
+
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_mqqp1")]
-position = Vector2(-238.068, 0)
+position = Vector2(-238.32, -1)
 _follow = NodePath("../player")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("6_lhtnu")]
-position = Vector2(-239, -53)
+position = Vector2(-232, -64)
 thing = NodePath("../Thing")
 
 [node name="No" parent="." node_paths=PackedStringArray("door", "connected") instance=ExtResource("7_rs11i")]
-position = Vector2(128, -43)
+position = Vector2(128, -48)
 door = NodePath("../door/action")
-connected = NodePath("../moving_wall")
+connected = [NodePath("../moving_wall")]
 pause = false
 
 [node name="Thing" parent="." instance=ExtResource("8_vmoqf")]
-position = Vector2(-171, -68)
+position = Vector2(-192, -64)
 
 [node name="moving_wall" parent="." instance=ExtResource("9_mj5s5")]
-position = Vector2(210, -3)
+position = Vector2(208, -4)
 scale = Vector2(3, 0.2)
-move_to = Vector2(0, -99)
+move_to = Vector2(0, -96)
 move_to_spd = 300
 move_back_spd = 300
 disabled = true

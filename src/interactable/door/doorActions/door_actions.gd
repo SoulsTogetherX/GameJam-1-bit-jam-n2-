@@ -19,17 +19,23 @@ func _ready() -> void:
 	connect("attached", _on_thing_attached);
 	var tw = create_tween().set_parallel();
 	for c in owner.get_children():
-		tw.tween_property(c, "modulate:a", c.modulate.a, 0.5);
-		c.modulate.a = 0.;
 		if c is Every:
 			_every = c
+			if _every.pause:
+				_every.modulate.a = 0.7;
 		elif c is Thing:
 			_thing = c
+			if _thing.pause:
+				_thing.modulate.a = 0.7;
 		elif c is No:
 			_no = c
+			if _no.pause:
+				_no.modulate.a = 0.7;
 		elif c is Player:
 			_player = c
 			_player.process_mode = Node.PROCESS_MODE_DISABLED;
+		tw.tween_property(c, "modulate:a", c.modulate.a, 0.5);
+		c.modulate.a = 0.;
 	tw.chain().tween_callback(func():
 		_player.process_mode = Node.PROCESS_MODE_INHERIT;
 		)

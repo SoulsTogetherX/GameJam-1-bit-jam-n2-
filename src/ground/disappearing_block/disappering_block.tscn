@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckq3o6o23fejp"]
+
+[ext_resource type="Script" path="res://src/ground/disappearing_block/disappering_block.gd" id="1_r6t2h"]
+
+[node name="disappering_block" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_r6t2h")
