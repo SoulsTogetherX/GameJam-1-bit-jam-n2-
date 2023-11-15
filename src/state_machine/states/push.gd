@@ -35,7 +35,7 @@ func process_physics(delta: float) -> State:
 	
 	for bod in bods:
 		if bod.owner is RigidBody2D:
-			bod.owner.apply_central_impulse(Vector2(actor.velocity.x, -50).normalized() * actor.PUSH_FORCE);
+			bod.owner.apply_central_impulse(Vector2(actor.velocity.x, 0).normalized() * actor.PUSH_FORCE);
 	
 	if Input.is_action_just_pressed("jump"):
 		actor.jump();
