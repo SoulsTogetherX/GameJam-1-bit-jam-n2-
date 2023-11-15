@@ -19,25 +19,20 @@ func _draw() -> void:
 	for con in connected:
 		if con is Node2D:
 			var you = to_local(con.global_position);
+			var to_from : Vector2;
 			
 			if other_way:
-				var to_from = Vector2(you.x, 0);
-				draw_line(Vector2.ZERO, to_from, Color.WHITE, 1.5);
-				draw_line(Vector2.ZERO, to_from, Color.BLACK, 1.0);
-				draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.5);
-				
-				draw_line(to_from, you, Color.WHITE, 1.5);
-				draw_line(to_from, you, Color.BLACK, 1.0);
-				draw_line(to_from, you, Color.WHITE, 0.5);
+				to_from = Vector2(you.x, 0);
 			else:
-				var to_from = Vector2(0, you.y);
-				draw_line(Vector2.ZERO, to_from, Color.WHITE, 1.5);
-				draw_line(Vector2.ZERO, to_from, Color.BLACK, 1.0);
-				draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.5);
-				
-				draw_line(to_from, you, Color.WHITE, 1.5);
-				draw_line(to_from, you, Color.BLACK, 1.0);
-				draw_line(to_from, you, Color.WHITE, 0.5);
+				to_from = Vector2(0, you.y);
+			
+			draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.9);
+			draw_line(Vector2.ZERO, to_from, Color.BLACK, 0.6);
+			draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.3);
+			
+			draw_line(to_from, you, Color.WHITE, 0.9);
+			draw_line(to_from, you, Color.BLACK, 0.6);
+			draw_line(to_from, you, Color.WHITE, 0.3);
 
 func _physics_process(delta: float) -> void:
 	super(delta);
