@@ -38,3 +38,6 @@ func jump() -> void:
 	
 	coyote_timer.stop();
 	jump_buffer.stop();
+
+func kill() -> void:
+	state_contr.force_change_state("dead");

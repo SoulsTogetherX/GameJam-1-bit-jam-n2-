@@ -53,6 +53,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 			attached = false;
 			hold     = true;
 			actor.global_rotation = 0;
+			actor.get_node("Area2D").global_rotation_degrees = 0;
 			actor.modulate.a = 1.;
 			if self is Every:
 				actor.collision_layer = 2 + 8 + 32 + 64;
@@ -67,6 +68,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 		attached = true;
 		
 		actor.global_rotation_degrees = -5;
+		actor.get_node("Area2D").global_rotation_degrees = 0;
 		actor.modulate.a = 0.9;
 		var max_offset = actor.get_rect().size * 0.5 - Vector2(1, 1);
 		attached_offset = (actor.global_position - actor.get_global_mouse_position()).clamp(-max_offset, max_offset);

@@ -8,7 +8,7 @@ func _ready() -> void:
 		var machine = state_machines[idx];
 		machine.init(actor, self, idx);
 
-func force_change_state(new_state_name: String, idx: int) -> void:
+func force_change_state(new_state_name: String, idx: int = 0) -> void:
 	state_machines[idx].force_change_state(new_state_name);
 
 func _unhandled_input(event: InputEvent) -> void:

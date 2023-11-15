@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j1g2y"]
 
 [node name="area_word" type="Area2D"]
-collision_layer = 64
+collision_layer = 0
 collision_mask = 64
 script = ExtResource("1_vtell")
 

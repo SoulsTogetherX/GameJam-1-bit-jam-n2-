@@ -95,6 +95,7 @@ func attach_thing(thing_ : Thing):
 	thing.visible = false;
 	thing.pause = true;
 	thing.attached = false;
+	thing.actor.global_position.x = -999999;
 	thing.actor.collision_layer = 0;
 	if actor._text == "Nothing":
 		door.objective.emit();

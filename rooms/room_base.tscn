@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_vi4um"]
 [ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_fbs7r"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_hen5b"]
+[ext_resource type="TileSet" uid="uid://b6y50qs5gvwa8" path="res://rooms/puzzel_rooms/ground.tres" id="2_m3v7r"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/regular_door.gd" id="3_06rar"]
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="4_aj7xl"]
 [ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="5_jhxls"]
@@ -24,17 +25,13 @@
 [ext_resource type="AudioStream" uid="uid://bie4ad4ptp3v5" path="res://assets/sound/door/open/door_11.wav" id="16_ibqqk"]
 [ext_resource type="AudioStream" uid="uid://dfjdqoefy0ctc" path="res://assets/sound/door/open/door_12.wav" id="17_hj1j3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dires"]
-size = Vector2(552, 20)
-
 [node name="room_1" type="Node2D"]
 script = ExtResource("1_vi4um")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 10)
-shape = SubResource("RectangleShape2D_dires")
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_m3v7r")
+format = 2
+layer_0/tile_data = PackedInt32Array(65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0)
 
 [node name="door" parent="." instance=ExtResource("2_hen5b")]
 position = Vector2(178, -16)

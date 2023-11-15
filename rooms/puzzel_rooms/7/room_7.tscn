@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b2c5qxcq2t5as"]
+[gd_scene load_steps=30 format=3 uid="uid://dxumg8ijghup5"]
 
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_3m4ax"]
 [ext_resource type="TileSet" uid="uid://b6y50qs5gvwa8" path="res://rooms/puzzel_rooms/ground.tres" id="2_6kn3j"]
@@ -24,7 +24,11 @@
 [ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="21_lknli"]
 [ext_resource type="PackedScene" uid="uid://dhvdrl8e5xkbx" path="res://src/word/objects/thing.tscn" id="22_2ebjf"]
 [ext_resource type="PackedScene" uid="uid://dj6o2ceygtcr3" path="res://src/ground/kill_barrior/kill_barrior.tscn" id="23_g3sol"]
+[ext_resource type="PackedScene" uid="uid://bg72ekn3hnpaj" path="res://src/ground/closing_wall/moving_wall.tscn" id="24_8mil5"]
+[ext_resource type="PackedScene" uid="uid://c688op1mca77f" path="res://src/interactable/box/box.tscn" id="25_ubhjt"]
+[ext_resource type="PackedScene" uid="uid://cotgni1k7dlka" path="res://src/interactable/button/button.tscn" id="26_1igct"]
 [ext_resource type="PackedScene" uid="uid://bmqgfi4aiy8j5" path="res://src/interactable/area/area_word.tscn" id="27_htvb0"]
+[ext_resource type="PackedScene" uid="uid://c3vcq2b8byrvi" path="res://src/spike/spike.tscn" id="29_abil6"]
 
 [node name="room_1" type="Node2D"]
 script = ExtResource("1_3m4ax")
@@ -32,33 +36,35 @@ script = ExtResource("1_3m4ax")
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_6kn3j")
 format = 2
-layer_0/tile_data = PackedInt32Array(65521, 0, 0, 65522, 0, 0, 65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0)
+layer_0/tile_data = PackedInt32Array(65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, -327672, 0, 0, -393208, 0, 0, -393206, 0, 0, -458742, 0, 0, -458744, 0, 0, -393205, 0, 0, -393204, 0, 0, -393203, 0, 0, -327667, 0, 0, -262131, 0, 0, -196595, 0, 0, -131059, 0, 0, -458741, 0, 0, -458740, 0, 0, -458739, 0, 0, -393229, 0, 0, -327693, 0, 0, -262157, 0, 0, -196621, 0, 0, -131085, 0, 0, -65549, 0, 0, -13, 0, 0, -65523, 0, 0, -393228, 0, 0, -393227, 0, 0, -393226, 0, 0, -393225, 0, 0, -393224, 0, 0, -393223, 0, 0, -393222, 0, 0, -393221, 0, 0, -393220, 0, 0, -393219, 0, 0, -393218, 0, 0, -393217, 0, 0, -393212, 0, 0, -393213, 0, 0, -393214, 0, 0, -393215, 0, 0, -327676, 0, 0, -720888, 0, 0, -720889, 0, 0, -720890, 0, 0, -720891, 0, 0, -720892, 0, 0, -524288, 0, 0, -524287, 0, 0, -524286, 0, 0, -524285, 0, 0, -524284, 0, 0, -393216, 0, 0, -327681, 0, 0, -458753, 0, 0, -720894, 0, 0, -786430, 0, 0, -851966, 0, 0, -917502, 0, 0, -983038, 0, 0, -1048574, 0, 0, -1048573, 0, 0, -1048572, 0, 0, -983036, 0, 0, -917500, 0, 0, -851964, 0, 0, -786428, 0, 0, -458754, 0, 0, -458755, 0, 0, -458756, 0, 0, -458757, 0, 0, -458758, 0, 0, -458759, 0, 0, -458760, 0, 0, -458761, 0, 0, -458762, 0, 0, -458763, 0, 0, -458764, 0, 0, -458765, 0, 0, -1114110, 0, 0, -1114109, 0, 0, -1114108, 0, 0, -786424, 0, 0, -851960, 0, 0, -917496, 0, 0, -1245176, 0, 0, -1310712, 0, 0, -1376248, 0, 0, -1376249, 0, 0, -1376250, 0, 0, -1376251, 0, 0, -1376252, 0, 0, -1376253, 0, 0, -1376254, 0, 0, -917503, 0, 0, -917504, 0, 0, -851969, 0, 0, -851970, 0, 0, -851971, 0, 0, -851972, 0, 0, -851973, 0, 0, -851974, 0, 0, -851975, 0, 0, -851976, 0, 0, -851977, 0, 0, -851978, 0, 0, -851979, 0, 0, -851980, 0, 0, -851981, 0, 0, -851982, 0, 0, -851983, 0, 0, -458766, 0, 0, -458767, 0, 0, -458768, 0, 0, -458769, 0, 0, -458770, 0, 0, -458771, 0, 0, -524307, 0, 0, -589843, 0, 0, -655379, 0, 0, -851987, 0, 0, -786451, 0, 0, -720915, 0, 0, -917523, 0, 0, -983059, 0, 0, -1048595, 0, 0, -1114131, 0, 0, -1179667, 0, 0, -1245203, 0, 0, -1310739, 0, 0, -1310738, 0, 0, -1310737, 0, 0, -1310736, 0, 0, -1310735, 0, 0, -1310734, 0, 0, -1310733, 0, 0, -1310732, 0, 0, -1310731, 0, 0, -1310730, 0, 0, -1310729, 0, 0, -1310728, 0, 0, -1310727, 0, 0, -1310726, 0, 0, -1310725, 0, 0, -1310724, 0, 0, -1310723, 0, 0, -1310722, 0, 0, -1310721, 0, 0, -1376256, 0, 0, -1376255, 0, 0, -1179635, 0, 0, -1114099, 0, 0, -1048563, 0, 0, -983027, 0, 0, -917491, 0, 0, -851955, 0, 0, -786419, 0, 0, -720883, 0, 0, -655347, 0, 0, -589811, 0, 0, -524275, 0, 0, -458743, 0, 0, -983032, 0, 0, -983031, 0, 0, -1245175, 0, 0, -1245174, 0, 0, -1245173, 0, 0, -1245172, 0, 0, -1245171, 0, 0)
 
 [node name="door" parent="." instance=ExtResource("3_e85i1")]
 position = Vector2(178, -16)
 
 [node name="action" type="Node" parent="door"]
 script = ExtResource("4_8xngn")
+_nextRoom = "res://rooms/puzzel_rooms/8/room_8.tscn"
 
 [node name="emiter" parent="door" instance=ExtResource("5_66yvj")]
 audios = Array[AudioStream]([ExtResource("6_jvd0x"), ExtResource("7_r4jxw"), ExtResource("8_a33x5"), ExtResource("9_8ieqo"), ExtResource("10_0o5d5"), ExtResource("11_u63jj"), ExtResource("12_lm2ir"), ExtResource("13_vw6t4"), ExtResource("14_ep065"), ExtResource("15_bcge1"), ExtResource("16_a7h2v"), ExtResource("17_p387b")])
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("18_r2vv5")]
-position = Vector2(-176, -11)
+position = Vector2(-144, -10)
 _cam = NodePath("../cam")
 
 [node name="stars" parent="player" instance=ExtResource("2_in6rm")]
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("19_tn26d")]
-position = Vector2(-176, 0)
+position = Vector2(-144, 1)
 _follow = NodePath("../player")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("20_k4dqj")]
 position = Vector2(-86, -68)
 thing = NodePath("../Thing")
+pause = false
 
 [node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("21_lknli")]
-position = Vector2(179, -57)
+position = Vector2(-168, -64)
 door = NodePath("../door/action")
 pause = false
 
@@ -69,9 +75,10 @@ pause = false
 [node name="kill_barrior" parent="." instance=ExtResource("23_g3sol")]
 position = Vector2(0, 400)
 
-[node name="area_word" parent="." instance=ExtResource("27_htvb0")]
-position = Vector2(80, -50)
+[node name="area_word" parent="." node_paths=PackedStringArray("connected") instance=ExtResource("27_htvb0")]
+position = Vector2(19, -51)
 check_yesthing = true
+connected = [NodePath("../moving_wall"), NodePath("../moving_wall3")]
 
 [node name="Label" type="Label" parent="area_word"]
 self_modulate = Color(1, 1, 1, 0.603922)
@@ -82,3 +89,92 @@ offset_bottom = 2.0
 rotation = 0.575959
 scale = Vector2(0.5, 0.5)
 text = "Yesthing?"
+metadata/_edit_use_anchors_ = true
+
+[node name="moving_wall5" parent="." instance=ExtResource("24_8mil5")]
+position = Vector2(152, -32)
+scale = Vector2(0.2, 1.98)
+move_to = Vector2(0, -400)
+move_to_spd = 1000
+move_back_spd = 1000
+disabled = true
+up = true
+
+[node name="moving_wall6" parent="." instance=ExtResource("24_8mil5")]
+position = Vector2(151, -146)
+scale = Vector2(0.2, 1.98)
+move_to = Vector2(0, -400)
+move_to_spd = 1000
+move_back_spd = 1000
+disabled = true
+up = true
+
+[node name="moving_wall" parent="." instance=ExtResource("24_8mil5")]
+position = Vector2(48, -104)
+scale = Vector2(1.98, 0.2)
+move_to = Vector2(400, 0)
+move_to_spd = 1000
+move_back_spd = 1000
+
+[node name="moving_wall3" parent="." instance=ExtResource("24_8mil5")]
+position = Vector2(56, -192)
+scale = Vector2(0.2, 1.98)
+move_to = Vector2(0, 400)
+move_to_spd = 1000
+move_back_spd = 1000
+
+[node name="box" parent="." instance=ExtResource("25_ubhjt")]
+position = Vector2(58, -290)
+
+[node name="button" parent="." node_paths=PackedStringArray("connected") instance=ExtResource("26_1igct")]
+position = Vector2(104, -176)
+other_way = true
+connected = [NodePath("../moving_wall5"), NodePath("../moving_wall6")]
+
+[node name="spike" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-16, -134)
+
+[node name="spike2" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-30, -134)
+
+[node name="spike3" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-44, -134)
+
+[node name="spike4" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-59, -134)
+
+[node name="spike5" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-73, -134)
+
+[node name="spike6" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-87, -134)
+
+[node name="spike7" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-101, -134)
+
+[node name="spike8" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-116, -134)
+
+[node name="spike9" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-131, -134)
+
+[node name="spike10" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-145, -134)
+
+[node name="spike11" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-159, -134)
+
+[node name="spike12" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-174, -134)
+
+[node name="spike13" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-188, -134)
+
+[node name="spike14" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-202, -134)
+
+[node name="spike15" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-216, -134)
+
+[node name="spike16" parent="." instance=ExtResource("29_abil6")]
+position = Vector2(-231, -134)
