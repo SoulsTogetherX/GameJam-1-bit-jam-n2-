@@ -1,10 +1,10 @@
 class_name Player extends CharacterBody2D
 
-const SPEED               : int    =  250;
-const JUMP_VELOCITY       : int    = -400;
-const JUMP_CUTOFF         : float  = -5.;
-const GRAVITY             : int    =  980;
-const PUSH_FORCE          : int    =  20;
+const SPEED               : int    =  2500;
+const JUMP_VELOCITY       : int    = -4000;
+const JUMP_CUTOFF         : float  = -50.;
+const GRAVITY             : int    =  9800;
+const PUSH_FORCE          : int    =  220;
 
 @onready var coyote_timer : Timer    = $coyote_timer;
 @onready var jump_buffer  : Timer    = $jump_buffer;
@@ -33,8 +33,10 @@ func update_position() -> void:
 	_cam.update_position();
 
 func jump() -> void:
+	print("jumped")
 	jump_steps.play(0);
 	velocity.y = JUMP_VELOCITY;
+	update_position();
 	
 	coyote_timer.stop();
 	jump_buffer.stop();

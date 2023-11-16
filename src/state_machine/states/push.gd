@@ -12,14 +12,14 @@ func state_name():
 	return "push";
 
 func enter() -> void:
-	tw = create_tween();
-	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
+	#tw = create_tween();
+	#tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
 	time.start();
 	actor.animation_player.play("push");
 	actor.turn(actor.velocity.x < 0);
 
 func exit() -> void:
-	tw.kill();
+	#tw.kill();
 	time.stop();
 
 func process_input(_event: InputEvent) -> State:
@@ -34,6 +34,13 @@ func process_physics(delta: float) -> State:
 		return idle;
 	
 	var direction = Input.get_axis("left", "right");
+	if direction == 0:
+		actor.animation_player.stop(false);
+	else:
+		actor.turn(direction == -1);
+		if !actor.animation_player.is_playing():
+			actor.animation_player.play();
+	
 	actor.velocity.x = direction * actor.SPEED;
 	
 	for bod in bods:

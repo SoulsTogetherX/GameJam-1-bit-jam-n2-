@@ -1,7 +1,7 @@
 class_name Dragable extends Node2D
 
-const GRAVITY   : int  =  980;
-const MAX_SPEED : int  = 20;
+const GRAVITY   : int  =  11760;
+const MAX_SPEED : int  = 240;
 var attached_offset : Vector2 = Vector2.ZERO;
 var attached    : bool = false;
 @export var hold        : bool = true

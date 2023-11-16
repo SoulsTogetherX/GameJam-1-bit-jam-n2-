@@ -11,19 +11,21 @@
 [ext_resource type="AudioStream" uid="uid://vpa5cpe7re3s" path="res://assets/sound/switch/switch_4.wav" id="9_tph43"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jom84"]
-radius = 46.0109
+radius = 200.997
 
 [node name="switch" type="Node2D"]
 z_index = -2
-position = Vector2(36, -15)
+scale = Vector2(0.15, 0.15)
 script = ExtResource("1_7oxj5")
 
 [node name="on_sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -90)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_4nupv")
 
 [node name="off_sprite" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(0, -90)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_o3ga2")
 

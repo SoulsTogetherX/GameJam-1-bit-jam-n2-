@@ -13,14 +13,14 @@ func state_name():
 	return "walk";
 
 func enter() -> void:
-	tw = create_tween();
-	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
-	tw.tween_property(actor, "scale", Vector2(1.1, 1.), 0.2);
+#	tw = create_tween();
+#	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
+#	tw.tween_property(actor, "scale", Vector2(1.1, 1.), 0.2);
 	time.start();
 	actor.animation_player.play("walk");
 
 func exit() -> void:
-	tw.kill();
+	#tw.kill();
 	time.stop();
 
 func process_input(_event: InputEvent) -> State:

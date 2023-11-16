@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cotgni1k7dlka"]
+[gd_scene load_steps=11 format=3 uid="uid://cotgni1k7dlka"]
 
 [ext_resource type="Script" path="res://src/interactable/button/button.gd" id="1_167f4"]
-[ext_resource type="Texture2D" uid="uid://dvi7fbd7do2sl" path="res://assets/sprites/ground/box.png" id="2_g7xvj"]
+[ext_resource type="Texture2D" uid="uid://dh06ynk31pt2t" path="res://assets/Imported_art/Button/Button_unpushed.png" id="2_2prb3"]
+[ext_resource type="Texture2D" uid="uid://dpnf4rpsk3v67" path="res://assets/Imported_art/Button/Button_pushed.png" id="3_3amln"]
 [ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="3_kcr83"]
 [ext_resource type="AudioStream" uid="uid://dg01h6m18phn6" path="res://assets/sound/switch/switch_1.wav" id="4_jphib"]
 [ext_resource type="AudioStream" uid="uid://bw5kxbo8j2wqs" path="res://assets/sound/switch/switch_2.wav" id="5_3l03u"]
@@ -9,43 +10,44 @@
 [ext_resource type="AudioStream" uid="uid://vpa5cpe7re3s" path="res://assets/sound/switch/switch_4.wav" id="7_ogugb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k10c6"]
-radius = 1.0
-height = 22.0
+radius = 20.0
+height = 290.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqs47"]
-size = Vector2(23, 3.5)
+size = Vector2(366, 76.5)
 
 [node name="button" type="Node2D"]
 script = ExtResource("1_167f4")
 
 [node name="unpushed" type="Sprite2D" parent="."]
-scale = Vector2(0.71875, 0.21875)
-texture = ExtResource("2_g7xvj")
+position = Vector2(-10, -252)
+texture = ExtResource("2_2prb3")
 
 [node name="pushed" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(0, 1.75)
-scale = Vector2(0.71875, 0.109375)
-texture = ExtResource("2_g7xvj")
+position = Vector2(-10, -250.25)
+texture = ExtResource("3_3amln")
 
 [node name="push_area" type="Area2D" parent="."]
+position = Vector2(-9, -120)
 collision_layer = 0
 collision_mask = 34
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="push_area"]
-position = Vector2(0, -2)
+position = Vector2(11, 20)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_k10c6")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 39
+position = Vector2(-1, 0)
+collision_layer = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(0, 1.75)
+position = Vector2(-1, -38.75)
 shape = SubResource("RectangleShape2D_lqs47")
 
 [node name="sound_emiter" parent="." instance=ExtResource("3_kcr83")]
-position = Vector2(0, 9)
+position = Vector2(1, 1)
 audios = Array[AudioStream]([ExtResource("4_jphib"), ExtResource("5_3l03u"), ExtResource("6_7r5dv"), ExtResource("7_ogugb")])
 
 [connection signal="body_entered" from="push_area" to="." method="_on_push_area_body_entered"]

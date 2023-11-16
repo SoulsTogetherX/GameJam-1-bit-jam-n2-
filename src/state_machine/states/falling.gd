@@ -12,6 +12,9 @@ func state_name():
 
 func enter() -> void:
 	actor.coyote_timer.start();
+	if !has_jumped:
+		actor.animation_player.play("falling");
+	print(state_name())
 	#tw = create_tween();
 	#tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
 
@@ -32,7 +35,8 @@ func process_physics(delta: float) -> State:
 		if actor.coyote_timer.is_stopped():
 			actor.jump_buffer.start();
 		elif !has_jumped:
-			actor.jump();
+			actor.jump_buffer.stop();
+			return jumping;
 	
 	if has_jumped && !Input.is_action_pressed("jump") && actor.velocity.y < actor.JUMP_CUTOFF:
 		actor.velocity.y = lerp(actor.velocity.y, actor.JUMP_CUTOFF, 0.4);

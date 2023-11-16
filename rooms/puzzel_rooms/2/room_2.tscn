@@ -1,9 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://buk74olpr8q02"]
+[gd_scene load_steps=28 format=3 uid="uid://buk74olpr8q02"]
 
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_37o0p"]
 [ext_resource type="PackedScene" uid="uid://c44jl8lmyacr1" path="res://src/interactable/door/door.tscn" id="2_3qgre"]
 [ext_resource type="TileSet" uid="uid://b6y50qs5gvwa8" path="res://rooms/puzzel_rooms/ground.tres" id="2_jv2ho"]
-[ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="2_ypqkk"]
 [ext_resource type="Script" path="res://src/interactable/door/doorActions/custom/regular_door.gd" id="4_5tpon"]
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="4_ya7ee"]
 [ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="5_7iev2"]
@@ -33,12 +32,14 @@
 script = ExtResource("1_37o0p")
 
 [node name="TileMap" type="TileMap" parent="."]
+scale = Vector2(12, 12)
 tile_set = ExtResource("2_jv2ho")
 format = 2
-layer_0/tile_data = PackedInt32Array(65515, 0, 0, 65516, 0, 0, 65517, 0, 0, 65518, 0, 0, 65519, 0, 0, 65520, 0, 0, 65521, 0, 0, 65522, 0, 0, 65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, -65518, 0, 0, -131054, 0, 0, -196590, 0, 0, -262126, 0, 0, -327662, 0, 0, -393198, 0, 0, -458734, 0, 0, -524270, 0, 0, -589806, 0, 0, -655342, 0, 0, -720878, 0, 0, -786414, 0, 0, -851950, 0, 0, -917486, 0, 0, -983022, 0, 0, -917525, 0, 0, -851989, 0, 0, -786453, 0, 0, -720917, 0, 0, -655381, 0, 0, -589845, 0, 0, -524309, 0, 0, -458773, 0, 0, -393237, 0, 0, -327701, 0, 0, -262165, 0, 0, -196629, 0, 0, -131093, 0, 0, -65557, 0, 0, -21, 0, 0, -983061, 0, 0, -1048558, 0, 0, -1441795, 0, 0, -1376259, 0, 0, -1310723, 0, 0, -1507331, 0, 0, -2293742, 0, 0, -2228206, 0, 0, -2162670, 0, 0, -2097134, 0, 0, -2031598, 0, 0, -1966062, 0, 0, -1900526, 0, 0, -1834990, 0, 0, -1769454, 0, 0, -1703918, 0, 0, -1638382, 0, 0, -1572846, 0, 0, -1507310, 0, 0, -1441774, 0, 0, -1376238, 0, 0, -1310702, 0, 0, -1245166, 0, 0, -1179630, 0, 0, -1114094, 0, 0, -2293781, 0, 0, -2293780, 0, 0, -2293779, 0, 0, -2293778, 0, 0, -2293777, 0, 0, -2293776, 0, 0, -2293775, 0, 0, -2293774, 0, 0, -2293773, 0, 0, -2293772, 0, 0, -2293771, 0, 0, -2293770, 0, 0, -2293769, 0, 0, -2293768, 0, 0, -2293767, 0, 0, -2293766, 0, 0, -2293765, 0, 0, -2293764, 0, 0, -2293763, 0, 0, -2293762, 0, 0, -2293761, 0, 0, -2359296, 0, 0, -2359295, 0, 0, -2359294, 0, 0, -2359293, 0, 0, -2359292, 0, 0, -2359291, 0, 0, -2359290, 0, 0, -2359289, 0, 0, -2359288, 0, 0, -2359287, 0, 0, -2359286, 0, 0, -2359285, 0, 0, -2359284, 0, 0, -2359283, 0, 0, -2359282, 0, 0, -2359281, 0, 0, -2359280, 0, 0, -2359279, 0, 0, -2359278, 0, 0, -2228245, 0, 0, -2162709, 0, 0, -2097173, 0, 0, -2031637, 0, 0, -1966101, 0, 0, -1900565, 0, 0, -1835029, 0, 0, -1769493, 0, 0, -1703957, 0, 0, -1638421, 0, 0, -1572885, 0, 0, -1507349, 0, 0, -1441813, 0, 0, -1376277, 0, 0, -1310741, 0, 0, -1245205, 0, 0, -1179669, 0, 0, -1114133, 0, 0, -1048597, 0, 0, -1310722, 0, 0, -1310721, 0, 0, -1376256, 0, 0, -1638403, 0, 0, -1572867, 0, 0, -1703939, 0, 0, -1703938, 0, 0, -1703937, 0, 0, -1769472, 0, 0)
+layer_0/tile_data = PackedInt32Array(65515, 0, 0, 65516, 0, 0, 65517, 0, 0, 65518, 0, 0, 65519, 0, 0, 65520, 0, 0, 65521, 0, 0, 65522, 0, 0, 65523, 0, 0, 65524, 0, 0, 65525, 0, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, -65518, 0, 0, -131054, 0, 0, -196590, 0, 0, -262126, 0, 0, -327662, 0, 0, -393198, 0, 0, -458734, 0, 0, -524270, 0, 0, -589806, 0, 0, -655342, 0, 0, -720878, 0, 0, -786414, 0, 0, -851950, 0, 0, -917486, 0, 0, -983022, 0, 0, -917525, 0, 0, -851989, 0, 0, -786453, 0, 0, -720917, 0, 0, -655381, 0, 0, -589845, 0, 0, -524309, 0, 0, -458773, 0, 0, -393237, 0, 0, -327701, 0, 0, -262165, 0, 0, -196629, 0, 0, -131093, 0, 0, -65557, 0, 0, -21, 0, 0, -983061, 0, 0, -1048558, 0, 0, -1441795, 0, 0, -1376259, 0, 0, -1310723, 0, 0, -1507331, 0, 0, -2293742, 0, 0, -2228206, 0, 0, -2162670, 0, 0, -2097134, 0, 0, -2031598, 0, 0, -1966062, 0, 0, -1900526, 0, 0, -1834990, 0, 0, -1769454, 0, 0, -1703918, 0, 0, -1638382, 0, 0, -1572846, 0, 0, -1507310, 0, 0, -1441774, 0, 0, -1376238, 0, 0, -1310702, 0, 0, -1245166, 0, 0, -1179630, 0, 0, -1114094, 0, 0, -2293781, 0, 0, -2293780, 0, 0, -2293779, 0, 0, -2293778, 0, 0, -2293777, 0, 0, -2293776, 0, 0, -2293775, 0, 0, -2293774, 0, 0, -2293773, 0, 0, -2293772, 0, 0, -2293771, 0, 0, -2293770, 0, 0, -2293769, 0, 0, -2293768, 0, 0, -2293767, 0, 0, -2293766, 0, 0, -2293765, 0, 0, -2293764, 0, 0, -2293763, 0, 0, -2293762, 0, 0, -2293761, 0, 0, -2359296, 0, 0, -2359295, 0, 0, -2359294, 0, 0, -2359293, 0, 0, -2359292, 0, 0, -2359291, 0, 0, -2359290, 0, 0, -2359289, 0, 0, -2359288, 0, 0, -2359287, 0, 0, -2359286, 0, 0, -2359285, 0, 0, -2359284, 0, 0, -2359283, 0, 0, -2359282, 0, 0, -2359281, 0, 0, -2359280, 0, 0, -2359279, 0, 0, -2359278, 0, 0, -2228245, 0, 0, -2162709, 0, 0, -2097173, 0, 0, -2031637, 0, 0, -1966101, 0, 0, -1900565, 0, 0, -1835029, 0, 0, -1769493, 0, 0, -1703957, 0, 0, -1638421, 0, 0, -1572885, 0, 0, -1507349, 0, 0, -1441813, 0, 0, -1376277, 0, 0, -1310741, 0, 0, -1245205, 0, 0, -1179669, 0, 0, -1114133, 0, 0, -1048597, 0, 0, -1638403, 0, 0, -1572867, 0, 0, -1703939, 0, 0, -1703938, 0, 0, -1703937, 0, 0, -1769472, 0, 0, -1310720, 0, 0, -1310719, 0, 0, -1245185, 0, 0, -1245186, 0, 0, -1245187, 0, 0)
 
 [node name="door" parent="." instance=ExtResource("2_3qgre")]
-position = Vector2(208, -120)
+position = Vector2(2496, -1440)
+scale = Vector2(12, 12)
 
 [node name="action" type="Node" parent="door"]
 script = ExtResource("4_5tpon")
@@ -49,49 +50,51 @@ volume = 10.0
 audios = Array[AudioStream]([ExtResource("6_w47ii"), ExtResource("7_43a6j"), ExtResource("8_3qckc"), ExtResource("9_xc27c"), ExtResource("10_3d0vs"), ExtResource("11_d545v"), ExtResource("12_f3f85"), ExtResource("13_bp0qg"), ExtResource("14_6xtdh"), ExtResource("15_c0gv6"), ExtResource("16_vv7vq"), ExtResource("17_mntla")])
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("4_ya7ee")]
-position = Vector2(-240, -11)
+position = Vector2(-3456, -251)
 _cam = NodePath("../cam")
 
-[node name="stars" parent="player" instance=ExtResource("2_ypqkk")]
-
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_mqqp1")]
-position = Vector2(-239.008, -3)
+position = Vector2(-3455.62, -243)
 _follow = NodePath("../player")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("6_lhtnu")]
-position = Vector2(-232, -64)
+position = Vector2(-2784, -768)
+scale = Vector2(12, 12)
 thing = NodePath("../Thing")
 
 [node name="No" parent="." node_paths=PackedStringArray("door", "connected") instance=ExtResource("7_rs11i")]
-position = Vector2(128, -48)
+position = Vector2(1536, -576)
+scale = Vector2(12, 12)
 door = NodePath("../door/action")
 connected = [NodePath("../moving_wall")]
 pause = false
 
 [node name="Thing" parent="." instance=ExtResource("8_vmoqf")]
-position = Vector2(-192, -64)
+position = Vector2(-2304, -768)
+scale = Vector2(12, 12)
+
+[node name="bonus" parent="." instance=ExtResource("27_ppc4t")]
+position = Vector2(8, -4232)
+room_num = 1
 
 [node name="moving_wall" parent="." instance=ExtResource("9_mj5s5")]
-position = Vector2(208, -4)
-scale = Vector2(3, 0.2)
-move_to = Vector2(0, -96)
-move_to_spd = 300
-move_back_spd = 300
+position = Vector2(2496, -48)
+scale = Vector2(36, 2.4)
+move_to = Vector2(0, -1152)
+move_to_spd = 3600
+move_back_spd = 3600
 disabled = true
 up = true
 
 [node name="kill_barrior" parent="." instance=ExtResource("11_0lxrr")]
-position = Vector2(0, 400)
+position = Vector2(0, 4800)
+scale = Vector2(12, 12)
 
 [node name="TMouseRightKeyDark" type="Sprite2D" parent="."]
-position = Vector2(89, -63)
-scale = Vector2(0.2, 0.2)
+position = Vector2(1068, -756)
+scale = Vector2(2.4, 2.4)
 texture = ExtResource("12_vfc7v")
 
-[node name="bonus" parent="." instance=ExtResource("27_ppc4t")]
-position = Vector2(-8, -360)
-room_num = 1
-
 [node name="no_word_ground" parent="." instance=ExtResource("28_0sjtk")]
-position = Vector2(-16, -248)
-scale = Vector2(19, 1)
+position = Vector2(-192, -2976)
+scale = Vector2(228, 12)

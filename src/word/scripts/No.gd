@@ -6,12 +6,16 @@ class_name No extends Dragable
 @export var connected : Array[Node] = [];
 @export var me_offset : Vector2;
 @export var connected_offset : Vector2;
+@export var show : bool = true;
 
 var thing : Thing;
 
 var state       : bool = true;
 
 func _draw() -> void:
+	if show:
+		return;
+	
 	for con in connected:
 		if con is Node2D:
 			var you = to_local(con.global_position);
@@ -63,7 +67,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				actor.set_text("Yes")
 				thing.visible = true;
 				thing.actor.global_position = actor.global_position;
-				thing.actor.global_position.y -= 25;
+				thing.actor.global_position.y -= 250;
 				thing.actor.velocity = Vector2.ZERO;
 				thing.actor.global_rotation = 0;
 				hold = true;
@@ -75,7 +79,7 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 				actor.set_text("No")
 				thing.visible = true;
 				thing.actor.global_position = actor.global_position;
-				thing.actor.global_position.y -= 25;
+				thing.actor.global_position.y -= 250;
 				thing.actor.velocity = Vector2.ZERO;
 				thing.actor.global_rotation = 0;
 				hold = true;

@@ -20,8 +20,8 @@ func _ready() -> void:
 	
 	ani_tween = create_tween().set_loops();
 	ani_tween.set_trans(Tween.TRANS_CUBIC);
-	ani_tween.tween_property(self, "scale", Vector2(1.05, 1.05), 2);
-	ani_tween.tween_property(self, "scale", Vector2(0.95, 0.95), 2);
+	ani_tween.tween_property(self, "scale", Vector2(2.05, 2.05), 2);
+	ani_tween.tween_property(self, "scale", Vector2(1.95, 1.95), 2);
 	ani_tween.play();
 
 var collect_particles = preload("res://assets/particles/collect_particle.tscn");
@@ -39,14 +39,14 @@ func collected():
 	fin_tween.tween_property(self, "modulate:a", 0.0, 3.5);
 	
 	fin_tween.tween_property($sprite1, "modulate:a", 0.0, 3.5);
-	fin_tween.tween_property($sprite1, "scale", Vector2(2.0, 2.0), 3.5);
+	fin_tween.tween_property($sprite1, "scale", Vector2(20, 20), 3.5);
 	fin_tween.tween_property($sprite2, "modulate:a", 0.0, 2.33333);
-	fin_tween.tween_property($sprite2, "scale", Vector2(2.5, 2.5), 3.5);
+	fin_tween.tween_property($sprite2, "scale", Vector2(25, 25), 3.5);
 	fin_tween.tween_property($sprite3, "modulate:a", 0.0, 1.16667);
-	fin_tween.tween_property($sprite3, "scale", Vector2(3.0, 3.0), 3.5);
+	fin_tween.tween_property($sprite3, "scale", Vector2(30, 30), 3.5);
 	
 	fin_tween.tween_property($Label, "modulate:a", 1.0, 2.5);
-	fin_tween.tween_property($Label, "position:y", -20, 3.5);
+	fin_tween.tween_property($Label, "position:y", -200.0, 3.5);
 	
 	var part = collect_particles.instantiate();
 	add_sibling(part);

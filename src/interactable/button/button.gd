@@ -27,11 +27,11 @@ func _draw() -> void:
 				to_from = Vector2(you.x, 0);
 			else:
 				to_from = Vector2(0, you.y);
-			draw_line(Vector2.ZERO, to_from, Color.BLACK, 2.);
-			draw_line(Vector2.ZERO, to_from, Color.WHITE, 1.);
+			draw_line(Vector2(0, -50), to_from + Vector2(10, -50), Color.BLACK, 20.);
+			draw_line(Vector2(0, -50), to_from + Vector2(10, -50), Color.WHITE, 10.);
 				
-			draw_line(to_from, you, Color.BLACK, 2.);
-			draw_line(to_from, you, Color.WHITE, 1.);
+			draw_line(to_from + Vector2(0, -40), you, Color.BLACK, 20.);
+			draw_line(to_from + Vector2(0, -40), you, Color.WHITE, 10.);
 
 func _process(delta: float) -> void:
 	if !show:

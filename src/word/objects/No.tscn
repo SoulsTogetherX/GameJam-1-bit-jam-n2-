@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://07gc6f7qdxko"]
+[gd_scene load_steps=5 format=3 uid="uid://07gc6f7qdxko"]
 
 [ext_resource type="PackedScene" uid="uid://cdh0pigcaachu" path="res://src/word/segment_.tscn" id="1_d57bg"]
 [ext_resource type="Script" path="res://src/word/scripts/No.gd" id="1_yibxg"]
+[ext_resource type="LabelSettings" uid="uid://ckx3fm4dabxol" path="res://src/word/Font.tres" id="3_jirg8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjej8"]
 size = Vector2(26, 16)
@@ -16,6 +17,7 @@ collision_mask = 33
 offset_left = -11.5
 offset_right = 152.5
 text = "No"
+label_settings = ExtResource("3_jirg8")
 
 [node name="Area2D" type="Area2D" parent="segment_"]
 collision_layer = 7

@@ -67,44 +67,48 @@ func _on_body_exited(body: Node2D) -> void:
 	if body.owner is Thing:
 		_thing_entered = false;
 	elif body.owner is No:
+		_yes_entered = false;
+		_nothing_entered = false;
+		_yesthing_entered = false;
 		_no_entered = false;
 	elif body.owner is Every:
 		_every_entered = false;
 	check_to_toggle();
 
 func check_to_toggle() -> void:
-	if _no_entered:
-		if _no.actor._text == "Yes":
-			_yes_entered = true;
-			_no_entered = false;
-		else:
-			_yes_entered = false;
-		if _no.actor._text == "Nothing":
-			_nothing_entered = true;
-			_no_entered = false;
-		else:
-			_nothing_entered = false;
-		if _no.actor._text == "Yesthing?":
-			_yesthing_entered = true;
-			_no_entered = false;
-		else:
-			_yesthing_entered = false;
-	elif _nothing_entered:
-		if _no.actor._text != "Nothing":
-			_nothing_entered = false;
+	if _no_entered || _yes_entered || _nothing_entered || _yesthing_entered:
+		while true:
+			if _no.actor._text == "No":
+				_yes_entered = false;
+				_nothing_entered = false;
+				_yesthing_entered = false;
+				_no_entered = true;
+				break;
+			else:
+				_no_entered = false;
+			
+			if _no.actor._text == "Yes":
+				_yes_entered = true;
+				_nothing_entered = false;
+				_yesthing_entered = false;
+				break;
+			else:
+				_yes_entered = false;
+			
+			if _no.actor._text == "Nothing":
+				_nothing_entered = true;
+				_yesthing_entered = false;
+				break;
+			else:
+				_nothing_entered = false;
+			
 			if _no.actor._text == "Yesthing?":
 				_yesthing_entered = true;
 			else:
-				_no_entered = true;
-	elif _nothing_entered:
-		if _no.actor._text != "Yesthing":
-			_yesthing_entered = false;
-			if _no.actor._text == "Nothing?":
-				_nothing_entered = true;
-			else:
-				_no_entered = true;
+				_yesthing_entered = false;
+			break;
 	
-	if _thing_entered && _thing.visible:
+	if check_thing && _thing_entered && _thing.visible:
 		_in = true;
 	elif check_no && _no_entered:
 		_in = true;

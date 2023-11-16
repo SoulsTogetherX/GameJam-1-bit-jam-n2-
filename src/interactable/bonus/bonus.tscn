@@ -5,30 +5,28 @@
 [ext_resource type="AudioStream" uid="uid://cu8qdcpf6are4" path="res://assets/sound/bonus/collect.wav" id="3_ijepp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dwvrn"]
-radius = 13.0
+radius = 64.0703
 
 [sub_resource type="Gradient" id="Gradient_2u73w"]
 offsets = PackedFloat32Array(0, 0.469799, 1)
 colors = PackedColorArray(0, 0, 0, 0.564706, 1, 1, 1, 1, 1, 1, 1, 0.223529)
 
-[sub_resource type="LabelSettings" id="LabelSettings_rj0mc"]
-font_size = 10
-outline_size = 1
+[sub_resource type="LabelSettings" id="LabelSettings_ssbd2"]
+font_size = 50
+outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
 [node name="bonus" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_dxpdg")
 
 [node name="sprite1" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_og045")
 
 [node name="sprite2" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_og045")
 
 [node name="sprite3" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_og045")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -43,12 +41,12 @@ amount = 40
 randomness = 0.4
 lifetime_randomness = 0.2
 emission_shape = 1
-emission_sphere_radius = 10.0
+emission_sphere_radius = 50.0
 direction = Vector2(0, 0)
 spread = 180.0
 gravity = Vector2(0, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 40.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
 angular_velocity_min = -2.0
 angular_velocity_max = 2.0
 orbit_velocity_min = -1.0
@@ -61,8 +59,8 @@ damping_min = 5.0
 damping_max = 10.0
 angle_min = -150.0
 angle_max = 150.0
-scale_amount_min = 0.5
-scale_amount_max = 2.5
+scale_amount_min = 6.0
+scale_amount_max = 30.0
 color_ramp = SubResource("Gradient_2u73w")
 hue_variation_min = -1.0
 hue_variation_max = 1.0
@@ -72,12 +70,12 @@ stream = ExtResource("3_ijepp")
 
 [node name="Label" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0)
-offset_left = -28.0
-offset_top = -10.0
-offset_right = 28.0
-offset_bottom = 7.0
-text = "a"
-label_settings = SubResource("LabelSettings_rj0mc")
+offset_left = -111.0
+offset_top = -42.0
+offset_right = 111.0
+offset_bottom = 49.0
+text = "aaaaaa"
+label_settings = SubResource("LabelSettings_ssbd2")
 horizontal_alignment = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

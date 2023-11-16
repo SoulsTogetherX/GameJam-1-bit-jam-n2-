@@ -1,29 +1,37 @@
-[gd_scene load_steps=6 format=3 uid="uid://c688op1mca77f"]
+[gd_scene load_steps=7 format=3 uid="uid://c688op1mca77f"]
 
-[ext_resource type="Texture2D" uid="uid://dvi7fbd7do2sl" path="res://assets/sprites/ground/box.png" id="1_qtplr"]
+[ext_resource type="Texture2D" uid="uid://cjyvvpv7eokcp" path="res://assets/Imported_art/Box/Box.png" id="1_te1wo"]
+[ext_resource type="Script" path="res://src/interactable/box/box.gd" id="1_u0uem"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0e7o7"]
-size = Vector2(32, 32)
+size = Vector2(32.0833, 31.9167)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4addq"]
-size = Vector2(30, 32)
+size = Vector2(384, 383)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7str"]
-size = Vector2(32, 30)
+size = Vector2(385, 383)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0akyn"]
-size = Vector2(34, 34)
+size = Vector2(395, 394)
 
 [node name="box" type="RigidBody2D"]
 collision_layer = 256
 collision_mask = 133
+gravity_scale = 12.0
+continuous_cd = 2
 lock_rotation = true
 linear_damp = 0.5
+script = ExtResource("1_u0uem")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_qtplr")
+position = Vector2(-0.499988, 0.499996)
+scale = Vector2(0.77, 0.766)
+texture = ExtResource("1_te1wo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.500004, 0.499998)
+scale = Vector2(12, 12)
 shape = SubResource("RectangleShape2D_0e7o7")
 
 [node name="AnimatableBody2D" type="CharacterBody2D" parent="."]
@@ -36,6 +44,7 @@ shape = SubResource("RectangleShape2D_4addq")
 one_way_collision = true
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatableBody2D"]
+position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_j7str")
 one_way_collision = true
 

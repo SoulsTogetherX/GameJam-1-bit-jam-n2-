@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://vurl3javfxkc"]
+[gd_scene load_steps=25 format=3 uid="uid://vurl3javfxkc"]
 
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_ueci0"]
 [ext_resource type="TileSet" uid="uid://b6y50qs5gvwa8" path="res://rooms/puzzel_rooms/ground.tres" id="2_1ruir"]
@@ -18,7 +18,6 @@
 [ext_resource type="AudioStream" uid="uid://bie4ad4ptp3v5" path="res://assets/sound/door/open/door_11.wav" id="16_rmrww"]
 [ext_resource type="AudioStream" uid="uid://dfjdqoefy0ctc" path="res://assets/sound/door/open/door_12.wav" id="17_a0hhu"]
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="18_jaoo7"]
-[ext_resource type="PackedScene" uid="uid://cmhxt86fj05ix" path="res://assets/particles/stars.tscn" id="19_xfbf0"]
 [ext_resource type="PackedScene" uid="uid://cvys66d438o0m" path="res://src/camera/cam.tscn" id="20_hwd2h"]
 [ext_resource type="PackedScene" uid="uid://bvljcpiq6wpkh" path="res://src/word/objects/Every.tscn" id="21_tnwpt"]
 [ext_resource type="PackedScene" uid="uid://07gc6f7qdxko" path="res://src/word/objects/No.tscn" id="22_ldltw"]
@@ -48,10 +47,8 @@ audios = Array[AudioStream]([ExtResource("6_nta51"), ExtResource("7_7nnjy"), Ext
 position = Vector2(-176, -11)
 _cam = NodePath("../cam")
 
-[node name="stars" parent="player" instance=ExtResource("19_xfbf0")]
-
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("20_hwd2h")]
-position = Vector2(-95, 0)
+position = Vector2(-103.1, 0)
 _follow = NodePath("../player")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("21_tnwpt")]

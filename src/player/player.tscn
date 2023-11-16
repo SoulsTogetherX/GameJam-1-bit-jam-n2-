@@ -40,6 +40,85 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_dal5o"]
 radius = 375.521
 
+[sub_resource type="Animation" id="Animation_hjlvq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fade:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("fade:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u8rtv"]
+resource_name = "falling"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("fade:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("fade:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-0.5, -1), Vector2(-0.5, -2)]
+}
+
 [sub_resource type="Animation" id="Animation_hs2w8"]
 resource_name = "idle"
 length = 0.9
@@ -81,8 +160,9 @@ tracks/2/keys = {
 "values": [Vector2(-0.5, -1)]
 }
 
-[sub_resource type="Animation" id="Animation_hjlvq"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_hqq0m"]
+resource_name = "jumping"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -93,7 +173,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [9]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -105,7 +185,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [9]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -114,68 +194,10 @@ tracks/2/path = NodePath("fade:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-0.5, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_708ru"]
-resource_name = "walk"
-length = 0.45
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("main:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [3, 4, 5]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("fade:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [5, 3, 4]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"play_footset"
-}, {
-"args": [],
-"method": &"play_footset"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("fade:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-0.5, -1)]
+"values": [Vector2(-0.5, -1), Vector2(-0.5, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_h7fn3"]
@@ -236,9 +258,10 @@ tracks/3/keys = {
 "values": [Vector2(-0.5, -1)]
 }
 
-[sub_resource type="Animation" id="Animation_u8rtv"]
-resource_name = "falling"
-length = 0.1
+[sub_resource type="Animation" id="Animation_708ru"]
+resource_name = "walk"
+length = 0.45
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -246,10 +269,10 @@ tracks/0/path = NodePath("main:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [10]
+"values": [3, 4, 5]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -258,62 +281,39 @@ tracks/1/path = NodePath("fade:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [10]
+"values": [5, 3, 4]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("fade:position")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-0.5, -1), Vector2(-0.5, -2)]
+"values": [{
+"args": [],
+"method": &"play_footset"
+}, {
+"args": [],
+"method": &"play_footset"
+}]
 }
-
-[sub_resource type="Animation" id="Animation_hqq0m"]
-resource_name = "jumping"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("main:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("fade:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [9]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("fade:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [9]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("fade:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-0.5, -1), Vector2(-0.5, 0)]
+"values": [Vector2(-0.5, -1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8hip6"]
@@ -455,18 +455,20 @@ _particles = NodePath("jump_particles")
 audios = Array[AudioStream]([ExtResource("19_kjiid"), ExtResource("20_xwx7k"), ExtResource("21_77jo6"), ExtResource("22_hasxx"), ExtResource("23_ikx4i"), ExtResource("24_lvmd3")])
 
 [node name="jump_particles" parent="jump_emiter" instance=ExtResource("19_mff4s")]
-position = Vector2(12, 242)
+position = Vector2(-0.2, -0.200001)
 scale = Vector2(10, 10)
+initial_velocity_max = 20.0
 
 [node name="land_emiter" parent="." node_paths=PackedStringArray("_particles") instance=ExtResource("10_rl67e")]
 position = Vector2(12, 251)
 scale = Vector2(10, 1)
-_particles = NodePath("../jump_emiter/jump_particles")
+_particles = NodePath("land_particles")
 audios = Array[AudioStream]([ExtResource("26_vfdx7"), ExtResource("27_dcf1x"), ExtResource("28_e3f5u"), ExtResource("29_hhw7b"), ExtResource("30_drac4"), ExtResource("31_8ankw")])
 
-[node name="jump_particles" parent="land_emiter" instance=ExtResource("19_mff4s")]
-position = Vector2(12, 235)
-amount = 5
+[node name="land_particles" parent="land_emiter" instance=ExtResource("19_mff4s")]
+position = Vector2(-0.2, -0.200001)
+scale = Vector2(10, 10)
+initial_velocity_max = 20.0
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -478,6 +480,22 @@ scale = Vector2(0.9, 1)
 shape = SubResource("RectangleShape2D_k1qm2")
 
 [node name="stars" parent="." instance=ExtResource("36_81otp")]
+amount = 500
+emission_rect_extents = Vector2(12000, 12000)
+initial_velocity_max = 120.0
+linear_accel_min = -120.0
+linear_accel_max = 120.0
+scale_amount_min = 12.0
+scale_amount_max = 24.0
+
+[node name="stars2" parent="." instance=ExtResource("36_81otp")]
+amount = 500
+emission_rect_extents = Vector2(30000, 30000)
+initial_velocity_max = 120.0
+linear_accel_min = -120.0
+linear_accel_max = 120.0
+scale_amount_min = 12.0
+scale_amount_max = 24.0
 
 [connection signal="timeout" from="StateObj/StateMachine/dead/Timer" to="StateObj/StateMachine/dead" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateObj/StateMachine/walk/Timer" to="StateObj/StateMachine/walk" method="_on_timer_timeout"]

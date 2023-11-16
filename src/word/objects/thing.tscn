@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhvdrl8e5xkbx"]
+[gd_scene load_steps=6 format=3 uid="uid://dhvdrl8e5xkbx"]
 
 [ext_resource type="Script" path="res://src/word/scripts/thing.gd" id="1_nhsd3"]
 [ext_resource type="PackedScene" uid="uid://cdh0pigcaachu" path="res://src/word/segment_.tscn" id="1_sepy7"]
+[ext_resource type="LabelSettings" uid="uid://ckx3fm4dabxol" path="res://src/word/Font.tres" id="3_edtrw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lsi51"]
 size = Vector2(44, 18)
@@ -20,6 +21,7 @@ collision_mask = 33
 offset_left = -20.0
 offset_right = 144.0
 text = "thing"
+label_settings = ExtResource("3_edtrw")
 script = null
 metadata/_edit_use_anchors_ = true
 

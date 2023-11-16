@@ -5,6 +5,7 @@ offsets = PackedFloat32Array(0, 0.801324, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.396078, 1, 1, 1, 0)
 
 [node name="walk_particles" type="CPUParticles2D"]
+scale = Vector2(12, 12)
 emitting = false
 amount = 3
 lifetime = 0.2

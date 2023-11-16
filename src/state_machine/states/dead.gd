@@ -8,10 +8,11 @@ func state_name():
 	return "dead";
 
 func enter() -> void:
+	print(state_name())
 	if time.is_stopped():
-		spd_x = -sign(actor.velocity.x) * 70;
+		spd_x = -sign(actor.velocity.x) * 700;
 		actor.modulate.a = 0.7;
-		actor.velocity.y -= 400;
+		actor.velocity.y -= 4000;
 		sound.play();
 		time.start();
 	actor.animation_player.play("falling");
@@ -23,7 +24,7 @@ func process_input(_event: InputEvent) -> State:
 	return null;
 
 func process_frame(_delta: float) -> State:
-	actor.modulate.a = 0.7 + float(actor.modulate.a == 0.7) * 0.3;
+	actor.modulate.a = 0.45;
 	return null;
 
 func process_physics(delta: float) -> State:
