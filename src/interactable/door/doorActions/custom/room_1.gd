@@ -1,4 +1,4 @@
-extends DoorActions
+class_name Room1 extends DoorActions
 
 var onTime : bool = false;
 
@@ -32,7 +32,7 @@ func on_locked():
 	onTime = true;
 	
 	var tw = create_tween();
-	tw.tween_property(_no, "modulate:a", 1., 1.);
+	tw.tween_property(_no, "modulate:a", 0.7, 1.);
 	tw.tween_interval(1.); 
 	tw.set_trans(Tween.TRANS_SPRING);
 	tw.set_ease(Tween.EASE_IN_OUT);

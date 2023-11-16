@@ -3,6 +3,7 @@ class_name DoorActions extends Node
 @warning_ignore("unused_parameter")
 @onready var _door     : Door = get_parent();
 
+@export var fade_time : float = 0.5;
 @export_file("*.tscn") var _nextRoom;
 var _every : Every;
 var _thing : Thing;
@@ -32,10 +33,9 @@ func _ready() -> void:
 			if _no.pause:
 				_no.modulate.a = 0.7;
 		elif c is Player:
-			print("found here!")
 			_player = c
 			_player.process_mode = Node.PROCESS_MODE_DISABLED;
-		tw.tween_property(c, "modulate:a", c.modulate.a, 0.5);
+		tw.tween_property(c, "modulate:a", c.modulate.a, fade_time);
 		c.modulate.a = 0.;
 	tw.chain().tween_callback(func():
 		_player.process_mode = Node.PROCESS_MODE_INHERIT;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://b2k33pnyrprvs"]
+[gd_scene load_steps=35 format=3 uid="uid://b2k33pnyrprvs"]
 
 [ext_resource type="PackedScene" uid="uid://rg81f8qkjyw7" path="res://src/player/player.tscn" id="1_rcl02"]
 [ext_resource type="Script" path="res://rooms/room.gd" id="1_vfp3k"]
@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://c3vcq2b8byrvi" path="res://src/spike/spike.tscn" id="31_jksv6"]
 [ext_resource type="PackedScene" uid="uid://bg72ekn3hnpaj" path="res://src/ground/closing_wall/moving_wall.tscn" id="31_vlp2q"]
 [ext_resource type="PackedScene" uid="uid://chkwk04dawibt" path="res://src/interactable/switch/switch.tscn" id="33_slgk1"]
+[ext_resource type="PackedScene" uid="uid://c688op1mca77f" path="res://src/interactable/box/box.tscn" id="34_vc2ue"]
 [ext_resource type="Texture2D" uid="uid://cqodumvs8qi2p" path="res://assets/sprites/controls/T_R_Key_Dark.png" id="34_yxeof"]
 
 [node name="room_1" type="Node2D"]
@@ -54,6 +55,7 @@ arrow1 = NodePath("../../1")
 arrow2 = NodePath("../../2")
 E_sprite = NodePath("../../TEKeyDark")
 ML_sprite = NodePath("../../TMouseLeftKeyDark")
+fade_time = 1.5
 _nextRoom = "res://rooms/puzzel_rooms/2/room_2.tscn"
 
 [node name="emiter" parent="door" instance=ExtResource("5_pf6t1")]
@@ -61,7 +63,7 @@ volume = 10.0
 audios = Array[AudioStream]([ExtResource("6_6abhu"), ExtResource("7_b1364"), ExtResource("8_tyktd"), ExtResource("9_3nj3x"), ExtResource("10_33gno"), ExtResource("11_y48wa"), ExtResource("12_xeklx"), ExtResource("13_ok7yp"), ExtResource("14_yrcue"), ExtResource("15_j2t6v"), ExtResource("16_sc1ue"), ExtResource("17_7nhc2")])
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("1_rcl02")]
-position = Vector2(-3064, -251)
+position = Vector2(-3072, -248)
 _cam = NodePath("../cam")
 
 [node name="No" parent="." node_paths=PackedStringArray("door") instance=ExtResource("7_at3sy")]
@@ -83,7 +85,7 @@ scale = Vector2(12, 12)
 position = Vector2(17.3333, -2)
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("5_vre0u")]
-position = Vector2(-3041.12, -212.698)
+position = Vector2(-3058.78, -223.498)
 scale = Vector2(10, 10)
 limit_smoothed = true
 _follow = NodePath("../player")
@@ -175,3 +177,6 @@ texture = ExtResource("34_yxeof")
 position = Vector2(-3264, -4416)
 scale = Vector2(2.4, 2.4)
 texture = ExtResource("34_yxeof")
+
+[node name="box" parent="." instance=ExtResource("34_vc2ue")]
+position = Vector2(-2232, -344)

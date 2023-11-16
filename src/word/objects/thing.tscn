@@ -18,8 +18,11 @@ collision_layer = 40
 collision_mask = 33
 
 [node name="Label" parent="segment_" index="0"]
-offset_left = -20.0
-offset_right = 144.0
+offset_left = -22.0
+offset_top = -10.5
+offset_right = 2482.0
+offset_bottom = 1155.5
+scale = Vector2(0.018, 0.018)
 text = "thing"
 label_settings = ExtResource("3_edtrw")
 script = null

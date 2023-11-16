@@ -52,7 +52,7 @@ scale = Vector2(12, 12)
 
 [node name="action" type="Node" parent="door"]
 script = ExtResource("3_03giq")
-_nextRoom = "res://rooms/puzzel_rooms/9/room_9.tscn"
+_nextRoom = "res://rooms/puzzel_rooms/10/room_10.tscn"
 
 [node name="emiter" parent="door" instance=ExtResource("4_cjq1c")]
 volume = 10.0
@@ -63,7 +63,7 @@ position = Vector2(-2072, -256)
 _cam = NodePath("../cam")
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("19_pwsxh")]
-position = Vector2(-2072, -177.68)
+position = Vector2(-2072, -188.761)
 _follow = NodePath("../player")
 
 [node name="Every" parent="." node_paths=PackedStringArray("thing") instance=ExtResource("20_fpinx")]
@@ -267,7 +267,7 @@ offset_top = -16.0
 offset_right = 31.0
 offset_bottom = 10.0
 rotation = 0.575959
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.009, 0.009)
 text = "No"
 label_settings = ExtResource("30_t3kcp")
 metadata/_edit_use_anchors_ = true
@@ -280,12 +280,12 @@ connected = [NodePath("../moving_wall3"), NodePath("../moving_wall5")]
 
 [node name="Label" type="Label" parent="area_word2"]
 self_modulate = Color(1, 1, 1, 0.603922)
-offset_left = 5.0
-offset_top = -19.0
-offset_right = 45.0
-offset_bottom = 7.0
+offset_left = 2.0
+offset_top = -19.332
+offset_right = 2506.0
+offset_bottom = 1146.67
 rotation = 0.575959
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.009, 0.009)
 text = "thing"
 label_settings = ExtResource("30_t3kcp")
 metadata/_edit_use_anchors_ = true
@@ -308,7 +308,7 @@ script = ExtResource("32_ttfyv")
 
 [node name="bonus" parent="." instance=ExtResource("33_ut40f")]
 position = Vector2(3976, -144)
-room_num = 7
+room_num = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(3474, -192)

@@ -1,6 +1,0 @@
-[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bj5yvs6ys4mke"]
-
-[ext_resource type="FontFile" uid="uid://cqmeve3f8vtg7" path="res://assets/font/PixelCode.otf" id="1_6venr"]
-
-[resource]
-font = ExtResource("1_6venr")

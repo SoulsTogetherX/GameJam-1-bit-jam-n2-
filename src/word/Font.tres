@@ -1,5 +1,9 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://ckx3fm4dabxol"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://ckx3fm4dabxol"]
+
+[ext_resource type="FontFile" uid="uid://ecfqfdbk5xu3" path="res://assets/font/SuperDream-ax3vE.ttf" id="1_di4gt"]
 
 [resource]
+font = ExtResource("1_di4gt")
+font_size = 1000
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)

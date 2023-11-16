@@ -16,7 +16,10 @@ collision_mask = 33
 
 [node name="Label" parent="segment_" index="0"]
 offset_left = -21.5
-offset_right = 142.5
+offset_top = -11.5
+offset_right = 2595.5
+offset_bottom = 1154.5
+scale = Vector2(0.018, 0.018)
 text = "Every"
 label_settings = ExtResource("3_et3cg")
 script = null

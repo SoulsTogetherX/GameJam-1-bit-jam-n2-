@@ -47,7 +47,7 @@ scale = Vector2(12, 12)
 
 [node name="action" type="Node" parent="door"]
 script = ExtResource("4_cy37d")
-_nextRoom = "res://rooms/puzzel_rooms/10/room_10.tscn"
+_nextRoom = "res://rooms/puzzel_rooms/9/room_9.tscn"
 
 [node name="emiter" parent="door" instance=ExtResource("5_i5ypu")]
 volume = 10.0
@@ -58,7 +58,7 @@ position = Vector2(-2112, -256)
 _cam = NodePath("../cam")
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("20_nusmh")]
-position = Vector2(-2112, 0)
+position = Vector2(-2112, -171.2)
 scale = Vector2(12, 12)
 _follow = NodePath("../player")
 
@@ -631,4 +631,4 @@ scale = Vector2(12, 12)
 
 [node name="bonus" parent="." instance=ExtResource("32_guju7")]
 position = Vector2(1152, -4992)
-room_num = 8
+room_num = 7

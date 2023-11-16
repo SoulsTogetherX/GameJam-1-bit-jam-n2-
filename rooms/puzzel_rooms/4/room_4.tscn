@@ -61,7 +61,7 @@ collision_mask = 5
 _cam = NodePath("../cam")
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("6_1kf8q")]
-position = Vector2(-2447.1, -169.68)
+position = Vector2(-2466.86, -185.485)
 _follow = NodePath("../player")
 
 [node name="bonus" parent="." instance=ExtResource("28_b38kl")]
@@ -134,12 +134,12 @@ connected = [NodePath("../moving_wall3"), NodePath("../disappering_block"), Node
 
 [node name="Label" type="Label" parent="area_word"]
 self_modulate = Color(1, 1, 1, 0.603922)
-offset_left = 5.0
-offset_top = -19.0
-offset_right = 48.0
-offset_bottom = 7.0
+offset_left = 3.33203
+offset_top = -20.6641
+offset_right = 2620.33
+offset_bottom = 1145.34
 rotation = 0.575959
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.009, 0.009)
 text = "Every"
 label_settings = ExtResource("29_q2wuk")
 metadata/_edit_use_anchors_ = true

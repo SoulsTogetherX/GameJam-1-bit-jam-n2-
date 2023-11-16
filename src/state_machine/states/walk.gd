@@ -31,9 +31,9 @@ func process_frame(_delta: float) -> State:
 
 func process_physics(_delta: float) -> State:
 	var direction = Input.get_axis("left", "right");
-	actor.turn(direction == -1);
 	if !direction:
 		return slowDown;
+	actor.turn(direction == -1);
 	
 	var bods = push_area.get_overlapping_bodies();
 	if bods.size() > 0:

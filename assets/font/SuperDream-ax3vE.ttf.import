@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c6iqfx3x4ep53"
-path="res://.godot/imported/pixhobo.ttf-4d89dfa7ae59ae725a71d90899f020cd.fontdata"
+uid="uid://ecfqfdbk5xu3"
+path="res://.godot/imported/SuperDream-ax3vE.ttf-b60c7e35096aba0d9045406e2e5677cf.fontdata"
 
 [deps]
 
-source_file="res://assets/font/pixhobo.ttf"
-dest_files=["res://.godot/imported/pixhobo.ttf-4d89dfa7ae59ae725a71d90899f020cd.fontdata"]
+source_file="res://assets/font/SuperDream-ax3vE.ttf"
+dest_files=["res://.godot/imported/SuperDream-ax3vE.ttf-b60c7e35096aba0d9045406e2e5677cf.fontdata"]
 
 [params]
 

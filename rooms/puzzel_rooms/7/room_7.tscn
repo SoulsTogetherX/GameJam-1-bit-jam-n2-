@@ -65,7 +65,7 @@ _cam = NodePath("../cam")
 [node name="stars3" parent="player" instance=ExtResource("2_in6rm")]
 
 [node name="cam" parent="." node_paths=PackedStringArray("_follow") instance=ExtResource("19_tn26d")]
-position = Vector2(-1554.86, -201.485)
+position = Vector2(-1564.96, -209.563)
 _follow = NodePath("../player")
 
 [node name="bonus" parent="." instance=ExtResource("30_dux4b")]
@@ -106,7 +106,7 @@ offset_top = -24.0
 offset_right = 85.0
 offset_bottom = 2.0
 rotation = 0.575959
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.009, 0.009)
 text = "Yesthing?"
 label_settings = ExtResource("27_jn7cp")
 metadata/_edit_use_anchors_ = true
