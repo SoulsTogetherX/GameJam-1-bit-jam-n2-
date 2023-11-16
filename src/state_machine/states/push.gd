@@ -1,6 +1,7 @@
 extends State
 
 @export var idle : State;
+@export var jumping : State;
 @export var falling : State;
 
 @onready var time : Timer = $Timer;
@@ -14,6 +15,8 @@ func enter() -> void:
 	tw = create_tween();
 	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
 	time.start();
+	actor.animation_player.play("push");
+	actor.turn(actor.velocity.x < 0);
 
 func exit() -> void:
 	tw.kill();
@@ -38,9 +41,7 @@ func process_physics(delta: float) -> State:
 			bod.owner.apply_central_impulse(Vector2(actor.velocity.x, 0).normalized() * actor.PUSH_FORCE);
 	
 	if Input.is_action_just_pressed("jump"):
-		actor.jump();
-		actor.update_position();
-		return falling
+		return jumping
 	if !actor.is_on_floor():
 		return falling;
 	

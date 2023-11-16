@@ -9,8 +9,6 @@ func _ready() -> void:
 	tw.tween_property(self, "position:y", 5 * scale.y *  dir + position.y, 0.5);
 	tw.tween_property(self, "position:y", 5 * scale.y * -dir + position.y, 0.5);
 	tw.play();
-	
-
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:

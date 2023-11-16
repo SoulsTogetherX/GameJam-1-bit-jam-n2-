@@ -4,6 +4,18 @@ extends Node
 static var segment_font      : Font = ThemeDB.fallback_font;
 static var segment_font_size : int = 16;
 
+var bonuses_collected = [];
+var total_bonuses = 10;
+var start_time : int = 0;
+var end_time : int = 0;
+
+func collected_bonuses() -> int:
+	return bonuses_collected.count(true);
+
+func _ready() -> void:
+	for bd in total_bonuses:
+		bonuses_collected.append(false);
+
 static func swap_parent(node : Node, parent : Node) -> void:
 	var pos : Vector2;
 	if node is Node2D:

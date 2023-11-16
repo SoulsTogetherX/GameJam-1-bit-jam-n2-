@@ -1,7 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ckq3o6o23fejp"]
+[gd_scene load_steps=4 format=3 uid="uid://ckq3o6o23fejp"]
 
 [ext_resource type="Script" path="res://src/ground/disappearing_block/disappering_block.gd" id="1_r6t2h"]
+[ext_resource type="Texture2D" uid="uid://dvi7fbd7do2sl" path="res://assets/sprites/ground/box.png" id="2_u2x3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jn03c"]
+size = Vector2(32, 32)
 
 [node name="disappering_block" type="StaticBody2D"]
 collision_mask = 0
 script = ExtResource("1_r6t2h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_u2x3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jn03c")

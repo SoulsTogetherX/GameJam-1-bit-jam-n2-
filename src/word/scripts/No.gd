@@ -11,10 +11,6 @@ var thing : Thing;
 
 var state       : bool = true;
 
-func _ready() -> void:
-	for con in connected:
-		con.disabled = state;
-
 func _draw() -> void:
 	for con in connected:
 		if con is Node2D:
@@ -25,14 +21,13 @@ func _draw() -> void:
 				to_from = Vector2(you.x, 0);
 			else:
 				to_from = Vector2(0, you.y);
-			
-			draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.9);
-			draw_line(Vector2.ZERO, to_from, Color.BLACK, 0.6);
-			draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.3);
-			
-			draw_line(to_from, you, Color.WHITE, 0.9);
-			draw_line(to_from, you, Color.BLACK, 0.6);
-			draw_line(to_from, you, Color.WHITE, 0.3);
+			draw_line(Vector2.ZERO, to_from, Color.WHITE, 1.5);
+			draw_line(Vector2.ZERO, to_from, Color.BLACK, 1.0);
+			draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.5);
+				
+			draw_line(to_from, you, Color.WHITE, 1.5);
+			draw_line(to_from, you, Color.BLACK, 1.0);
+			draw_line(to_from, you, Color.WHITE, 0.5);
 
 func _physics_process(delta: float) -> void:
 	super(delta);
@@ -53,35 +48,42 @@ func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) 
 			"Yes":
 				state = true;
 				actor.set_text("No")
+				
+				for con in connected:
+					con.disabled = !con.disabled;
 			"No":
 				state = false;
 				actor.set_text("Yes")
+				
+				for con in connected:
+					con.disabled = !con.disabled;
+					
 			"Yesthing?":
 				state = false;
 				actor.set_text("Yes")
 				thing.visible = true;
 				thing.actor.global_position = actor.global_position;
 				thing.actor.global_position.y -= 25;
-				thing.hold = true;
 				thing.actor.velocity = Vector2.ZERO;
 				thing.actor.global_rotation = 0;
 				hold = true;
+				thing.hold = true;
 				thing.pause = false;
+				thing.modulate.a = 1.;
 			"Nothing":
 				state = true;
 				actor.set_text("No")
 				thing.visible = true;
 				thing.actor.global_position = actor.global_position;
 				thing.actor.global_position.y -= 25;
-				thing.hold = true;
 				thing.actor.velocity = Vector2.ZERO;
 				thing.actor.global_rotation = 0;
 				hold = true;
+				thing.hold = true;
 				thing.pause = false;
+				thing.modulate.a = 1.;
 				door.objective_undo.emit();
 		actor.get_node("Area2D/CollisionShape2D").shape.extents = actor.get_rect().size * 0.5;
-		for con in connected:
-			con.disabled = state;
 
 func attach_thing(thing_ : Thing):
 	actor.set_text(actor._text + "thing");

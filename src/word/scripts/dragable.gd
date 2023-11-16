@@ -23,7 +23,7 @@ static var click_particle = preload("res://assets/particles/click_text_particle.
 func _ready() -> void:
 	actor.get_node("Area2D/CollisionShape2D").shape.extents = actor.get_rect().size * 0.5;
 	actor.collision_layer = 10 + 64;
-	actor.collision_mask = 1 + 128;
+	actor.collision_mask = 1 + 128 + 512;
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if pause:
@@ -59,7 +59,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 				actor.collision_layer = 2 + 8 + 32 + 64;
 			else:
 				actor.collision_layer = 2 + 8 + 64 + 128;
-				actor.collision_mask = 1;
+				actor.collision_mask = 1 + 512;
 			actor.get_node("CollisionShape2D").collision_layer = 7;
 			return;
 		
@@ -101,10 +101,10 @@ func _physics_process(delta: float) -> void:
 			actor.collision_mask = 0;
 		else:
 			actor.collision_layer = 8;
-			actor.collision_mask = 1 + 128 + 256;
+			actor.collision_mask = 1 + 128 + 256 + 512;
 	else:
 		actor.collision_layer = 2 + 8 + 64;
-		actor.collision_mask = 1 + 128;
+		actor.collision_mask = 1 + 128 + 512;
 	if !hold:
 		actor.velocity.y += GRAVITY * delta;
 		actor.move_and_slide();

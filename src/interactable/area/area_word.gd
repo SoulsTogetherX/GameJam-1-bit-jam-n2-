@@ -2,6 +2,7 @@ extends Area2D
 
 @export var check_thing : bool = false;
 @export var check_no : bool = false;
+@export var check_yes : bool = false;
 @export var check_every : bool = false;
 @export var check_nothing : bool = false;
 @export var check_yesthing : bool = false;
@@ -13,9 +14,13 @@ extends Area2D
 
 var _thing_entered : bool = false;
 var _no_entered : bool = false;
+var _yes_entered : bool = false;
 var _every_entered : bool = false;
 var _nothing_entered : bool = false;
 var _yesthing_entered : bool = false;
+
+var _in : bool = false;
+var _prev_in : bool = false;
 
 var _thing = null;
 var _no = null;
@@ -28,39 +33,32 @@ func _ready() -> void:
 	$Sprite2D.modulate.a = 0.5;
 
 func _draw() -> void:
+	return;
 	for con in connected:
 		if con is Node2D:
 			var you = to_local(con.global_position);
+			var to_from : Vector2;
 			
 			if other_way:
-				var to_from = Vector2(you.x, 0);
-				draw_line(Vector2.ZERO, to_from, Color.WHITE, 1.5);
-				draw_line(Vector2.ZERO, to_from, Color.BLACK, 1.0);
-				draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.5);
-				
-				draw_line(to_from, you, Color.WHITE, 1.5);
-				draw_line(to_from, you, Color.BLACK, 1.0);
-				draw_line(to_from, you, Color.WHITE, 0.5);
+				to_from = Vector2(you.x, 0);
 			else:
-				var to_from = Vector2(0, you.y);
-				draw_line(Vector2.ZERO, to_from, Color.WHITE, 1.5);
-				draw_line(Vector2.ZERO, to_from, Color.BLACK, 1.0);
-				draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.5);
+				to_from = Vector2(0, you.y);
+			draw_line(Vector2.ZERO, to_from, Color.BLACK, 1.0);
+			draw_line(Vector2.ZERO, to_from, Color.WHITE, 0.5);
 				
-				draw_line(to_from, you, Color.WHITE, 1.5);
-				draw_line(to_from, you, Color.BLACK, 1.0);
-				draw_line(to_from, you, Color.WHITE, 0.5);
+			draw_line(to_from, you, Color.BLACK, 1.0);
+			draw_line(to_from, you, Color.WHITE, 0.5);
 
 func _process(delta: float) -> void:
-	queue_redraw();
+	pass;
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.owner is Thing:
 		_thing = body.owner;
 		_thing_entered = true;
 	elif body.owner is No:
-		_no_entered = true;
 		_no = body.owner;
+		_no_entered = true;
 	elif body.owner is Every:
 		_every_entered = true;
 	check_to_toggle();
@@ -76,6 +74,11 @@ func _on_body_exited(body: Node2D) -> void:
 
 func check_to_toggle() -> void:
 	if _no_entered:
+		if _no.actor._text == "Yes":
+			_yes_entered = true;
+			_no_entered = false;
+		else:
+			_yes_entered = false;
 		if _no.actor._text == "Nothing":
 			_nothing_entered = true;
 			_no_entered = false;
@@ -101,41 +104,29 @@ func check_to_toggle() -> void:
 			else:
 				_no_entered = true;
 	
-	if check_thing && _thing_entered && _thing.visible:
-		$AudioStreamPlayer.play();
-		for i in connected.size():
-			connected[i].disabled = !_states[i];
-			$Sprite2D.modulate.a = 0.7;
-		return;
+	if _thing_entered && _thing.visible:
+		_in = true;
+	elif check_no && _no_entered:
+		_in = true;
+	elif check_yes && _yes_entered:
+		_in = true;
+	elif check_every && _every_entered:
+		_in = true;
+	elif check_nothing && _nothing_entered:
+		_in = true;
+	elif check_yesthing && _yesthing_entered:
+		_in = true;
+	else:
+		_in = false;
 	
-	if check_no && _no_entered:
-		$AudioStreamPlayer.play();
-		for i in connected.size():
-			connected[i].disabled = !_states[i];
-			$Sprite2D.modulate.a = 0.7;
-		return;
-	
-	if check_every && _every_entered:
-		$AudioStreamPlayer.play();
-		for i in connected.size():
-			connected[i].disabled = !_states[i];
-			$Sprite2D.modulate.a = 0.7;
-		return;
-	
-	if check_nothing && _nothing_entered:
-		$AudioStreamPlayer.play();
-		for i in connected.size():
-			connected[i].disabled = !_states[i];
-			$Sprite2D.modulate.a = 0.7;
-		return;
-	
-	if check_yesthing && _yesthing_entered:
-		$AudioStreamPlayer.play();
-		for i in connected.size():
-			connected[i].disabled = !_states[i];
-			$Sprite2D.modulate.a = 0.7;
-		return;
-	
-	for i in connected.size():
-		connected[i].disabled = _states[i];
-	$Sprite2D.modulate.a = 0.5;
+	if _prev_in != _in:
+		if _in:
+			$AudioStreamPlayer.play();
+			for i in connected.size():
+				connected[i].disabled = !_states[i];
+				$Sprite2D.modulate.a = 0.7;
+		else:
+			for i in connected.size():
+				connected[i].disabled = _states[i];
+			$Sprite2D.modulate.a = 0.5;
+	_prev_in = _in;

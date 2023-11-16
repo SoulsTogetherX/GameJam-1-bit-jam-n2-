@@ -40,6 +40,7 @@ position = Vector2(178, -16)
 script = ExtResource("3_06rar")
 
 [node name="emiter" parent="door" instance=ExtResource("5_kt31m")]
+volume = 10.0
 audios = Array[AudioStream]([ExtResource("6_s253o"), ExtResource("7_fuxtt"), ExtResource("8_aul6j"), ExtResource("9_eoewa"), ExtResource("10_2nix4"), ExtResource("11_el7ab"), ExtResource("12_ccdu5"), ExtResource("13_55qdd"), ExtResource("14_qu5od"), ExtResource("15_1js82"), ExtResource("16_ibqqk"), ExtResource("17_hj1j3")])
 
 [node name="player" parent="." node_paths=PackedStringArray("_cam") instance=ExtResource("4_aj7xl")]

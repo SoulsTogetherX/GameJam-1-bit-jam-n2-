@@ -22,6 +22,8 @@ func _ready() -> void:
 	tw = arrow2.create_tween().set_loops();
 	tw.tween_property(arrow2, "position:y", -87.5, 1.);
 	tw.tween_property(arrow2, "position:y", -92.5, 1.);
+	
+	GlobalStuff.start_time = Time.get_ticks_msec();
 
 func on_locked():
 	_door.lockAnimation();

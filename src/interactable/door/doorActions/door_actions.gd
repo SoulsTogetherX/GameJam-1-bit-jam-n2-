@@ -32,6 +32,7 @@ func _ready() -> void:
 			if _no.pause:
 				_no.modulate.a = 0.7;
 		elif c is Player:
+			print("found here!")
 			_player = c
 			_player.process_mode = Node.PROCESS_MODE_DISABLED;
 		tw.tween_property(c, "modulate:a", c.modulate.a, 0.5);

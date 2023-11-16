@@ -4,7 +4,7 @@
 
 [node name="cam" type="Camera2D"]
 ignore_rotation = false
-zoom = Vector2(2, 2)
+zoom = Vector2(0.3, 0.3)
 script = ExtResource("1_k6hu1")
 
 [node name="decay_time" type="Timer" parent="."]

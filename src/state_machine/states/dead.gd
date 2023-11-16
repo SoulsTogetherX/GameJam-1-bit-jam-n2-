@@ -14,6 +14,7 @@ func enter() -> void:
 		actor.velocity.y -= 400;
 		sound.play();
 		time.start();
+	actor.animation_player.play("falling");
 	
 func exit() -> void:
 	pass;

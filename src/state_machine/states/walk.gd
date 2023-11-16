@@ -1,6 +1,7 @@
 extends State
 
 @export var slowDown : State;
+@export var jumping : State;
 @export var falling : State;
 @export var push : State;
 
@@ -16,6 +17,7 @@ func enter() -> void:
 	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
 	tw.tween_property(actor, "scale", Vector2(1.1, 1.), 0.2);
 	time.start();
+	actor.animation_player.play("walk");
 
 func exit() -> void:
 	tw.kill();
@@ -29,6 +31,7 @@ func process_frame(_delta: float) -> State:
 
 func process_physics(_delta: float) -> State:
 	var direction = Input.get_axis("left", "right");
+	actor.turn(direction == -1);
 	if !direction:
 		return slowDown;
 	
@@ -39,9 +42,7 @@ func process_physics(_delta: float) -> State:
 	actor.velocity.x = direction * actor.SPEED;
 	
 	if Input.is_action_just_pressed("jump"):
-		actor.jump();
-		actor.update_position();
-		return falling
+		return jumping;
 	if !actor.is_on_floor():
 		return falling;
 	

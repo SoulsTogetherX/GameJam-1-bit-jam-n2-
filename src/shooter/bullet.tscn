@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv3dbp8md0ta1"]
+
+[ext_resource type="Script" path="res://src/shooter/bullet.gd" id="1_ctu0m"]
+
+[node name="bullet" type="Node2D"]
+script = ExtResource("1_ctu0m")
