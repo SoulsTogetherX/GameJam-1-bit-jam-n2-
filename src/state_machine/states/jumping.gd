@@ -10,15 +10,15 @@ func state_name():
 	return "jumping";
 
 func enter() -> void:
-	#tw = create_tween();
-	#tw.tween_property(actor, "scale", Vector2(1, 1.2), 0.1);
+	tw = create_tween();
+	tw.tween_property(actor, "scale", Vector2(0.94, 1.06), 0.2);
 	print(state_name())
 	actor.animation_player.play("jumping");
 	falling.has_jumped = true;
 	actor.jump();
 
 func exit() -> void:
-	#tw.kill();
+	tw.kill();
 	pass;
 
 func process_input(_event: InputEvent) -> State:

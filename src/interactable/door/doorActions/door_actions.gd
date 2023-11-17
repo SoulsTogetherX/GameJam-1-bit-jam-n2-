@@ -34,11 +34,10 @@ func _ready() -> void:
 				_no.modulate.a = 0.7;
 		elif c is Player:
 			_player = c
-			_player.process_mode = Node.PROCESS_MODE_DISABLED;
 		tw.tween_property(c, "modulate:a", c.modulate.a, fade_time);
 		c.modulate.a = 0.;
 	tw.chain().tween_callback(func():
-		_player.process_mode = Node.PROCESS_MODE_INHERIT;
+		_player.state_contr.force_change_state("idle");
 		)
 
 func _on_thing_attached() -> void:
@@ -64,7 +63,6 @@ func on_locked():
 
 func on_open():
 	_player.visible = false;
-	_player.process_mode = Node.PROCESS_MODE_DISABLED;
 	var tw = create_tween().set_parallel();
 	
 	for c in get_tree().current_scene.get_children():

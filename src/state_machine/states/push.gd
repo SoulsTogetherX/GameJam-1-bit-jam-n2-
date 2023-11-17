@@ -12,14 +12,14 @@ func state_name():
 	return "push";
 
 func enter() -> void:
-	#tw = create_tween();
-	#tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
+	tw = create_tween();
+	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
 	time.start();
 	actor.animation_player.play("push");
 	actor.turn(actor.velocity.x < 0);
 
 func exit() -> void:
-	#tw.kill();
+	tw.kill();
 	time.stop();
 
 func process_input(_event: InputEvent) -> State:
@@ -44,8 +44,8 @@ func process_physics(delta: float) -> State:
 	actor.velocity.x = direction * actor.SPEED;
 	
 	for bod in bods:
-		if bod.owner is RigidBody2D:
-			bod.owner.apply_central_impulse(Vector2(actor.velocity.x, 0).normalized() * actor.PUSH_FORCE);
+		if bod is RigidBody2D:
+			bod.apply_central_impulse(Vector2(actor.velocity.x, 0).normalized() * actor.PUSH_FORCE);
 	
 	if Input.is_action_just_pressed("jump"):
 		return jumping

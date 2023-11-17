@@ -15,14 +15,14 @@ func enter() -> void:
 	if !has_jumped:
 		actor.animation_player.play("falling");
 	print(state_name())
-	#tw = create_tween();
-	#tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
+	tw = create_tween();
+	tw.tween_property(actor, "scale", Vector2(1.0, 1.02), 0.2);
 
 func exit() -> void:
 	actor.velocity.y = 0;
 	has_jumped = false;
 	actor.land_steps.play(0);
-	#tw.kill();
+	tw.kill();
 
 func process_input(_event: InputEvent) -> State:
 	return null;
