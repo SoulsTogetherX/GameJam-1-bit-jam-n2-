@@ -35,6 +35,7 @@ func _ready() -> void:
 		elif c is Player:
 			_player = c
 		tw.tween_property(c, "modulate:a", c.modulate.a, fade_time);
+		
 		c.modulate.a = 0.;
 	tw.chain().tween_callback(func():
 		_player.state_contr.force_change_state("idle");
@@ -62,7 +63,7 @@ func on_locked():
 	pass;
 
 func on_open():
-	_player.visible = false;
+	_player.end_room_hide();
 	var tw = create_tween().set_parallel();
 	
 	for c in get_tree().current_scene.get_children():

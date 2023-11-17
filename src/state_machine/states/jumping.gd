@@ -11,8 +11,7 @@ func state_name():
 
 func enter() -> void:
 	tw = create_tween();
-	tw.tween_property(actor, "scale", Vector2(0.94, 1.06), 0.2);
-	print(state_name())
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(0.94, 1.06), 0.2);
 	actor.animation_player.play("jumping");
 	falling.has_jumped = true;
 	actor.jump();
@@ -37,7 +36,8 @@ func process_physics(delta: float) -> State:
 	
 	var direction = Input.get_axis("left", "right");
 	actor.velocity.x = direction * actor.SPEED;
-	actor.turn(direction == -1);
+	if direction != 0:
+		actor.turn(direction == -1);
 	actor.update_position();
 	
 	return null;

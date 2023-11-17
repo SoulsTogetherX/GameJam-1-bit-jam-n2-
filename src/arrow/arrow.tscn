@@ -1,19 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt7m7jl2m14rx"]
 
-[ext_resource type="Texture2D" uid="uid://lstaju6nllv" path="res://assets/sprites/player/arrow.png" id="1_csmwg"]
+[ext_resource type="Texture2D" uid="uid://cv30ollhxetjb" path="res://assets/sprites/player/arrow.png" id="1_csmwg"]
 [ext_resource type="Script" path="res://assets/sprites/player/arrow.gd" id="2_i5tpr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iut6d"]
 radius = 35.0
 
-[node name="Arrow" type="Sprite2D"]
-position = Vector2(40, -190)
-rotation = 3.14159
-scale = Vector2(2, 2)
-texture = ExtResource("1_csmwg")
+[node name="Node2D" type="Node2D"]
 script = ExtResource("2_i5tpr")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.14159
+scale = Vector2(0.11825, 0.155)
+texture = ExtResource("1_csmwg")
+
 [node name="Area2D" type="Area2D" parent="."]
+rotation = 3.14159
+scale = Vector2(2, 2)
 collision_layer = 0
 collision_mask = 6
 

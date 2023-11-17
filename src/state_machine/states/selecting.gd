@@ -107,8 +107,6 @@ func organize_selections(dir : int):
 	var next  = _loop_index(select_idx, dir);
 	var hide  = _loop_index(old, -dir);
 	
-	prints(old, next, hide)
-	
 	var tw : Tween = create_tween().set_parallel();
 	if max_selects != 0:
 		GlobalStuff.swap_parent_simple(_arrow, actor._selecting[select_idx]);
@@ -130,7 +128,6 @@ func _width_below(idx : int) -> float:
 	return actor._selecting[_loop_index(idx, -1)].get_width();
 
 func _swap_left(tw : Tween, old : int, next: int, hide : int):
-	print("left")
 	var next_      : Segment = actor._selecting[next];
 	var selected_  : Segment = actor._selecting[select_idx];
 	var past_      : Segment = actor._selecting[old];
@@ -164,7 +161,6 @@ func _swap_left(tw : Tween, old : int, next: int, hide : int):
 		
 
 func _swap_right(tw : Tween, old : int, next: int, hide : int):
-	print("right")
 	var old_      : Segment = actor._selecting[old];
 	var selected_ : Segment = actor._selecting[select_idx];
 	var next_     : Segment = actor._selecting[next];

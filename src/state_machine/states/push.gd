@@ -1,8 +1,11 @@
 extends State
 
-@export var idle : State;
+@export var slowDown : State;
 @export var jumping : State;
 @export var falling : State;
+
+@onready var push: CollisionShape2D = $"../../../push"
+@onready var normal: CollisionShape2D = $"../../../normal"
 
 @onready var time : Timer = $Timer;
 @onready var push_area : Area2D = $"../../../Area2D";
@@ -12,15 +15,18 @@ func state_name():
 	return "push";
 
 func enter() -> void:
+	push.disabled   = false;
+	normal.disabled = true;
+	
 	tw = create_tween();
-	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
-	time.start();
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(1, 1), 0.1);
 	actor.animation_player.play("push");
 	actor.turn(actor.velocity.x < 0);
 
 func exit() -> void:
+	push.disabled   = true;
+	normal.disabled = false;
 	tw.kill();
-	time.stop();
 
 func process_input(_event: InputEvent) -> State:
 	return null;
@@ -31,7 +37,7 @@ func process_frame(_delta: float) -> State:
 func process_physics(delta: float) -> State:
 	var bods = push_area.get_overlapping_bodies();
 	if bods.size() == 0:
-		return idle;
+		return slowDown;
 	
 	var direction = Input.get_axis("left", "right");
 	if direction == 0:
@@ -55,6 +61,3 @@ func process_physics(delta: float) -> State:
 	actor.update_position();
 	
 	return null;
-
-func _on_timer_timeout() -> void:
-	actor.wall_steps.play(-sign(actor.velocity.x));

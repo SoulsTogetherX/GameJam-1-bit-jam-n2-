@@ -21,7 +21,6 @@ func enter() -> void:
 	tw.tween_property(actor, "scale", Vector2(1.15, 1.), 0.1);
 	tw.tween_property(actor, "scale", Vector2(1., 1.), 0.1);
 	tw.tween_callback(func(): canExit = true);
-	print(canExit)
 
 func exit() -> void:
 	tw.kill();

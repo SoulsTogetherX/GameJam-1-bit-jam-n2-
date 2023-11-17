@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvljcpiq6wpkh"]
+[gd_scene load_steps=6 format=3 uid="uid://bvljcpiq6wpkh"]
 
 [ext_resource type="Script" path="res://src/word/scripts/Every.gd" id="1_b71xn"]
 [ext_resource type="PackedScene" uid="uid://cdh0pigcaachu" path="res://src/word/segment_.tscn" id="1_mv13y"]
-[ext_resource type="LabelSettings" uid="uid://ckx3fm4dabxol" path="res://src/word/Font.tres" id="3_et3cg"]
+[ext_resource type="FontFile" uid="uid://ecfqfdbk5xu3" path="res://assets/font/SuperDream-ax3vE.ttf" id="3_85b5j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6m631"]
+font = ExtResource("3_85b5j")
+font_size = 1000
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g0i8"]
 size = Vector2(46, 18)
@@ -11,19 +17,22 @@ size = Vector2(46, 18)
 script = ExtResource("1_b71xn")
 
 [node name="segment_" parent="." instance=ExtResource("1_mv13y")]
-collision_layer = 40
+collision_layer = 524328
 collision_mask = 33
 
 [node name="Label" parent="segment_" index="0"]
-offset_left = -21.5
-offset_top = -11.5
-offset_right = 2595.5
-offset_bottom = 1154.5
+offset_left = -26.5
+offset_top = -13.0
+offset_right = 2590.5
+offset_bottom = 1153.0
 scale = Vector2(0.018, 0.018)
 text = "Every"
-label_settings = ExtResource("3_et3cg")
+label_settings = SubResource("LabelSettings_6m631")
 script = null
 metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" parent="segment_" index="1"]
+collision_layer = 524292
 
 [node name="Area2D" type="Area2D" parent="segment_"]
 collision_layer = 7

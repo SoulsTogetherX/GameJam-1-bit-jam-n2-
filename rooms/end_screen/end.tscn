@@ -1,6 +1,384 @@
-[gd_scene load_steps=2 format=3 uid="uid://coy8pwcpbnsmv"]
+[gd_scene load_steps=28 format=3 uid="uid://coy8pwcpbnsmv"]
 
 [ext_resource type="Script" path="res://rooms/end_screen/end.gd" id="1_ylwxe"]
+[ext_resource type="Texture2D" uid="uid://cgfx0iufltgj3" path="res://assets/sprites/backframe/backframe.png" id="2_lrolk"]
+[ext_resource type="Texture2D" uid="uid://c6idkvqfswbda" path="res://assets/Imported_art/Compiled_Player_spriteSheet/Compiled_Player_spriteSheet.png" id="2_mgntu"]
+[ext_resource type="FontFile" uid="uid://ecfqfdbk5xu3" path="res://assets/font/SuperDream-ax3vE.ttf" id="3_h3m7m"]
+[ext_resource type="Script" path="res://rooms/end_screen/falling_girl.gd" id="4_v4str"]
+[ext_resource type="Texture2D" uid="uid://bxdp32y820fej" path="res://assets/sprites/check/check.png" id="5_ym6xt"]
+[ext_resource type="LabelSettings" uid="uid://ckx3fm4dabxol" path="res://src/word/Font.tres" id="6_hk513"]
+[ext_resource type="PackedScene" uid="uid://rp7pa1ujkofo" path="res://src/player/emiter.tscn" id="6_mourv"]
+[ext_resource type="AudioStream" uid="uid://bw7nalxr1fgfu" path="res://assets/sound/player_landing/Footsteps_Tile_Run_01.wav" id="7_7vecy"]
+[ext_resource type="Script" path="res://rooms/end_screen/Secret.gd" id="8_grsb6"]
+[ext_resource type="AudioStream" uid="uid://pjaddv4wjwmt" path="res://assets/sound/player_landing/Footsteps_Tile_Run_02.wav" id="8_lly8d"]
+[ext_resource type="AudioStream" uid="uid://c417qi4qvmlju" path="res://assets/sound/player_landing/Footsteps_Tile_Run_03.wav" id="9_gpy1q"]
+[ext_resource type="AudioStream" uid="uid://c74wfl7e8a0pf" path="res://assets/sound/player_landing/Footsteps_Tile_Run_04.wav" id="10_80w36"]
+[ext_resource type="AudioStream" uid="uid://qxjli571ivft" path="res://assets/sound/player_landing/Footsteps_Tile_Run_05.wav" id="11_6jcx6"]
+[ext_resource type="AudioStream" uid="uid://og4fnbkxmkn7" path="res://assets/sound/player_landing/Footsteps_Tile_Run_06.wav" id="12_nehvx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cg0pf"]
+font = ExtResource("3_h3m7m")
+font_size = 30
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqchr"]
+size = Vector2(164.949, 37.8005)
+
+[sub_resource type="Curve" id="Curve_xr3m4"]
+min_value = 0.99
+_data = [Vector2(nan, nan), 0.0, 0.0, 0, 0, Vector2(nan, nan), 0.0, 0.0, 0, 0, Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0, Vector2(nan, nan), 0.0, 0.0, 0, 0, Vector2(nan, nan), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="Curve" id="Curve_5f43u"]
+min_value = 1.99
+max_value = 10.0
+_data = [Vector2(0, 10), 0.0, 0.0, 0, 1, Vector2(1, 10), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_lnnrh"]
+offsets = PackedFloat32Array(0, 0.298658, 0.838926)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_pembe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main/fade:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main/fade:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-20.6185, 13.7457)]
+}
+
+[sub_resource type="Animation" id="Animation_uewwk"]
+resource_name = "falling"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main/fade:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main/fade:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-20.6185, 13.7457)]
+}
+
+[sub_resource type="Animation" id="Animation_imlj8"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("main:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("main/fade:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 0, 1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("main/fade:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-10.3093, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yq3lr"]
+_data = {
+"RESET": SubResource("Animation_pembe"),
+"falling": SubResource("Animation_uewwk"),
+"idle": SubResource("Animation_imlj8")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hiiht"]
+size = Vector2(3248.1, 634.924)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sa6uc"]
+size = Vector2(3248.1, 698.413)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mr61p"]
+font = ExtResource("3_h3m7m")
+font_size = 32
 
 [node name="end" type="Node2D"]
 script = ExtResource("1_ylwxe")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="background_1" type="NinePatchRect" parent="."]
+modulate = Color(1, 1, 1, 0.0705882)
+offset_left = -344.0
+offset_top = -256.0
+offset_right = 352.0
+offset_bottom = 244.0
+texture = ExtResource("2_lrolk")
+patch_margin_left = 250
+patch_margin_top = 250
+patch_margin_right = 250
+patch_margin_bottom = 250
+
+[node name="background_2" type="NinePatchRect" parent="background_1"]
+layout_mode = 0
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 705.0
+offset_bottom = 517.0
+scale = Vector2(1.02, 1.02)
+texture = ExtResource("2_lrolk")
+patch_margin_left = 250
+patch_margin_top = 250
+patch_margin_right = 250
+patch_margin_bottom = 250
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = -576.0
+offset_top = -328.0
+offset_right = 576.0
+offset_bottom = 328.0
+theme_override_constants/margin_left = 370
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_bottom = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="reached" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "    You Reached Nothingness!"
+label_settings = SubResource("LabelSettings_cg0pf")
+
+[node name="Line2D" type="Line2D" parent="MarginContainer/VBoxContainer/reached"]
+points = PackedVector2Array(6, 35, 414, 35)
+width = 4.0
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="orbs" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_h3m7m")
+theme_override_font_sizes/font_size = 25
+text = "             Orbs Collected : --/--"
+vertical_alignment = 1
+visible_characters = 30
+visible_ratio = 0.857143
+
+[node name="time" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_h3m7m")
+theme_override_font_sizes/font_size = 25
+text = "            Time Taken : --:--:--.---"
+vertical_alignment = 1
+visible_characters = 24
+visible_ratio = 0.648649
+
+[node name="main" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_h3m7m")
+theme_override_font_sizes/font_size = 25
+text = "Press \"P\" to return to the Main Menu."
+vertical_alignment = 1
+
+[node name="play" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_h3m7m")
+theme_override_font_sizes/font_size = 25
+text = "             Press \"R\" to play again."
+vertical_alignment = 1
+
+[node name="falling_girl" type="CharacterBody2D" parent="."]
+process_mode = 4
+position = Vector2(-400, -328)
+scale = Vector2(0.291, 0.291)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("4_v4str")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="falling_girl"]
+position = Vector2(0, -27.4913)
+shape = SubResource("RectangleShape2D_fqchr")
+
+[node name="main" type="Sprite2D" parent="falling_girl"]
+position = Vector2(0, -247.422)
+texture = ExtResource("2_mgntu")
+hframes = 3
+vframes = 4
+frame = 10
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="falling_girl/main"]
+process_mode = 3
+modulate = Color(1, 1, 1, 0.501961)
+show_behind_parent = true
+amount = 10
+emission_shape = 3
+emission_rect_extents = Vector2(180, 1)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+scale_amount_min = 2.0
+scale_amount_max = 6.0
+split_scale = true
+scale_curve_x = SubResource("Curve_xr3m4")
+scale_curve_y = SubResource("Curve_5f43u")
+color_ramp = SubResource("Gradient_lnnrh")
+
+[node name="fade" type="Sprite2D" parent="falling_girl/main"]
+modulate = Color(1, 1, 1, 0.498039)
+show_behind_parent = true
+position = Vector2(-20.6185, 13.7457)
+texture = ExtResource("2_mgntu")
+hframes = 3
+vframes = 4
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="falling_girl"]
+process_mode = 3
+autoplay = "falling"
+libraries = {
+"": SubResource("AnimationLibrary_yq3lr")
+}
+
+[node name="land_emiter" parent="falling_girl" instance=ExtResource("6_mourv")]
+process_mode = 3
+scale = Vector2(10, 1)
+audios = Array[AudioStream]([ExtResource("7_7vecy"), ExtResource("8_lly8d"), ExtResource("9_gpy1q"), ExtResource("10_80w36"), ExtResource("11_6jcx6"), ExtResource("12_nehvx")])
+
+[node name="Check_1" type="Sprite2D" parent="."]
+position = Vector2(176, -128)
+rotation = 0.846485
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_ym6xt")
+
+[node name="Check_2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.301961)
+position = Vector2(176, -128)
+rotation = 0.846485
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_ym6xt")
+
+[node name="Secret" type="Node2D" parent="."]
+position = Vector2(-400, -512)
+script = ExtResource("8_grsb6")
+
+[node name="text" type="Label" parent="Secret"]
+offset_left = -100.0
+offset_top = -40.0001
+offset_right = 3101.0
+offset_bottom = 1126.0
+scale = Vector2(0.063, 0.063)
+text = "Secret"
+label_settings = ExtResource("6_hk513")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Secret/text"]
+position = Vector2(0, 126.984)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Secret/text/StaticBody2D"]
+position = Vector2(1587.3, 507.937)
+shape = SubResource("RectangleShape2D_hiiht")
+
+[node name="Area2D" type="Area2D" parent="Secret/text"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Secret/text/Area2D"]
+position = Vector2(1587.3, 603.174)
+shape = SubResource("RectangleShape2D_sa6uc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Secret"]
+volume_db = -20.0
+
+[node name="New_Options" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -536.0
+offset_top = -224.0
+offset_right = -328.0
+offset_bottom = -101.0
+text = "New Option In
+Options Menu
+Unlocked!"
+label_settings = SubResource("LabelSettings_mr61p")
+
+[connection signal="input_event" from="Secret/text/Area2D" to="Secret" method="_on_area_2d_input_event"]

@@ -1,29 +1,233 @@
-[gd_scene load_steps=2 format=3 uid="uid://c10826yser22n"]
+[gd_scene load_steps=16 format=3 uid="uid://c10826yser22n"]
 
 [ext_resource type="Script" path="res://rooms/main_sceen/main.gd" id="1_o8qkh"]
+[ext_resource type="Texture2D" uid="uid://ic1bu3ssc2uk" path="res://assets/Imported_art/start_screen/Title Screen.png" id="2_lc7lc"]
+[ext_resource type="FontFile" uid="uid://ecfqfdbk5xu3" path="res://assets/font/SuperDream-ax3vE.ttf" id="2_xf4al"]
+[ext_resource type="LabelSettings" uid="uid://ckx3fm4dabxol" path="res://src/word/Font.tres" id="3_56itn"]
+[ext_resource type="Texture2D" uid="uid://qgpg8ckr1slq" path="res://assets/sprites/button/button_nineslice.png" id="3_pey8w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4lwbw"]
+font = ExtResource("2_xf4al")
+font_size = 70
+font_color = Color(0, 0, 0, 1)
+outline_size = 16
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7ugkh"]
+texture = ExtResource("3_pey8w")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fg6h7"]
+texture = ExtResource("3_pey8w")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0qdbn"]
+texture = ExtResource("3_pey8w")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+modulate_color = Color(1, 1, 1, 0.2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f80yn"]
+font = ExtResource("2_xf4al")
+font_size = 1000
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cvy84"]
+font = ExtResource("2_xf4al")
+font_size = 1000
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jcrmq"]
+texture = ExtResource("3_pey8w")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_203pc"]
+texture = ExtResource("3_pey8w")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jx0s8"]
+texture = ExtResource("3_pey8w")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+modulate_color = Color(1, 1, 1, 0.2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_anh38"]
+font = ExtResource("2_xf4al")
+font_size = 1000
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_o8qkh")
 
+[node name="image" type="TextureRect" parent="."]
+offset_top = -325.0
+offset_right = 1152.0
+offset_bottom = 323.0
+texture = ExtResource("2_lc7lc")
+expand_mode = 1
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="play" type="Button" parent="."]
-offset_left = -160.0
-offset_top = -208.0
-offset_right = 165.0
-offset_bottom = -120.0
+[node name="title" type="Label" parent="."]
+offset_left = -456.0
+offset_top = -250.0
+offset_right = 72.0
+offset_bottom = -165.0
+text = "Everything is Nothing"
+label_settings = SubResource("LabelSettings_4lwbw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = -576.0
+offset_top = -328.0
+offset_right = 576.0
+offset_bottom = 320.0
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 100
+
+[node name="buttons" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="play" type="Button" parent="MarginContainer/buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_xf4al")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7ugkh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fg6h7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0qdbn")
+
+[node name="text" type="Label" parent="MarginContainer/buttons/play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 10.0
+offset_right = 1703.0
+offset_bottom = 1094.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
 text = "Play"
+label_settings = SubResource("LabelSettings_f80yn")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="quit" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="quit" type="Button" parent="MarginContainer/buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_xf4al")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7ugkh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fg6h7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0qdbn")
+
+[node name="text" type="Label" parent="MarginContainer/buttons/quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 10.0
+offset_right = 1703.0
+offset_bottom = 1094.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
 text = "Quit"
+label_settings = SubResource("LabelSettings_cvy84")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="credits" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="option" type="Button" parent="MarginContainer/buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_xf4al")
+theme_override_styles/normal = SubResource("StyleBoxTexture_jcrmq")
+theme_override_styles/hover = SubResource("StyleBoxTexture_203pc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jx0s8")
+
+[node name="text" type="Label" parent="MarginContainer/buttons/option"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 88.0
+offset_top = -7.0
+offset_right = 3335.0
+offset_bottom = 1110.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+text = "Options"
+label_settings = ExtResource("3_56itn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="credits" type="Button" parent="MarginContainer/buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_xf4al")
+theme_override_styles/normal = SubResource("StyleBoxTexture_7ugkh")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fg6h7")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_0qdbn")
+
+[node name="text" type="Label" parent="MarginContainer/buttons/credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 88.0
+offset_top = 9.0
+offset_right = 3285.0
+offset_bottom = 1093.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
 text = "Credits"
+label_settings = SubResource("LabelSettings_anh38")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="credits" to="." method="_on_credits_pressed"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="pressed" from="MarginContainer/buttons/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/buttons/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/buttons/option" to="." method="_on_option_pressed"]
+[connection signal="pressed" from="MarginContainer/buttons/credits" to="." method="_on_credits_pressed"]

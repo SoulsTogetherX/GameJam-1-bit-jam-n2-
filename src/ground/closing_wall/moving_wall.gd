@@ -6,6 +6,7 @@ extends AnimatableBody2D
 @export var move_back_spd : int;
 
 @export var override : bool = false;
+@export var do_push : bool = false;
 
 @export var disabled: bool = false:
 	set(val):
@@ -38,7 +39,7 @@ func _physics_process(delta: float) -> void:
 			collision_mask = 1 + (top_collide * int(!up));
 	
 	if velocity.length_squared() > 0:
-		$AudioStreamPlayer2D.play();
+		BackgroundMusic.play_found_efx($AudioStreamPlayer2D, null, 5);
 	else:
 		$AudioStreamPlayer2D.stop();
 	

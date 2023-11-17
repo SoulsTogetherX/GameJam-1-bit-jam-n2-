@@ -38,7 +38,7 @@ func _physics_process(delta: float) -> void:
 			collision_mask = 1 + (top_collide * int(!up));
 	
 	if velocity.length_squared() > 0:
-		$AudioStreamPlayer2D.play();
+		BackgroundMusic.play_found_efx($AudioStreamPlayer2D, null, 15);
 	else:
 		$AudioStreamPlayer2D.stop();
 	

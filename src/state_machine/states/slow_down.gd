@@ -11,10 +11,9 @@ func state_name():
 	return "slow_down";
 
 func enter() -> void:
-	print(state_name())
 	tw = create_tween();
-	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
-	tw.tween_property(actor, "scale", Vector2(1.1, 1.), 0.2);
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(1, 1), 0.1);
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(1.1, 1.), 0.2);
 	actor.animation_player.play("idle");
 
 func exit() -> void:

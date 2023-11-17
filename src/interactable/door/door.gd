@@ -2,10 +2,10 @@
 class_name Door extends Node2D
 
 const _SPRITES = [
-	preload("res://assets/sprites/door/cross.png"),
-	preload("res://assets/sprites/door/door_open.png"),
-	preload("res://assets/sprites/door/door_close.png"),
-]
+	preload("res://assets/Imported_art/Door/Cross.png"),
+	preload("res://assets/Imported_art/Door/Door_Open.png"),
+	preload("res://assets/Imported_art/Door/Door_Closed.png"),
+];
 
 enum STATE {LOCKED, OPEN, CLOSED};
 var _state = STATE.LOCKED;
@@ -57,8 +57,8 @@ func close() -> void:
 
 func lockAnimation() -> void:
 	var tween = create_tween().parallel().set_loops(2);
-	tween.tween_property(_lock_spr, "rotation_degrees", -2, 0.1);
-	tween.tween_property(_lock_spr, "rotation_degrees", 2, 0.1);
+	tween.tween_property(_lock_spr, "rotation_degrees", -5, 0.1);
+	tween.tween_property(_lock_spr, "rotation_degrees", 5, 0.1);
 	await tween.finished;
 	tween.kill();
 

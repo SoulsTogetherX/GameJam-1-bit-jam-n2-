@@ -1,0 +1,263 @@
+[gd_scene load_steps=13 format=3 uid="uid://cwexc0wryferm"]
+
+[ext_resource type="TileSet" uid="uid://csacks3vb1pxs" path="res://rooms/puzzel_rooms/background.tres" id="1_c48fg"]
+[ext_resource type="Script" path="res://rooms/options_screen/options.gd" id="1_l2qeb"]
+[ext_resource type="FontFile" uid="uid://ecfqfdbk5xu3" path="res://assets/font/SuperDream-ax3vE.ttf" id="2_1j6gh"]
+[ext_resource type="Texture2D" uid="uid://qgpg8ckr1slq" path="res://assets/sprites/button/button_nineslice.png" id="3_aldiu"]
+[ext_resource type="LabelSettings" uid="uid://ckx3fm4dabxol" path="res://src/word/Font.tres" id="4_ai2q0"]
+[ext_resource type="Texture2D" uid="uid://cs0txms2wth0y" path="res://assets/sprites/player/hat.png" id="6_fan1o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vf2l"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nxieh"]
+font = ExtResource("2_1j6gh")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g6sn0"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e1uwk"]
+texture = ExtResource("3_aldiu")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ql0vf"]
+texture = ExtResource("3_aldiu")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ni187"]
+texture = ExtResource("3_aldiu")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+modulate_color = Color(1, 1, 1, 0.2)
+
+[node name="options" type="Node2D"]
+script = ExtResource("1_l2qeb")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+self_modulate = Color(1, 1, 1, 0.2)
+scale = Vector2(4, 4)
+tile_set = ExtResource("1_c48fg")
+format = 2
+layer_0/tile_data = PackedInt32Array(65537, 589826, 2, -131071, 589826, 2, 65536, 589826, 2, -131072, 589826, 2, 131071, 589826, 2, -65537, 589826, 2, 131070, 589826, 2, -65538, 589826, 2, 131069, 589826, 2, 65533, 589826, 2, -3, 589826, 2, -65539, 589826, 2, 65538, 589826, 2, 2, 589826, 2, -65534, 589826, 2, -131070, 589826, 2, -65535, 589826, 2, 1, 589826, 2, 0, 589826, 2, 65535, 589826, 2, -65536, 589826, 2, -1, 589826, 2, 65534, 589826, 2, -2, 589826, 2, -65540, 589826, 2, 196614, 720898, 3, 131078, 720898, 2, 65542, 720898, 2, 6, 720898, 2, -65530, 720898, 2, -131066, 720898, 2, -196602, 720898, 2, -262138, 720898, 0, 196613, 589826, 3, 131077, 589826, 2, 65541, 589826, 2, 5, 589826, 2, -65531, 589826, 2, -131067, 589826, 2, -196603, 589826, 2, -262139, 655362, 0, 196612, 589826, 3, 131076, 589826, 2, 65540, 589826, 2, 4, 589826, 2, -65532, 589826, 2, -131068, 589826, 2, -196604, 589826, 2, -262140, 655362, 0, 196611, 589826, 3, 131075, 589826, 2, 65539, 589826, 2, 3, 589826, 2, -65533, 589826, 2, -131069, 589826, 2, -196605, 589826, 2, -262141, 655362, 0, 196610, 589826, 3, 131074, 589826, 2, -196606, 589826, 2, -262142, 655362, 0, 196609, 589826, 3, 131073, 589826, 2, -196607, 589826, 2, -262143, 655362, 0, 196608, 589826, 3, 131072, 589826, 2, -196608, 589826, 2, -262144, 655362, 0, 262143, 589826, 3, 196607, 589826, 2, -131073, 589826, 2, -196609, 655362, 0, 262142, 589826, 3, 196606, 589826, 2, -131074, 589826, 2, -196610, 655362, 0, 262141, 589826, 3, 196605, 589826, 2, -131075, 589826, 2, -196611, 655362, 0, 262140, 589826, 3, 196604, 589826, 2, 131068, 589826, 2, 65532, 589826, 2, -4, 589826, 2, -131076, 589826, 2, -196612, 655362, 0, 262139, 589826, 3, 196603, 589826, 2, 131067, 589826, 2, 65531, 589826, 2, -5, 589826, 2, -65541, 589826, 2, -131077, 589826, 2, -196613, 655362, 0, 262138, 589826, 3, 196602, 589826, 2, 131066, 589826, 2, 65530, 589826, 2, -6, 589826, 2, -65542, 589826, 2, -131078, 589826, 2, -196614, 655362, 0, 262137, 524290, 3, 196601, 524290, 1, 131065, 524290, 1, 65529, 524290, 1, -7, 524290, 1, -65543, 524290, 1, -131079, 524290, 1, -196615, 524290, 0)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = -448.0
+offset_top = -256.0
+offset_right = 448.0
+offset_bottom = 248.0
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7vf2l")
+
+[node name="Music" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/Panel"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 656.0
+offset_bottom = 114.0
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/Panel/Music"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 14
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/Panel/Music/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Music"
+label_settings = SubResource("LabelSettings_nxieh")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/Panel/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 40
+
+[node name="music_slide" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer2/PanelContainer/Panel/Music/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxFlat_g6sn0")
+min_value = -40.0
+max_value = 10.0
+value = -20.0
+tick_count = 18
+ticks_on_borders = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7vf2l")
+
+[node name="Music" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/Panel"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 656.0
+offset_bottom = 114.0
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/Panel/Music"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 14
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/Panel/Music/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Sfx     "
+label_settings = SubResource("LabelSettings_nxieh")
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/Panel/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 40
+
+[node name="sfx_slide" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/Panel/Music/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxFlat_g6sn0")
+min_value = -40.0
+max_value = 10.0
+value = -20.0
+tick_count = 18
+ticks_on_borders = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 0
+
+[node name="back" type="Button" parent="."]
+offset_left = -304.0
+offset_top = 136.0
+offset_right = -80.0
+offset_bottom = 192.0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_1j6gh")
+theme_override_styles/normal = SubResource("StyleBoxTexture_e1uwk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ql0vf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ni187")
+
+[node name="text" type="Label" parent="back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 48.0
+offset_right = 2324.0
+offset_bottom = 1110.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+text = "Back"
+label_settings = ExtResource("4_ai2q0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="dapper_sprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(200, 88)
+texture = ExtResource("6_fan1o")
+
+[node name="dapper" type="Button" parent="."]
+visible = false
+offset_left = 88.0
+offset_top = 136.0
+offset_right = 312.0
+offset_bottom = 192.0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_1j6gh")
+theme_override_styles/normal = SubResource("StyleBoxTexture_e1uwk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ql0vf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ni187")
+
+[node name="text" type="Label" parent="dapper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_right = 3125.0
+offset_bottom = 1110.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+text = "Dapper"
+label_settings = ExtResource("4_ai2q0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="drag_ended" from="MarginContainer/VBoxContainer/MarginContainer3/PanelContainer/Panel/Music/MarginContainer2/sfx_slide" to="." method="_slide_drag_ended"]
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="dapper" to="." method="_on_dapper_pressed"]

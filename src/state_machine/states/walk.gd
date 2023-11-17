@@ -14,14 +14,12 @@ func state_name():
 
 func enter() -> void:
 	tw = create_tween();
-	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
-	tw.tween_property(actor, "scale", Vector2(1.1, 1.), 0.2);
-	time.start();
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(1, 1), 0.1);
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(1.1, 1.), 0.2);
 	actor.animation_player.play("walk");
 
 func exit() -> void:
 	tw.kill();
-	time.stop();
 
 func process_input(_event: InputEvent) -> State:
 	return null;
@@ -49,6 +47,3 @@ func process_physics(_delta: float) -> State:
 	actor.update_position();
 	
 	return null;
-
-func _on_timer_timeout() -> void:
-	actor.wall_steps.play(-sign(actor.velocity.x));

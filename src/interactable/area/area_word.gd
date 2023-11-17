@@ -125,7 +125,7 @@ func check_to_toggle() -> void:
 	
 	if _prev_in != _in:
 		if _in:
-			$AudioStreamPlayer.play();
+			BackgroundMusic.play_found_efx($AudioStreamPlayer, null, 0);
 			for i in connected.size():
 				connected[i].disabled = !_states[i];
 				$Sprite2D.modulate.a = 0.7;

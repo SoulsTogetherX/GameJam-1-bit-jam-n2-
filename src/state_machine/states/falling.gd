@@ -2,7 +2,7 @@ extends State
 
 @export var walking : State;
 @export var jumping : State;
-@export var idle : State;
+@export var slowDown : State;
 
 var tw : Tween;
 var has_jumped : bool = false;
@@ -14,9 +14,8 @@ func enter() -> void:
 	actor.coyote_timer.start();
 	if !has_jumped:
 		actor.animation_player.play("falling");
-	print(state_name())
 	tw = create_tween();
-	tw.tween_property(actor, "scale", Vector2(1.0, 1.02), 0.2);
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(1.0, 1.02), 0.2);
 
 func exit() -> void:
 	actor.velocity.y = 0;
@@ -47,7 +46,7 @@ func process_physics(delta: float) -> State:
 			actor.jump_buffer.stop();
 			return jumping;
 		elif !direction:
-			return idle;
+			return slowDown;
 		else:
 			return walking;
 	

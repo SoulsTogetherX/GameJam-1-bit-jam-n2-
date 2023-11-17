@@ -8,7 +8,6 @@ func state_name():
 	return "dead";
 
 func enter() -> void:
-	print(state_name())
 	if time.is_stopped():
 		spd_x = -sign(actor.velocity.x) * 700;
 		actor.modulate.a = 0.7;

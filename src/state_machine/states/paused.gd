@@ -6,12 +6,11 @@ func state_name():
 	return "paused";
 
 func enter() -> void:
-	print(state_name())
 	tw = create_tween();
-	tw.tween_property(actor, "scale", Vector2(1, 1), 0.1);
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(1, 1), 0.1);
 	tw.chain().set_loops();
-	tw.tween_property(actor, "scale", Vector2(1, 1.01), 0.5);
-	tw.tween_property(actor, "scale", Vector2(1, 0.99), 0.5);
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(1, 1.01), 0.5);
+	tw.tween_property(actor.get_node("tweener"), "scale", Vector2(1, 0.99), 0.5);
 	actor.animation_player.play("idle");
 
 func exit() -> void:

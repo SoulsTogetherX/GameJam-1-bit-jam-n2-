@@ -1,0 +1,200 @@
+[gd_scene load_steps=17 format=3 uid="uid://sx0k7x26usko"]
+
+[ext_resource type="Script" path="res://rooms/credits_screen/credits.gd" id="1_76w84"]
+[ext_resource type="FontFile" uid="uid://ecfqfdbk5xu3" path="res://assets/font/SuperDream-ax3vE.ttf" id="2_8hsfp"]
+[ext_resource type="Texture2D" uid="uid://qgpg8ckr1slq" path="res://assets/sprites/button/button_nineslice.png" id="3_8070n"]
+[ext_resource type="LabelSettings" uid="uid://ckx3fm4dabxol" path="res://src/word/Font.tres" id="4_rothj"]
+[ext_resource type="TileSet" uid="uid://csacks3vb1pxs" path="res://rooms/puzzel_rooms/background.tres" id="6_wb84q"]
+[ext_resource type="Script" path="res://rooms/credits_screen/player_tween.gd" id="7_fe713"]
+[ext_resource type="Texture2D" uid="uid://c6idkvqfswbda" path="res://assets/Imported_art/Compiled_Player_spriteSheet/Compiled_Player_spriteSheet.png" id="7_olysu"]
+[ext_resource type="Texture2D" uid="uid://cv30ollhxetjb" path="res://assets/sprites/player/arrow.png" id="8_1cwow"]
+[ext_resource type="AudioStream" uid="uid://bppf3bketdevb" path="res://assets/sound/button/Credits_Back.wav" id="9_2lpfk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nks3e"]
+font = ExtResource("2_8hsfp")
+font_size = 40
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yx3y5"]
+texture = ExtResource("3_8070n")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2q2tc"]
+texture = ExtResource("3_8070n")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fnede"]
+texture = ExtResource("3_8070n")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+modulate_color = Color(1, 1, 1, 0.2)
+
+[sub_resource type="Animation" id="Animation_g371u"]
+resource_name = "idle"
+length = 0.9
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../fade:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [2, 0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8atd5"]
+_data = {
+"idle": SubResource("Animation_g371u")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_fb6de"]
+font = ExtResource("2_8hsfp")
+font_size = 20
+
+[node name="credits" type="Node2D"]
+script = ExtResource("1_76w84")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_left = -576.0
+offset_top = -328.0
+offset_right = 584.0
+offset_bottom = 328.0
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 30
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "Soup
+	- Music
+		https://s-oop.itch.io/
+
+itsPyrogeist
+	- Most of the Spritework
+		https://itspyrogeist.itch.io/
+
+SoulsTogether
+	- Programing, Level Design, Some Spritework,
+   Game idea, and Sound Effects
+		https://soulstogetherx.itch.io/"
+label_settings = SubResource("LabelSettings_nks3e")
+
+[node name="back" type="Button" parent="."]
+offset_left = 136.0
+offset_top = -304.0
+offset_right = 560.0
+offset_bottom = -224.0
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_8hsfp")
+theme_override_styles/normal = SubResource("StyleBoxTexture_yx3y5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_2q2tc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_fnede")
+
+[node name="text" type="Label" parent="back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 144.0
+offset_top = 8.0
+offset_right = 1993.0
+offset_bottom = 1094.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+text = "Back"
+label_settings = ExtResource("4_rothj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(320, -64)
+scale = Vector2(3.6, 3.6)
+tile_set = ExtResource("6_wb84q")
+format = 2
+layer_0/tile_data = PackedInt32Array(131071, 524290, 0, 65536, 655362, 0, 65537, 655362, 0, 65538, 655362, 0, 65539, 655362, 0, 65540, 655362, 0, 65541, 720898, 0, 131077, 720898, 3, 131076, 589826, 3, 131075, 589826, 3, 131074, 589826, 3, 131073, 589826, 3, 131072, 589826, 3, 196607, 524290, 3)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(320, -64)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("7_fe713")
+
+[node name="fade" type="Sprite2D" parent="Node2D"]
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(71, -48)
+texture = ExtResource("7_olysu")
+flip_h = true
+hframes = 3
+vframes = 4
+frame = 2
+
+[node name="main" type="Sprite2D" parent="Node2D"]
+position = Vector2(61, -48)
+texture = ExtResource("7_olysu")
+flip_h = true
+hframes = 3
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+root_node = NodePath("../main")
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_8atd5")
+}
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(168, -32)
+rotation = -1.69471
+scale = Vector2(0.1, 0.3)
+texture = ExtResource("8_1cwow")
+
+[node name="Drew Her" type="Label" parent="."]
+offset_left = 88.0
+offset_top = -64.0
+offset_right = 204.0
+offset_bottom = -37.0
+rotation = -0.253073
+text = "Drew her"
+label_settings = SubResource("LabelSettings_fb6de")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_2lpfk")
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

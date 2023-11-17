@@ -29,21 +29,23 @@ func collected():
 	if fin_tween != null:
 		return;
 	
+	BackgroundMusic.fade_out_and_in(0.5, 3.6, 1.5, -10.0);
+	
 	ani_tween.kill();
-	$AudioStreamPlayer.play();
+	BackgroundMusic.play_found_efx($AudioStreamPlayer, null, 10);
 	GlobalStuff.bonuses_collected[room_num] = true;
-	$Label.text =  str(GlobalStuff.collected_bonuses()) + " / " + str(GlobalStuff.total_bonuses);
+	$Label.text = GlobalStuff.collected_formated();
 	
 	fin_tween = create_tween(); 
 	fin_tween.set_ease(Tween.EASE_OUT).set_parallel();
 	fin_tween.tween_property(self, "modulate:a", 0.0, 3.5);
 	
 	fin_tween.tween_property($sprite1, "modulate:a", 0.0, 3.5);
-	fin_tween.tween_property($sprite1, "scale", Vector2(20, 20), 3.5);
+	fin_tween.tween_property($sprite1, "scale", Vector2(5, 5), 3.5);
 	fin_tween.tween_property($sprite2, "modulate:a", 0.0, 2.33333);
-	fin_tween.tween_property($sprite2, "scale", Vector2(25, 25), 3.5);
+	fin_tween.tween_property($sprite2, "scale", Vector2(6.25, 6.25), 3.5);
 	fin_tween.tween_property($sprite3, "modulate:a", 0.0, 1.16667);
-	fin_tween.tween_property($sprite3, "scale", Vector2(30, 30), 3.5);
+	fin_tween.tween_property($sprite3, "scale", Vector2(7.5, 7.5), 3.5);
 	
 	fin_tween.tween_property($Label, "modulate:a", 1.0, 2.5);
 	fin_tween.tween_property($Label, "position:y", -200.0, 3.5);

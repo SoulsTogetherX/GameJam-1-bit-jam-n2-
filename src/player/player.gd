@@ -19,6 +19,10 @@ const PUSH_FORCE          : int    =  220;
 
 @export var _cam           : CameraFollow = null;
 
+func _ready() -> void:
+	if GlobalStuff.dapper:
+		$tweener/hat.visible = true;
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") && is_on_floor():
 		var detecteds = detector.get_overlapping_areas();
@@ -32,8 +36,12 @@ func update_position() -> void:
 	move_and_slide();
 	_cam.update_position();
 
+static var jump_particles :PackedScene = preload("res://assets/particles/jump_particles.tscn");
 func jump() -> void:
-	print("jumped")
+	var jp = jump_particles.instantiate();
+	add_sibling(jp);
+	jp.position = position;
+	
 	jump_steps.play(0);
 	velocity.y = JUMP_VELOCITY;
 	update_position();
@@ -45,11 +53,19 @@ func kill() -> void:
 	state_contr.force_change_state("dead");
 
 func play_footset():
-	if $main.flip_h:
-		wall_steps.play(-1);
-	else:
+	if $tweener/main.flip_h:
 		wall_steps.play(1);
+	else:
+		wall_steps.play(-1);
+
+func end_room_hide() -> void:
+	$tweener/fade.modulate.a = 0.0;
+	$tweener/main.modulate.a = 0.0;
+	$tweener/hat.modulate.a = 0.0;
+	process_mode = Node.PROCESS_MODE_DISABLED;
 
 func turn(flip : bool):
-	$fade.flip_h = flip;
-	$main.flip_h = flip;
+	$tweener/fade.flip_h = flip;
+	$tweener/main.flip_h = flip;
+	$tweener/hat.flip_h = flip;
+	

@@ -21,12 +21,15 @@ scale = Vector2(2, 2)
 script = ExtResource("1_dxpdg")
 
 [node name="sprite1" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_og045")
 
 [node name="sprite2" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_og045")
 
 [node name="sprite3" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_og045")
 
 [node name="Area2D" type="Area2D" parent="."]

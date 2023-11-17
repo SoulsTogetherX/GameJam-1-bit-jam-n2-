@@ -15,7 +15,6 @@ radius = 200.997
 
 [node name="switch" type="Node2D"]
 z_index = -2
-scale = Vector2(0.15, 0.15)
 script = ExtResource("1_7oxj5")
 
 [node name="on_sprite" type="Sprite2D" parent="."]

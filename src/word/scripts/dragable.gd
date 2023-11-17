@@ -33,22 +33,17 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 			particle.global_position = get_global_mouse_position();
 			GlobalStuff.waggle(actor, 0.3, 5 * sign(get_local_mouse_position().x));
 			
-			audioPlayer.volume_db = -20;
-			audioPlayer.stream = place[randi() % place.size()];
-			audioPlayer.play();
+			BackgroundMusic.play_found_efx(audioPlayer, place[randi() % place.size()], -10);
 		return;
 	
 	if event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT && event.is_pressed():
-		audioPlayer.volume_db = -20;
 		if attached:
 			var a = actor.get_node("Area2D");
 			if a.get_overlapping_areas().size() > 1 or a.get_overlapping_bodies().size() > 1:
-				audioPlayer.stream = cannotPlace;
-				audioPlayer.play();
+				BackgroundMusic.play_found_efx(audioPlayer, cannotPlace, 0);
 				return;
 			
-			audioPlayer.stream = place[randi() % place.size()];
-			audioPlayer.play();
+			BackgroundMusic.play_found_efx(audioPlayer, place[randi() % place.size()], 0);
 			
 			attached = false;
 			hold     = true;
@@ -63,8 +58,7 @@ func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int
 			actor.get_node("CollisionShape2D").collision_layer = 7;
 			return;
 		
-		audioPlayer.stream = place[randi() % place.size()];
-		audioPlayer.play();
+		BackgroundMusic.play_found_efx(audioPlayer, place[randi() % place.size()], -10);
 		attached = true;
 		
 		actor.global_rotation_degrees = -5;
@@ -111,5 +105,4 @@ func _physics_process(delta: float) -> void:
 		
 		if actor.get_slide_collision_count() > 0:
 			hold = true;
-			audioPlayer.stream = land;
-			audioPlayer.play();
+			BackgroundMusic.play_found_efx(audioPlayer, land, -10);

@@ -1,16 +1,31 @@
 @tool
 extends Node
 
+static var segment_settings = preload("res://src/word/Font.tres");
 static var segment_font      : Font = ThemeDB.fallback_font;
-static var segment_font_size : int = 16;
+static var segment_font_size : int = 17;
+
+var dapper : bool = false;
+var can_dapper : bool = false;
+var playerDirEnd : bool = false;
 
 var bonuses_collected = [];
-var total_bonuses = 10;
+var total_bonuses = 11;
 var start_time : int = 0;
 var end_time : int = 0;
 
+func reset_collected() -> void:
+	for bd in total_bonuses:
+		bonuses_collected[bd] = false;
+
 func collected_bonuses() -> int:
 	return bonuses_collected.count(true);
+
+func collected_formated() -> String:
+	return str(collected_bonuses()) + " / " + str(total_bonuses - 1);
+
+func get_time_ms() -> int:
+	return end_time - start_time;
 
 func _ready() -> void:
 	for bd in total_bonuses:
